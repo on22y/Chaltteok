@@ -5,7 +5,6 @@ const cors = require("cors");
 const fs = require("fs");
 
 const app = express();
-const port = 5000;
 
 // CORS 설정 (클라이언트와 백엔드가 다른 포트에 있을 때 필요)
 app.use(cors());
@@ -48,8 +47,4 @@ app.post("/api/speech-to-text", upload.single("audio"), async (req, res) => {
     // 업로드된 파일 삭제
     fs.unlinkSync(audioFile.path);
   }
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
 });
