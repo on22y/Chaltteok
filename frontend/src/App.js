@@ -6,6 +6,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Test from './pages/Test';
 import Voice from './components/Voice';
+import Word from './pages/Word';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/test" element={<Test />} />
           <Route path="/speech_to_text" element={<Voice />} />
+          <Route path="/word" element={<Word />} />
         </Routes>
       </Router>
     </div>
