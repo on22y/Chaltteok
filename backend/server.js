@@ -57,7 +57,7 @@ app.use("/", take_slang_dbRoutes);
 
 // 모든 요청은 build/index.html로
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../front-end/build", "index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
 });
 
 // 서버 시작
