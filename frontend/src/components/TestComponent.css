@@ -1,0 +1,62 @@
+.testPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fccd2a;
+  box-sizing: border-box;
+}
+
+.testPage .mainBtnContainer {
+  margin-top: 20px;
+}
+
+.testPage p {
+  font-size: 22px;
+  padding: 0 0;
+  margin: 0 0;
+}
+
+.testPage .inputBoxContainer {
+  margin-top: 15px;
+}
+
+.testPage .mainImg {
+  padding: 0;
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
+
+/* 여기부터 수정 */
+.testPage .chatContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+.testPage .chatContainer .chatBubble {
+  max-width: 280px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.testPage .chatContainer .greenBubble {
+  background-color: #6ec207;
+  color: white;
+  align-self: flex-start;
+}
+
+.testPage .chatContainer .grayBubble {
+  background-color: #4a4a4a;
+  color: white;
+  align-self: flex-end;
+}
+
+.testPage .inputBoxContainer {
+  margin-top: 20px;
+}

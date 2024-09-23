@@ -8,5 +8,5 @@
   max-width: 400px;
   margin: 0 auto;
   box-sizing: border-box; /* 패딩과 테두리를 포함한 박스 크기 */
-  text-align: center;
+  /* text-align: center; */
 }

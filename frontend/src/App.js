@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Test from './pages/Test';
+import Voice from './components/Voice';
 
 function App() {
   return (
@@ -11,8 +13,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/process/signup" element={<Signup />} />
-          <Route path="/process/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/test" element={<Test />} />
+          <Route path="/speech_to_text" element={<Voice />} />
         </Routes>
       </Router>
     </div>

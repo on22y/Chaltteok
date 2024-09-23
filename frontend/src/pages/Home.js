@@ -12,7 +12,7 @@ function Home() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    navigate('/process/login');
+    navigate('/login');
   };
 
   const handleTest = () => {

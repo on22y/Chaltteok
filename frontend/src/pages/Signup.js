@@ -30,7 +30,7 @@ function Signup() {
 
         if (result.success) {
           alert('회원가입 성공!');
-          navigate('/process/login');
+          navigate('/login');
         } else {
           alert(result.message);
         }
