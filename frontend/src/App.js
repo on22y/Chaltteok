@@ -14,8 +14,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/signuppage" element={<Signup />} />
+          <Route path="/loginpage" element={<Login />} />
           <Route path="/test" element={<Test />} />
           <Route path="/speech_to_text" element={<Voice />} />
           <Route path="/word" element={<Word />} />
