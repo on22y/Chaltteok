@@ -3,6 +3,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const router = express.Router();
 const mysql = require("mysql");
+const app = express();
 const db_config = require("../config/db_config.json");
 
 const pool = mysql.createPool({
@@ -71,5 +72,5 @@ router.post("/process/login", (req, res) => {
     );
   });
 });
-router.use("/loginpage", router);
+app.use("/loginpage", router);
 module.exports = router;

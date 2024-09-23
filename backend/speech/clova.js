@@ -1,3 +1,4 @@
+//프론트에서 요청이 들어오면 clova에 api를 불러와서 음성인식 해주는 코드
 const express = require("express");
 const axios = require("axios");
 const multer = require("multer");
