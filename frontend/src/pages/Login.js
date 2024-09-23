@@ -18,7 +18,7 @@ function Login() {
 
     if (name && password) {
       try {
-        const response = await axios.post('/login/process', { name, password });
+        const response = await axios.post('/process/login', { name, password });
         const data = response.data;
 
         if (data.success) {

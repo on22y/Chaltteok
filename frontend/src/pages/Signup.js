@@ -25,12 +25,12 @@ function Signup() {
 
       try {
         // 서버로 회원가입 요청을 보냄
-        const response = await axios.post('/login/process/signup', signupData);
+        const response = await axios.post('/process/signup', signupData);
         const result = response.data;
 
         if (result.success) {
           alert('회원가입 성공!');
-          navigate('/login');
+          navigate('/process/login');
         } else {
           alert(result.message);
         }
