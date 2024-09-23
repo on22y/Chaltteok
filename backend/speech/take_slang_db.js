@@ -1,3 +1,4 @@
+//db서버에서 신조어 비교해서 평어로 바꿔주는 코드
 const mysql = require("mysql");
 const express = require("express");
 const router = express.Router();
