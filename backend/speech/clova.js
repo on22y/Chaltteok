@@ -4,6 +4,7 @@ const axios = require("axios");
 const multer = require("multer");
 const fs = require("fs");
 const router = express.Router();
+const app = express();
 
 // 파일 업로드 설정
 const upload = multer({ dest: "uploads/" });
@@ -39,5 +40,5 @@ router.post("/recognize", upload.single("audio"), async (req, res) => {
     res.status(500).send("Speech recognition failed");
   }
 });
-
+app.use("/speech-to-text", router);
 module.exports = router;

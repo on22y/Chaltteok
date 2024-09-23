@@ -1,8 +1,9 @@
 //db서버에서 신조어 비교해서 평어로 바꿔주는 코드
-const mysql = require("mysql");
 const express = require("express");
+const mysql = require("mysql");
 const router = express.Router();
 const db_config = require("../config/db_config.json");
+const app = express();
 
 // Database pool 설정
 const pool = mysql.createPool({
@@ -66,4 +67,5 @@ router.post("/replace-slang", async (req, res) => {
   }
 });
 
+app.use("/speech-to-text", router);
 module.exports = router;

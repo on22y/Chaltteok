@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // js파일 연동
 const mypageRoutes = require("./user/mypage");
 const loginRoutes = require("./user/login");
-const processRoutes = require("./user/check-login");
+const processRoutes = require("./user/process");
 const signupRoutes = require("./user/signup");
 const clovaRoutes = require("./speech/clova");
 const take_slang_dbRoutes = require("./speech/take_slang_db");
