@@ -1,0 +1,36 @@
+.homePage {
+  display: flex;
+  height: 100vh; /* 전체 뷰포트 높이를 차지 */
+  background-color: #fccd2a;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.homePage-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px; /* 요소 간의 간격 조정 */
+}
+
+.homePage .underlineBtn {
+  margin-bottom: 10px;
+}
+
+.homePage .inputBoxContainer {
+  margin-top: 15px;
+}
+
+.homePage .mainBtnContainer {
+  margin-top: 25px;
+}
+
+.homePage .mainImg {
+  padding: 0 0;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}

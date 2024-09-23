@@ -1,0 +1,23 @@
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 전체 뷰포트 높이를 차지 */
+  background-color: #fccd2a;
+  box-sizing: border-box;
+}
+
+.loginPage .inputBoxContainer {
+  margin-top: 15px;
+}
+
+.loginPage .mainBtnContainer {
+  margin-top: 20px;
+}
+
+.loginPage .mainImg {
+  padding: 0 0;
+  margin-top: 40px;
+  margin-bottom: 5px;
+}

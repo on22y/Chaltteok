@@ -1,0 +1,19 @@
+import React from 'react';
+import './TextComponent.css';
+
+function TextComponent({ text, colorClass, fontSize, strokeWidth = '1px', strokeColor = '#2f2f2f' }) {
+  const appliedClass = colorClass ? `textContainer ${colorClass}` : 'textContainer textGreen';
+
+  const textStyle = {
+    fontSize: fontSize,
+    WebkitTextStroke: `${strokeWidth}  ${strokeColor}`,
+  };
+
+  return (
+    <div className={appliedClass} style={textStyle}>
+      {text}
+    </div>
+  );
+}
+
+export default TextComponent;
