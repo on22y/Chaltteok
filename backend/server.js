@@ -46,12 +46,14 @@ const loginRoutes = require("./user/login");
 const processRoutes = require("./user/check-login");
 const signupRoutes = require("./user/signup");
 const clovaRoutes = require("./speech/clova");
+const take_slang_dbRoutes = require("./speech/take_slang_db");
 
 app.use("/", mypageRoutes);
 app.use("/", loginRoutes);
 app.use("/", processRoutes);
 app.use("/", signupRoutes);
 app.use("/", clovaRoutes);
+app.use("/", take_slang_dbRoutes);
 
 // 모든 요청은 build/index.html로
 app.get("*", (req, res) => {

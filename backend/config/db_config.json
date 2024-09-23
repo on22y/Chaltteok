@@ -2,6 +2,6 @@
   "host": "35.232.143.49",
   "user": "root",
   "password": "hanul",
-  "database": "seoulhanul",
-  "port": "3306 "
+  "database": "InpactdotCareer",
+  "port": "3306"
 }
