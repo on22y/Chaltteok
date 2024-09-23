@@ -6,20 +6,6 @@ const MySQLStore = require("express-mysql-session")(session);
 const db_config = require("./config/db_config.json");
 const app = express();
 const cors = require("cors");
-require("dotenv").config();
-
-const expressSanitizer = require("express-sanitizer");
-
-// fs and https 모듈 가져오기
-const https = require("https");
-const fs = require("fs");
-
-// certificate와 private key 가져오기
-// ------------------- STEP 2
-const options = {
-  key: fs.readFileSync(path.join(__dirname, "config", "cert.key")),
-  cert: fs.readFileSync(path.join(__dirname, "config", "cert.crt")),
-};
 
 // MySQL 세션 스토어 옵션
 const sessionStoreOptions = {
@@ -59,11 +45,13 @@ const mypageRoutes = require("./user/mypage");
 const loginRoutes = require("./user/login");
 const processRoutes = require("./user/check-login");
 const signupRoutes = require("./user/signup");
+const clovaRoutes = require("./speech/clova");
 
 app.use("/", mypageRoutes);
 app.use("/", loginRoutes);
 app.use("/", processRoutes);
 app.use("/", signupRoutes);
+app.use("/", clovaRoutes);
 
 // 모든 요청은 build/index.html로
 app.get("*", (req, res) => {
@@ -74,8 +62,4 @@ app.get("*", (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`서버가 ${PORT} 포트에서 실행 중입니다.`);
-});
-
-https.createServer(options, app).listen(3001, () => {
-  console.log(`HTTPS server started on port 3001`);
 });

@@ -39,5 +39,5 @@ router.post("/recognize", upload.single("audio"), async (req, res) => {
   }
 });
 
-router.use("/mypage", router);
+router.use("/", router);
 module.exports = router;

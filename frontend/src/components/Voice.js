@@ -1,47 +1,78 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from "react";
 
 const Voice = () => {
-  const [transcript, setTranscript] = useState('');
-  const [modifiedTranscript, setModifiedTranscript] = useState('');
+  const [transcript, setTranscript] = useState("");
+  const [interimTranscript, setInterimTranscript] = useState(""); // 중간 결과 저장
+  const [isRecording, setIsRecording] = useState(false);
+  const recognitionRef = useRef(null); // recognition 객체를 ref로 관리
 
-  const handleSpeechRecognition = async () => {
-    try {
-      // 음성 인식을 시작하는 부분
-      const response = await fetch('YOUR_BACKEND_API/speech-to-text', {
-        method: 'POST',
-      });
-      const data = await response.json();
+  const handleStartRecording = () => {
+    if (
+      !("SpeechRecognition" in window || "webkitSpeechRecognition" in window)
+    ) {
+      alert("이 브라우저는 음성 인식을 지원하지 않습니다.");
+      return;
+    }
 
-      if (data.transcript) {
-        setTranscript(data.transcript);
+    // Web Speech API 사용을 위한 SpeechRecognition 객체 생성
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.lang = "ko-KR"; // 한국어 인식
+    recognition.continuous = true; // 연속적으로 인식
+    recognition.interimResults = true; // 중간 결과 실시간 표시
 
-        // 받은 텍스트를 백엔드로 보내서 특정 단어를 교체하는 부분
-        const modifyResponse = await fetch('YOUR_BACKEND_API/modify-text', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ text: data.transcript }),
-        });
+    recognition.onresult = (event) => {
+      let finalTranscript = ""; // 최종 결과 저장
+      let interimTranscriptTemp = ""; // 임시 중간 결과
 
-        const modifiedData = await modifyResponse.json();
-        setModifiedTranscript(modifiedData.modifiedText);
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcriptSegment = event.results[i][0].transcript;
+
+        if (event.results[i].isFinal) {
+          finalTranscript += transcriptSegment; // 최종 결과는 따로 저장
+        } else {
+          interimTranscriptTemp += transcriptSegment; // 중간 결과는 임시 저장
+        }
       }
-    } catch (error) {
-      console.error('Error during speech recognition:', error);
+
+      setTranscript((prev) => prev + finalTranscript); // 최종 결과만 누적
+      setInterimTranscript(interimTranscriptTemp); // 중간 결과는 실시간으로 표시
+    };
+
+    recognition.onstart = () => {
+      setIsRecording(true);
+    };
+
+    recognition.onend = () => {
+      setIsRecording(false);
+    };
+
+    // 음성 인식 시작
+    recognition.start();
+    recognitionRef.current = recognition; // recognition 객체를 ref로 저장
+  };
+
+  const handleStopRecording = () => {
+    // 녹음 중지 함수
+    if (recognitionRef.current) {
+      recognitionRef.current.stop(); // recognition 종료
+      setIsRecording(false);
     }
   };
 
   return (
     <div className="voice">
-      <h1>음성 인식 테스트 페이지</h1>
-      <button onClick={handleSpeechRecognition}>음성 인식 시작</button>
-
-      <h2>기존 음성</h2>
+      <h1>실시간 음성 인식 테스트 페이지</h1>
+      <button
+        onClick={isRecording ? handleStopRecording : handleStartRecording}
+      >
+        {isRecording ? "녹음 중지" : "녹음 시작"}
+      </button>
+      <h2>인식된 텍스트</h2>
       <p>{transcript}</p>
-
-      <h2>변환된 음성</h2>
-      <p>{modifiedTranscript}</p>
+      <p style={{ color: "gray" }}>{interimTranscript}</p>{" "}
+      {/* 중간 결과는 회색으로 표시 */}
     </div>
   );
 };
