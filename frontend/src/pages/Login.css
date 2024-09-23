@@ -9,6 +9,11 @@
   box-sizing: border-box;
 }
 
+.loginPage .boxContainer {
+  justify-content: center;
+  align-items: center;
+}
+
 .loginPage .inputBoxContainer {
   margin-top: 15px;
 }

@@ -9,6 +9,11 @@
   box-sizing: border-box;
 }
 
+.signupPage .boxContainer {
+  justify-content: center;
+  align-items: center;
+}
+
 .signupPage .inputBoxContainer {
   margin-top: 15px;
 }

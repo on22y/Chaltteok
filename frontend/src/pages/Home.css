@@ -16,6 +16,11 @@
   align-items: center;
 }
 
+.homePage .boxContainer {
+  justify-content: center;
+  align-items: center;
+}
+
 .homePage .underlineBtn {
   margin-bottom: 10px;
 }
