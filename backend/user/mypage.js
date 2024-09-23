@@ -3,6 +3,7 @@ const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const router = express.Router();
 const db_config = require("../config/db_config.json");
+const app = express();
 
 // Database connection pool
 const pool = mysql.createPool({
@@ -25,8 +26,11 @@ const checkLogin = (req, res, next) => {
 };
 
 // users 정보 불러오기
-router.post("/", checkLogin, (req, res) => {
-  const userID = req.session.user.id;
+router.get("/", checkLogin, (req, res) => {
+  const userNickname = req.session.user && req.session.user.nickname;
+  if (!userNickname) {
+    return res.status(401).send("Unauthorized");
+  }
 
   pool.getConnection((err, conn) => {
     if (err) {
@@ -35,8 +39,8 @@ router.post("/", checkLogin, (req, res) => {
       return res.status(500).send("DB 서버 연결 실패");
     }
 
-    const userQuery = "SELECT name, id, phone_num FROM users WHERE id = ?";
-    conn.query(userQuery, [userID], (err, userRows) => {
+    const userQuery = "SELECT * FROM users WHERE nickname = ?";
+    conn.query(userQuery, [userNickname], (err, userRows) => {
       conn.release();
       if (err) {
         console.log("SQL 실행 시 오류 발생", err);
@@ -52,50 +56,5 @@ router.post("/", checkLogin, (req, res) => {
   });
 });
 
-// 내 정보 업데이트
-router.post("/process/update", checkLogin, async (req, res) => {
-  const id = req.session.user.id;
-  const { password } = req.body;
-
-  if (!password) {
-    return res.status(400).json({ message: "비밀번호를 입력하세요" });
-  }
-
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    pool.getConnection((err, conn) => {
-      if (err) {
-        console.log("MySQL Connection Error", err);
-        if (conn) conn.release();
-        return res.status(500).json({ message: "DB 서버 연결 실패" });
-      }
-
-      const sql = "UPDATE users SET password = ? WHERE id = ?";
-      const params = [hashedPassword, id];
-
-      const exec = conn.query(sql, params, (err, result) => {
-        conn.release();
-        console.log("실행된 SQL: " + exec.sql);
-
-        if (err) {
-          console.log("SQL 실행 시 오류 발생", err);
-          return res.status(500).json({ message: "사용자 정보 업데이트 실패" });
-        }
-
-        if (result.affectedRows > 0) {
-          console.log("사용자 정보 업데이트 성공");
-          res.status(200).json({ message: "사용자 정보 업데이트 성공" });
-        } else {
-          console.log("사용자 정보 업데이트 실패");
-          res.status(500).json({ message: "사용자 정보 업데이트 실패" });
-        }
-      });
-    });
-  } catch (error) {
-    console.log("비밀번호 해싱 오류", error);
-    res.status(500).json({ message: "비밀번호 해싱 실패" });
-  }
-});
-router.use("/mypage", router);
+app.use("/mypage", router);
 module.exports = router;

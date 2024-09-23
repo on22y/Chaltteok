@@ -18,10 +18,10 @@ const pool = mysql.createPool({
 
 router.post("/process/login", (req, res) => {
   console.log("/login 호출됨", req.body);
-  const paramID = req.body.id;
+  const paramNickname = req.body.nickname;
   const paramPW = req.body.password;
 
-  console.log("로그인 요청입니다. " + paramID + " " + paramPW);
+  console.log("로그인 요청입니다. " + paramNickname + " " + paramPW);
   pool.getConnection((err, conn) => {
     if (err) {
       console.log("MySQL Connection Error", err);
@@ -30,8 +30,8 @@ router.post("/process/login", (req, res) => {
       return;
     }
     conn.query(
-      "SELECT * FROM users WHERE id = ?",
-      [paramID],
+      "SELECT * FROM users WHERE nickname = ?",
+      [paramNickname],
       async (err, rows) => {
         conn.release();
         if (err) {
@@ -46,11 +46,11 @@ router.post("/process/login", (req, res) => {
           if (match) {
             console.log(
               "아이디 [%s], 패스워드가 일치하는 이름 [%s] 찾음",
-              paramID,
+              paramNickname,
               user.name
             );
             req.session.user = {
-              id: user.id,
+              nickname: user.nickname,
               name: user.name,
               authorized: true,
             };
@@ -62,7 +62,10 @@ router.post("/process/login", (req, res) => {
               .json({ success: false, message: "패스워드가 일치하지 않음" });
           }
         } else {
-          console.log("아이디 [%s], 패스워드가 일치하는 아이디 없음", paramID);
+          console.log(
+            "아이디 [%s], 패스워드가 일치하는 아이디 없음",
+            paramNickname
+          );
           res.status(401).json({
             success: false,
             message: "아이디 또는 패스워드가 일치하지 않음",
@@ -72,5 +75,6 @@ router.post("/process/login", (req, res) => {
     );
   });
 });
+
 app.use("/loginpage", router);
 module.exports = router;

@@ -3,6 +3,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const router = express.Router();
 const mysql = require("mysql");
+const app = express();
 const db_config = require("../config/db_config.json");
 
 const pool = mysql.createPool({
@@ -17,10 +18,7 @@ const pool = mysql.createPool({
 
 router.post("/process/signup", async (req, res) => {
   console.log("/signup 호출됨", req.body);
-
-  const paramName = req.body.name;
-  const paramPhone_num = req.body.phone_num;
-  const paramId = req.body.id;
+  const paramNickname = req.body.nickname;
   const paramPW = req.body.password;
 
   try {
@@ -35,8 +33,8 @@ router.post("/process/signup", async (req, res) => {
       console.log("데이터베이스 연결 성공");
 
       const exec = conn.query(
-        "INSERT INTO users (name, phone_num , id , password) VALUES (?, ?, ?, ?);",
-        [paramName, paramPhone_num, paramId, hashedPassword],
+        "INSERT INTO users (nickname , password) VALUES (?, ?, ?, ?);",
+        [paramNickname, hashedPassword],
         (err, result) => {
           conn.release();
           console.log("실행된 SQL: " + exec.sql);
@@ -62,5 +60,5 @@ router.post("/process/signup", async (req, res) => {
     return res.json({ success: false, message: "비밀번호 해싱 실패" });
   }
 });
-router.use("/loginpage", router);
+app.use("/signup", router);
 module.exports = router;

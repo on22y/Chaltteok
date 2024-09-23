@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const app = express();
 
 router.get("/check-login", (req, res) => {
   console.log("/check-login 호출됨");
@@ -23,6 +24,6 @@ router.post("/logout", (req, res) => {
   });
 });
 
-router.use("/process", router);
+app.use("/process", router);
 
 module.exports = router;
