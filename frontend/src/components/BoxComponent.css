@@ -1,4 +1,8 @@
 .boxContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 위아래 요소 간 간격을 자동 조정 */
+
   border: 5px solid #000000;
   border-radius: 20px;
   background-color: #fffbe6;

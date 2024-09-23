@@ -29,12 +29,19 @@ function Home() {
 
           <img className="mainImg" src={mainImg} width={185} />
 
-          <TextComponent text="당신이 살고 있을" colorClass="textYellow" fontSize="24px" strokeWidth="0.1px" />
+          <TextComponent
+            text="당신이 살고 있을"
+            colorClass="textYellow"
+            fontSize="24px"
+            strokeWidth="0.1px"
+            style={{ marginTop: '10px' }}
+          />
           <TextComponent
             text="인터넷 세상의 나이를 찾아서..."
             colorClass="textYellow"
             fontSize="24px"
             strokeWidth="0.1px"
+            style={{ marginTop: '10px' }}
           />
         </BoxComponent>
         <MainBtn text="진단하기" subText="지금까지 ___명이 참여했어요" onClick={handleTest} />

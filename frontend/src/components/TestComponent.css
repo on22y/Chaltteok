@@ -1,4 +1,6 @@
-.testPage {
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Jua&family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+.testComponent {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,55 +10,82 @@
   box-sizing: border-box;
 }
 
-.testPage .mainBtnContainer {
+.testComponent .mainBtnContainer {
   margin-top: 20px;
 }
 
-.testPage p {
-  font-size: 22px;
-  padding: 0 0;
-  margin: 0 0;
-}
-
-.testPage .inputBoxContainer {
-  margin-top: 15px;
-}
-
-.testPage .mainImg {
-  padding: 0;
-  margin-top: 40px;
-  margin-bottom: 5px;
-}
-
-/* 여기부터 수정 */
-.testPage .chatContainer {
+.testComponent .questionContent {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 20px 0;
-  gap: 10px;
+  width: 100%;
 }
 
-.testPage .chatContainer .chatBubble {
+.testComponent .question {
+  font-size: 20px;
+  padding: 0 0;
+  margin: 0 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.testComponent .chatContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0;
+  gap: 20px;
+  padding: 0 0;
+}
+
+.testComponent .chatContainer .chatBubble {
   max-width: 280px;
+  margin: 0 0;
   padding: 10px 15px;
+  padding-left: 20px;
+  padding-right: 20px;
   border-radius: 20px;
-  font-size: 14px;
   line-height: 1.4;
+  font-size: 18px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  position: relative;
 }
 
-.testPage .chatContainer .greenBubble {
-  background-color: #6ec207;
-  color: white;
+.testComponent .chatContainer .leftBubble {
+  background-color: #357929;
+  color: #fffbe6;
   align-self: flex-start;
 }
 
-.testPage .chatContainer .grayBubble {
-  background-color: #4a4a4a;
-  color: white;
+.testComponent .chatContainer .leftBubble::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1px;
+  width: 0;
+  height: 0;
+  border-top: 20px solid #357929;
+  border-right: 20px solid transparent;
+  border-bottom: 0 solid transparent;
+}
+
+.testComponent .chatContainer .rightBubble {
+  background-color: #525252;
+  color: #fffbe6;
   align-self: flex-end;
 }
 
-.testPage .inputBoxContainer {
-  margin-top: 20px;
+.testComponent .chatContainer .rightBubble::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 1px;
+  width: 0;
+  height: 0;
+  border-top: 15px solid #525252;
+  border-left: 15px solid transparent;
+  border-bottom: 0 solid transparent;
 }
