@@ -9,16 +9,16 @@ import InputBox from '../components/InputBox';
 import mainImg from '../assets/images/mainImg.png';
 
 function Login() {
-  const [name, setName] = useState('');
+  const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (name && password) {
+    if (nickname && password) {
       try {
-        const response = await axios.post('/process/login', { name, password });
+        const response = await axios.post('/process/login', { nickname, password });
         const data = response.data;
 
         if (data.success) {
@@ -48,7 +48,7 @@ function Login() {
           strokeWidth="0.1px"
         />
         <img className="mainImg" src={mainImg} width={185} />
-        <InputBox text="이름을 입력해주세요." value={name} onChange={(e) => setName(e.target.value)} />
+        <InputBox text="이름을 입력해주세요." value={nickname} onChange={(e) => setNickname(e.target.value)} />
         <InputBox
           text="비밀번호를 입력해주세요."
           type="password"

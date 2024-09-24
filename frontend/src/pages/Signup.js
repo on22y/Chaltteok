@@ -9,7 +9,7 @@ import InputBox from '../components/InputBox';
 import mainImg from '../assets/images/mainImg.png';
 
 function Signup() {
-  const [name, setName] = useState('');
+  const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
@@ -17,9 +17,9 @@ function Signup() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (name && password) {
+    if (nickname && password) {
       const signupData = {
-        name,
+        nickname,
         password,
       };
 
@@ -56,7 +56,7 @@ function Signup() {
           strokeWidth="0.1px"
         />
         <img className="mainImg" src={mainImg} width={185} />
-        <InputBox text="이름을 입력해주세요." value={name} onChange={(e) => setName(e.target.value)} />
+        <InputBox text="이름을 입력해주세요." value={nickname} onChange={(e) => setNickname(e.target.value)} />
         <InputBox
           text="비밀번호를 입력해주세요."
           type="password"
