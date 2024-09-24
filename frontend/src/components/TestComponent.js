@@ -7,6 +7,18 @@ import TextComponent from './TextComponent';
 import InputBox from './InputBox';
 
 function TestComponent({ num }) {
+  const navigate = useNavigate();
+
+  const handleNextQuestion = () => {
+    // 5초 동안 로딩 페이지 표시
+    navigate('/loading');
+
+    // 5초 후에 결과 페이지로 이동
+    setTimeout(() => {
+      navigate('/type');
+    }, 5000);
+  };
+
   return (
     <div className="testComponent">
       <BoxComponent height="660px">
@@ -25,7 +37,7 @@ function TestComponent({ num }) {
 
         <InputBox text="정답을 입력해주세요." />
       </BoxComponent>
-      <MainBtn text="다음문제" subText="못돌아가 히히" />
+      <MainBtn text="다음문제" subText="못돌아가 히히" onClick={handleNextQuestion} />
     </div>
   );
 }

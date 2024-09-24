@@ -24,7 +24,7 @@ function App() {
           <Route path="/word" element={<Word />} />
           <Route path="/type" element={<Type />} />
           <Route path="/mypage" element={<Mypage />} />
-          <Route path="/loding" element={<Loding />} />
+          <Route path="/loading" element={<Loding />} />
         </Routes>
       </Router>
     </div>
