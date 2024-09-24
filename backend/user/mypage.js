@@ -26,7 +26,7 @@ const checkLogin = (req, res, next) => {
 };
 
 // users 정보 불러오기
-router.get("/", checkLogin, (req, res) => {
+router.get("/load", checkLogin, (req, res) => {
   const userNickname = req.session.user && req.session.user.nickname;
   if (!userNickname) {
     return res.status(401).send("Unauthorized");
