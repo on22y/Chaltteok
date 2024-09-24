@@ -1,0 +1,15 @@
+.lodingPage {
+  display: flex;
+  height: 100vh; /* 전체 뷰포트 높이를 차지 */
+  background-color: #fccd2a;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.lodingPage .mainImg {
+  padding: 0 0;
+  margin-bottom: 35px;
+}

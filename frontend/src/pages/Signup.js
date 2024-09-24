@@ -48,13 +48,19 @@ function Signup() {
       <TextComponent text="회원가입" fontSize="28px" strokeWidth="0.2px" />
 
       <BoxComponent height="467px">
-        <TextComponent text="여러분의 결과 저장 이외에" colorClass="textYellow" fontSize="24px" strokeWidth="0.1px" />{' '}
         <TextComponent
-          text="아무곳에도 활용되지 않습니다."
+          text={
+            <>
+              여러분의 결과 저장 이외에
+              <br />
+              아무곳에도 활용되지 않습니다.
+            </>
+          }
           colorClass="textYellow"
           fontSize="24px"
           strokeWidth="0.1px"
         />
+
         <img className="mainImg" src={mainImg} width={185} />
         <InputBox text="이름을 입력해주세요." value={nickname} onChange={(e) => setNickname(e.target.value)} />
         <InputBox

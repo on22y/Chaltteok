@@ -8,7 +8,7 @@ import mainImg from '../assets/images/mainImg.png';
 import lineImg from '../assets/images/lineImg.png';
 import UnderlineBtn from './UnderlineBtn';
 
-function TypeComponent({ type, detail1, detail2 }) {
+function TypeComponent({ type, detail }) {
   const navigate = useNavigate();
 
   const handleAnswerClick = () => {
@@ -33,8 +33,7 @@ function TypeComponent({ type, detail1, detail2 }) {
           <img className="mainImg" src={mainImg} width={185} />
         </BoxComponent>
 
-        <TextComponent colorClass="textLightgreen" text={detail1} fontSize="24px" strokeWidth="0.1px" />
-        <TextComponent colorClass="textLightgreen" text={detail2} fontSize="24px" strokeWidth="0.1px" />
+        <TextComponent colorClass="textLightgreen" text={detail} fontSize="24px" strokeWidth="0.1px" />
 
         <MainBtn text="회원가입" subText="내 나이 인정 못한다면?" onClick={handleSignupClick} />
         <img className="lineImg" src={lineImg} width={318} />

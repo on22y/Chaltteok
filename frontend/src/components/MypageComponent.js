@@ -9,7 +9,7 @@ import lineImg from '../assets/images/lineImg.png';
 import UnderlineBtn from './UnderlineBtn';
 import mypageImg from '../assets/images/mypageImg.png';
 
-function MypageComponent({ type, detail1, detail2 }) {
+function MypageComponent({ type, detail }) {
   const navigate = useNavigate();
 
   const handleAnswerClick = () => {
@@ -42,8 +42,7 @@ function MypageComponent({ type, detail1, detail2 }) {
           <img className="mainImg" src={mainImg} width={185} />
         </BoxComponent>
 
-        <TextComponent colorClass="textLightgreen" text={detail1} fontSize="24px" strokeWidth="0.1px" />
-        <TextComponent colorClass="textLightgreen" text={detail2} fontSize="24px" strokeWidth="0.1px" />
+        <TextComponent colorClass="textLightgreen" text={detail} fontSize="24px" strokeWidth="0.1px" />
 
         <MainBtn text="진단 다시하기" subText="여전히 내 나이 인정 못한다면?" onClick={handleTestClick} />
         <img className="lineImg" src={lineImg} width={318} />
