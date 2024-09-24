@@ -1,11 +1,11 @@
 import React from 'react';
-import './Loding.css';
+import './Loading.css';
 import mainImg from '../assets/images/mainImg.png';
 import TextComponent from '../components/TextComponent';
 
-function Loding() {
+function Loading() {
   return (
-    <div className="lodingPage">
+    <div className="loadingPage">
       <img className="mainImg" src={mainImg} width={185} />
       <TextComponent
         text={
@@ -23,4 +23,4 @@ function Loding() {
   );
 }
 
-export default Loding;
+export default Loading;

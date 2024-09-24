@@ -9,7 +9,7 @@ import Voice from './components/Voice';
 import Word from './pages/Word';
 import Type from './pages/Type';
 import Mypage from './pages/Mypage';
-import Loding from './pages/Loding';
+import Loading from './pages/Loading';
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
           <Route path="/word" element={<Word />} />
           <Route path="/type" element={<Type />} />
           <Route path="/mypage" element={<Mypage />} />
-          <Route path="/loading" element={<Loding />} />
+          <Route path="/loading" element={<Loading />} />
         </Routes>
       </Router>
     </div>
