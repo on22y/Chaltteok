@@ -33,7 +33,7 @@ router.post("/process/signup", async (req, res) => {
       console.log("데이터베이스 연결 성공");
 
       const exec = conn.query(
-        "INSERT INTO users (nickname , password) VALUES (?, ?, ?, ?);",
+        "INSERT INTO users (nickname , password) VALUES (?, ?);",
         [paramNickname, hashedPassword],
         (err, result) => {
           conn.release();
@@ -60,5 +60,5 @@ router.post("/process/signup", async (req, res) => {
     return res.json({ success: false, message: "비밀번호 해싱 실패" });
   }
 });
-app.use("/signup", router);
+app.use("/signuppage", router);
 module.exports = router;
