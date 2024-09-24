@@ -1,9 +1,9 @@
 import React from 'react';
 import './BoxComponent.css';
 
-function BoxComponent({ children, height }) {
+function BoxComponent({ children, width, height }) {
   return (
-    <div className="boxContainer" style={{ height: height }}>
+    <div className="boxContainer" style={{ width: width, height: height }}>
       {children}
     </div>
   );
