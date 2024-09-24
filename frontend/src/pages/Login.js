@@ -48,7 +48,7 @@ function Login() {
           strokeWidth="0.1px"
         />
         <img className="mainImg" src={mainImg} width={185} />
-        <InputBox text="이름을 입력해주세요." value={nickname} onChange={(e) => setNickname(e.target.value)} />
+        <InputBox text="닉네임을 입력해주세요." value={nickname} onChange={(e) => setNickname(e.target.value)} />
         <InputBox
           text="비밀번호를 입력해주세요."
           type="password"

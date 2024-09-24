@@ -1,10 +1,10 @@
 import React from 'react';
 import './InputBox.css';
 
-function InputBox({ text }) {
+function InputBox({ text, value, onChange, type = 'text' }) {
   return (
     <div className="inputBoxContainer">
-      <input type="text" placeholder={text} />
+      <input type={type} placeholder={text} value={value} onChange={onChange} className="inputBox" />
     </div>
   );
 }
