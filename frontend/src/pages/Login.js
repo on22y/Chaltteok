@@ -13,6 +13,19 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  // nickname 값은 영어만 입력 가능
+  const handleNicknameChange = (e) => {
+    const value = e.target.value;
+    const regex = /^[a-zA-Z]*$/;
+
+    if (regex.test(value)) {
+      setNickname(value);
+    } else {
+      // 영어가 아닌 값이 포함되면 경고창 표시
+      alert('닉네임은 영문자만 입력 가능합니다.');
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -48,7 +61,7 @@ function Login() {
           strokeWidth="0.1px"
         />
         <img className="mainImg" src={mainImg} width={185} />
-        <InputBox text="닉네임을 입력해주세요." value={nickname} onChange={(e) => setNickname(e.target.value)} />
+        <InputBox text="닉네임을 입력해주세요." value={nickname} onChange={handleNicknameChange} />
         <InputBox
           text="비밀번호를 입력해주세요."
           type="password"
