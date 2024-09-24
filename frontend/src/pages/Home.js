@@ -15,7 +15,7 @@ function Home() {
     navigate('/loginpage');
   };
 
-  const handleTest = () => {
+  const handleTestClick = () => {
     navigate('/test');
   };
 
@@ -44,7 +44,7 @@ function Home() {
             style={{ marginTop: '10px' }}
           />
         </BoxComponent>
-        <MainBtn text="진단하기" subText="지금까지 ___명이 참여했어요" onClick={handleTest} />
+        <MainBtn text="진단하기" subText="지금까지 ___명이 참여했어요" onClick={handleTestClick} />
       </div>
     </div>
   );
