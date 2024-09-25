@@ -1,0 +1,17 @@
+.testPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fccd2a;
+  box-sizing: border-box;
+}
+
+.testPage .mainBtnContainer {
+  margin-top: 20px;
+}
+
+.testPage .boxContainer {
+  display: flex;
+}

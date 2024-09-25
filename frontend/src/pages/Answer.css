@@ -1,0 +1,17 @@
+.answerPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fccd2a;
+  box-sizing: border-box;
+}
+
+.answerPage .mainBtnContainer {
+  margin-top: 20px;
+}
+
+.answerPage .boxContainer {
+  display: flex;
+}

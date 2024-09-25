@@ -1,18 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Jua&family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap");
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Jua&family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
 
 .testComponent {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 100vh;
-  background-color: #fccd2a;
   box-sizing: border-box;
-}
-
-.testComponent .mainBtnContainer {
-  margin-top: 20px;
+  align-items: stretch;
 }
 
 .testComponent .questionContent {
@@ -26,7 +22,7 @@
   font-size: 22px;
   padding: 0 0;
   margin: 0 0;
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   font-weight: 600;
   /* SemiBold */
   font-style: normal;
@@ -39,6 +35,7 @@
   margin: 0 0;
   gap: 20px;
   padding: 0 0;
+  margin-top: 50px;
 }
 
 .testComponent .chatContainer .chatBubble {
@@ -50,7 +47,7 @@
   border-radius: 20px;
   line-height: 1.4;
   font-size: 18px;
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   font-weight: 700;
   /*bold*/
   font-style: normal;
@@ -64,7 +61,7 @@
 }
 
 .testComponent .chatContainer .leftBubble::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 1px;
@@ -82,7 +79,7 @@
 }
 
 .testComponent .chatContainer .rightBubble::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   right: 1px;

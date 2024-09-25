@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Test.css';
 import TestComponent from '../components/TestComponent';
+import BoxComponent from '../components/BoxComponent';
+import InputBox from '../components/InputBox';
+import MainBtn from '../components/MainBtn';
 
 function IsLoggedTest() {
   const navigate = useNavigate();
@@ -36,9 +40,14 @@ function IsLoggedTest() {
 
   return (
     <div className="testPage">
-      {questionNumbers.length > 0 && (
-        <TestComponent num={`Q${questionNumbers[currentQuestionIndex]}`} onNext={handleNextQuestion} />
-      )}
+      <BoxComponent height="533px">
+        {questionNumbers.length > 0 && (
+          <TestComponent num={`Q${questionNumbers[currentQuestionIndex]}`} onNext={handleNextQuestion} />
+        )}
+
+        <InputBox text="정답을 입력해주세요." />
+      </BoxComponent>
+      <MainBtn text="다음문제" subText="못돌아가 히히" onClick={handleNextQuestion} />
     </div>
   );
 }
