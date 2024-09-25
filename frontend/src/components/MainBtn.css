@@ -34,7 +34,7 @@
   cursor: pointer;
   text-align: center;
 
-  -webkit-text-stroke: 0.5px #2f2f2f;
+  -webkit-text-stroke: 1px #2f2f2f;
   /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
   letter-spacing: 1.5px;
 

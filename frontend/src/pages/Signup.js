@@ -7,6 +7,7 @@ import BoxComponent from '../components/BoxComponent';
 import TextComponent from '../components/TextComponent';
 import InputBox from '../components/InputBox';
 import mainImg from '../assets/images/mainImg.png';
+import backBtn from '../assets/images/backBtn.png';
 
 function Signup() {
   const [nickname, setNickname] = useState('');
@@ -22,7 +23,6 @@ function Signup() {
     if (regex.test(value)) {
       setNickname(value);
     } else {
-      // 영어가 아닌 값이 포함되면 경고창 표시
       alert('닉네임은 영문자만 입력 가능합니다.');
     }
   };
@@ -56,35 +56,45 @@ function Signup() {
     }
   };
 
+  // 뒤로 가기 버튼 클릭 시 이전 페이지로 이동
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="signupPage">
-      <TextComponent text="회원가입" fontSize="28px" strokeWidth="0.2px" />
+      <div className="backBtn-content">
+        <img className="backBtn" src={backBtn} width={19.35} height={38.35} onClick={handleBackClick} />
+      </div>
+      <div className="signupPage-content">
+        <TextComponent text="회원가입" fontSize="28px" strokeWidth="1px" />
 
-      <BoxComponent height="467px">
-        <TextComponent
-          text={
-            <>
-              여러분의 결과 저장 이외에
-              <br />
-              아무곳에도 활용되지 않습니다.
-            </>
-          }
-          colorClass="textYellow"
-          fontSize="24px"
-          strokeWidth="0.1px"
-        />
+        <BoxComponent height="467px">
+          <TextComponent
+            text={
+              <>
+                여러분의 결과 저장 이외에
+                <br />
+                아무곳에도 활용되지 않습니다.
+              </>
+            }
+            colorClass="textYellow"
+            fontSize="24px"
+            strokeWidth="0.5px"
+          />
 
-        <img className="mainImg" src={mainImg} width={185} />
+          <img className="mainImg" src={mainImg} width={198} />
 
-        <InputBox text="닉네임을 입력해주세요." value={nickname} onChange={handleNicknameChange} />
-        <InputBox
-          text="비밀번호를 입력해주세요."
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </BoxComponent>
-      <MainBtn text="회원가입" subText="동의한사람만눌러주세요." onClick={handleSubmit} />
+          <InputBox text="닉네임을 입력해주세요." value={nickname} onChange={handleNicknameChange} />
+          <InputBox
+            text="비밀번호를 입력해주세요."
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </BoxComponent>
+        <MainBtn text="회원가입" subText="동의한사람만눌러주세요." onClick={handleSubmit} />
+      </div>
     </div>
   );
 }
