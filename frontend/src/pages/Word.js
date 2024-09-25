@@ -7,6 +7,7 @@ import BoxComponent from '../components/BoxComponent';
 import TextComponent from '../components/TextComponent';
 import InputBox from '../components/InputBox';
 import SelectBtn from '../components/SelectBtn';
+import backBtn from '../assets/images/backBtn.png';
 
 function Word() {
   const [word, setWord] = useState('');
@@ -45,20 +46,29 @@ function Word() {
     }
   };
 
+  // 뒤로 가기 버튼 클릭 시 이전 페이지로 이동
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="wordPage">
-      <TextComponent text="단어 정보 입력" fontSize="28px" strokeWidth="0.2px" />
+      <div className="backBtn-content">
+        <img className="backBtn" src={backBtn} width={19.35} height={38.35} onClick={handleBackClick} />
+      </div>
+
+      <TextComponent text="단어 정보 입력" fontSize="28px" strokeWidth="1px" />
 
       <BoxComponent height="383px">
-        <TextComponent text="단어 입력" colorClass="textYellow" fontSize="24px" strokeWidth="0.1px" />
+        <TextComponent text="단어 입력" colorClass="textYellow" fontSize="24px" strokeWidth="0.5px" />
         <InputBox text="단어를 입력해주세요." value={word} onChange={(e) => setWord(e.target.value)} />
 
         <div className="yearSelectionRow">
-          <TextComponent text="유행 년도" colorClass="textYellow" fontSize="24px" strokeWidth="0.1px" />
+          <TextComponent text="유행 년도" colorClass="textYellow" fontSize="24px" strokeWidth="0.5px" />
           <SelectBtn />
         </div>
 
-        <TextComponent text="예시 대화" colorClass="textYellow" fontSize="24px" strokeWidth="0.1px" />
+        <TextComponent text="예시 대화" colorClass="textYellow" fontSize="24px" strokeWidth="0.5px" />
         <InputBox
           text="첫번째 대화를 입력해주세요."
           value={chat_first}

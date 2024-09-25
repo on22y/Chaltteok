@@ -7,6 +7,16 @@
   box-sizing: border-box;
 }
 
+.backBtn-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 20px;
+  margin-bottom: 25px;
+}
+
 .wordPage .boxContainer {
   align-items: flex-start;
 }
