@@ -63,14 +63,14 @@ function TestComponent() {
           {/* 받아온 DB 데이터를 채팅에 출력 */}
           <div
             className={`chatBubble leftBubble ${
-              chatValue === "L" ? "greenBubble" : ""
+              chatValue === "R" ? "greenBubble" : ""
             }`}
           >
             {leftChat}
           </div>
           <div
             className={`chatBubble rightBubble ${
-              chatValue === "R" ? "greenBubble" : ""
+              chatValue === "L" ? "greenBubble" : ""
             }`}
           >
             {rightChat}
