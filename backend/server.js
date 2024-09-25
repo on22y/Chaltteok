@@ -26,9 +26,9 @@ const sessionMiddleware = session({
   store: sessionStore,
   resave: false,
   saveUninitialized: false,
-  cookie: {
-    maxAge: 1 * 60 * 60 * 1000, // 1시간
-  },
+  rolling: true,
+  unset: "destroy",
+  cookie: {},
 });
 
 app.use(sessionMiddleware);
