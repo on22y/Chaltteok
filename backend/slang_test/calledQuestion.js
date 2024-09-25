@@ -15,6 +15,7 @@ const pool = mysql.createPool({
 });
 
 // /calledQuestion API - 질문 데이터를 가져옴
+// /calledQuestion API - 질문 데이터를 가져옴
 router.post("/calledQuestion", (req, res) => {
   if (req.session && req.session.user) {
     const questionNum = req.body.num; // 프론트엔드에서 넘겨준 num 값
@@ -26,7 +27,7 @@ router.post("/calledQuestion", (req, res) => {
         return;
       }
 
-      const query = "SELECT text1, text2 FROM question WHERE id = ?"; // 질문 번호에 맞는 데이터를 가져옴
+      const query = "SELECT text1, text2, value FROM question WHERE id = ?"; // value도 함께 가져옴
       conn.query(query, [questionNum], (error, results) => {
         conn.release();
         if (error) {
@@ -36,7 +37,11 @@ router.post("/calledQuestion", (req, res) => {
         }
 
         if (results.length > 0) {
-          res.json({ text1: results[0].text1, text2: results[0].text2 });
+          res.json({
+            text1: results[0].text1,
+            text2: results[0].text2,
+            value: results[0].value, // value 값을 프론트엔드로 전달
+          });
         } else {
           res
             .status(404)

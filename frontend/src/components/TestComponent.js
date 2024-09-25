@@ -13,6 +13,7 @@ function TestComponent() {
   // 채팅 데이터를 담을 state
   const [leftChat, setLeftChat] = useState("");
   const [rightChat, setRightChat] = useState("");
+  const [chatValue, setChatValue] = useState(""); // value 값을 저장할 state
   const [randomNum, setRandomNum] = useState(null); // 랜덤 문제 번호 저장
 
   // 백엔드로부터 데이터를 불러오는 함수
@@ -28,6 +29,7 @@ function TestComponent() {
         });
         setLeftChat(response.data.text1); // 왼쪽 채팅에 text1 설정
         setRightChat(response.data.text2); // 오른쪽 채팅에 text2 설정
+        setChatValue(response.data.value); // DB에서 받아온 value 값 설정
       } catch (error) {
         console.error("Error fetching the question data:", error);
       }
@@ -59,8 +61,20 @@ function TestComponent() {
 
         <div className="chatContainer">
           {/* 받아온 DB 데이터를 채팅에 출력 */}
-          <div className="chatBubble leftBubble">{leftChat}</div>
-          <div className="chatBubble rightBubble">{rightChat}</div>
+          <div
+            className={`chatBubble leftBubble ${
+              chatValue === "L" ? "greenBubble" : ""
+            }`}
+          >
+            {leftChat}
+          </div>
+          <div
+            className={`chatBubble rightBubble ${
+              chatValue === "R" ? "greenBubble" : ""
+            }`}
+          >
+            {rightChat}
+          </div>
         </div>
 
         <InputBox text="정답을 입력해주세요." />
