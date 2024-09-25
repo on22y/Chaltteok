@@ -1,0 +1,33 @@
+.mypage {
+  display: flex;
+  height: 100vh;
+  background-color: #fccd2a;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.mypage .underlineBtn {
+  margin-bottom: 10px;
+}
+
+.mypage .mainImg {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.mypage .mainBtnContainer {
+  margin-top: 35px;
+  margin-bottom: 8px;
+}
+
+.mypage .mainBtnContainer:last-child {
+  margin-top: 15px;
+}
+
+.mypage .textContainer {
+  text-align: center;
+  margin-top: 10px;
+}

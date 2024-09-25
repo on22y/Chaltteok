@@ -1,0 +1,36 @@
+.isLoggedTypePage {
+  display: flex;
+  height: 100vh;
+  background-color: #fccd2a;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.isLoggedTypePage-content {
+  align-items: center;
+}
+
+.isLoggedTypePage .underlineBtn {
+  margin-bottom: 10px;
+}
+
+.isLoggedTypePage .mainImg {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.isLoggedTypePage .mainBtnContainer {
+  margin-top: 35px;
+  margin-bottom: 8px;
+}
+
+.isLoggedTypePage .mainBtnContainer:last-child {
+  margin-top: 15px;
+}
+
+.isLoggedTypePage .textContainer {
+  text-align: center;
+  margin-top: 10px;
+}
