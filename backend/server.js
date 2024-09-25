@@ -22,13 +22,13 @@ app.use(cors());
 
 const sessionMiddleware = session({
   key: "session_cookie_name",
-  secret: "your_secret_key",
+  secret: "dasdasd!@#@!#@skja1#@!$!ASDasd", // 여기에 랜덤한 문자열 사용
   store: sessionStore,
   resave: false,
   saveUninitialized: false,
-  cookie: {
-    maxAge: 1 * 60 * 60 * 1000, // 1시간
-  },
+  rolling: true,
+  unset: "destroy",
+  cookie: {},
 });
 
 app.use(sessionMiddleware);
@@ -45,6 +45,7 @@ const clovaRoutes = require("./speech/clova");
 const take_slang_dbRoutes = require("./speech/take_slang_db");
 const LoggedresultRoutes = require("./slang_test/logged_result");
 const isLoggedresultRoutes = require("./slang_test/islogged_result");
+const calledQuestionRoutes = require("./slang_test/calledQuestion");
 
 app.use("/", mypageRoutes);
 app.use("/", loginRoutes);
@@ -52,8 +53,9 @@ app.use("/", processRoutes);
 app.use("/", signupRoutes);
 app.use("/", clovaRoutes);
 app.use("/", take_slang_dbRoutes);
-app.use("/Logged/type", LoggedresultRoutes); // /Logged 경로로 연결
-app.use("/isLogged/type", isLoggedresultRoutes); // /isLogged 경로로 연결
+app.use("/Logged/type", LoggedresultRoutes);
+app.use("/isLogged/type", isLoggedresultRoutes);
+app.use("/Logged/test", calledQuestionRoutes);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
