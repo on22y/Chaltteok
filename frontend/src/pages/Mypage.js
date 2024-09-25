@@ -2,12 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Mypage.css';
-import TextComponent from '../components/TextComponent';
 import TypeComponent from '../components/TypeComponent';
-import UnderlineBtn from '../components/UnderlineBtn';
 import MainBtn from '../components/MainBtn';
 import lineImg from '../assets/images/lineImg.png';
-import mypageImg from '../assets/images/mypageImg.png';
 
 function Mypage() {
   const [state, setState] = useState('');

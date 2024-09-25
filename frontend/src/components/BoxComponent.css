@@ -1,7 +1,7 @@
 .boxContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* 위아래 요소 간 간격을 자동 조정 */
+  justify-content: space-between;
 
   border: 5px solid #000000;
   border-radius: 20px;
@@ -11,6 +11,6 @@
   width: 356px;
   max-width: 400px;
   margin: 0 auto;
-  box-sizing: border-box; /* 패딩과 테두리를 포함한 박스 크기 */
+  box-sizing: border-box;
   /* text-align: center; */
 }

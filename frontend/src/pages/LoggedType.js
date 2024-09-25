@@ -7,7 +7,7 @@ import TypeComponent from '../components/TypeComponent';
 import UnderlineBtn from '../components/UnderlineBtn';
 import MainBtn from '../components/MainBtn';
 import lineImg from '../assets/images/lineImg.png';
-import mypageImg from '../assets/images/mypageImg.png';
+import textDecoImg from '../assets/images/textDecoImg.png';
 
 function LoggedType() {
   const [state, setState] = useState('');
@@ -46,7 +46,7 @@ function LoggedType() {
       <div className="LoggedTypePage-textDeco">
         <TextComponent text="여전히" colorClass="textRed" fontSize="28px" strokeWidth="0.5px" />
         <div className="typeComponent-content">
-          <img className="mypageImg" src={mypageImg} width={100} height={45} />
+          <img className="textDecoImg" src={textDecoImg} width={100} height={45} />
         </div>
       </div>
 

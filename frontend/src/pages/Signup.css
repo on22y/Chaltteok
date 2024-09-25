@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh; /* 전체 뷰포트 높이를 차지 */
+  height: 100vh;
   background-color: #fccd2a;
 }
 
@@ -15,11 +15,6 @@
   padding-left: 20px;
   margin-bottom: 25px;
 }
-
-/* .signupPage-content {
-  align-items: center;
-  text-align: center;
-} */
 
 .signupPage .boxContainer {
   justify-content: center;
