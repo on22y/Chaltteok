@@ -47,7 +47,7 @@ router.post("/process/login", (req, res) => {
             console.log(
               "아이디 [%s], 패스워드가 일치하는 이름 [%s] 찾음",
               paramNickname,
-              user.name
+              user.nickname
             );
             req.session.user = {
               nickname: user.nickname,

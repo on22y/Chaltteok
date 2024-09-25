@@ -1,15 +1,15 @@
-import './App.css';
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import Test from './pages/Test';
-import Voice from './components/Voice';
-import Word from './pages/Word';
-import Type from './pages/Type';
-import Mypage from './pages/Mypage';
-import Loading from './pages/Loading';
+import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Test from "./pages/Test";
+import Voice from "./components/Voice";
+import Word from "./pages/Word";
+import Type from "./pages/Type";
+import Mypage from "./pages/Mypage";
+import Loading from "./pages/Loading";
 
 function App() {
   return (
@@ -22,8 +22,8 @@ function App() {
           <Route path="/test" element={<Test />} />
           <Route path="/speech_to_text" element={<Voice />} />
           <Route path="/word" element={<Word />} />
-          <Route path="/type" element={<Type />} />
-          <Route path="/mypage" element={<Mypage />} />
+          <Route path="/isLogged/type" element={<Type />} />
+          <Route path="/Logged/type" element={<Mypage />} />
           <Route path="/loading" element={<Loading />} />
         </Routes>
       </Router>
