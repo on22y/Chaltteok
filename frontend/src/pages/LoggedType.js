@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"; // useState와 useEffect를 
 import axios from "axios"; // axios를 import
 import MypageComponent from "../components/MypageComponent";
 
-function Mypage() {
+function LoggedType() {
   const [state, setState] = useState(""); // state를 초기화
 
   useEffect(() => {
@@ -34,4 +34,4 @@ function Mypage() {
   );
 }
 
-export default Mypage;
+export default LoggedType;

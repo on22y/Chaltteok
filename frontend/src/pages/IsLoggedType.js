@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TypeComponent from "../components/TypeComponent";
 
-function Type() {
+function IsLoggedType() {
   const [state, setState] = useState("");
 
   useEffect(() => {
@@ -34,4 +34,4 @@ function Type() {
   );
 }
 
-export default Type;
+export default IsLoggedType;

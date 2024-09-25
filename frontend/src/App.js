@@ -7,8 +7,8 @@ import Login from "./pages/Login";
 import Test from "./pages/Test";
 import Voice from "./components/Voice";
 import Word from "./pages/Word";
-import Type from "./pages/Type";
-import Mypage from "./pages/Mypage";
+import IsLoggedType from "./pages/IsLoggedType";
+import LoggedType from "./pages/LoggedType";
 import Loading from "./pages/Loading";
 
 function App() {
@@ -22,8 +22,8 @@ function App() {
           <Route path="/test" element={<Test />} />
           <Route path="/speech_to_text" element={<Voice />} />
           <Route path="/word" element={<Word />} />
-          <Route path="/isLogged/type" element={<Type />} />
-          <Route path="/Logged/type" element={<Mypage />} />
+          <Route path="/isLogged/type" element={<IsLoggedType />} />
+          <Route path="/Logged/type" element={<LoggedType />} />
           <Route path="/loading" element={<Loading />} />
         </Routes>
       </Router>
