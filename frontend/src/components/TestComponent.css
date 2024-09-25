@@ -58,7 +58,7 @@
 }
 
 .testComponent .chatContainer .leftBubble {
-  background-color: #357929;
+  background-color: #525252; /* Default gray */
   color: #fffbe6;
   align-self: flex-start;
 }
@@ -70,13 +70,13 @@
   left: 1px;
   width: 0;
   height: 0;
-  border-top: 20px solid #357929;
+  border-top: 20px solid #525252; /* Default gray */
   border-right: 20px solid transparent;
   border-bottom: 0 solid transparent;
 }
 
 .testComponent .chatContainer .rightBubble {
-  background-color: #525252;
+  background-color: #525252; /* Default gray */
   color: #fffbe6;
   align-self: flex-end;
 }
@@ -88,12 +88,21 @@
   right: 1px;
   width: 0;
   height: 0;
-  border-top: 15px solid #525252;
+  border-top: 15px solid #525252; /* Default gray */
   border-left: 15px solid transparent;
   border-bottom: 0 solid transparent;
 }
 
+/* Green bubble color when value is L or R */
 .testComponent .chatContainer .greenBubble {
-  background-color: #357929; /* 초록색 */
-  color: #fffbe6; /* 텍스트 색상 */
+  background-color: #357929 !important; /* Green color */
+  color: #fffbe6;
+}
+
+.testComponent .chatContainer .greenBubble.leftBubble::after {
+  border-top-color: #357929 !important; /* Green for left bubble */
+}
+
+.testComponent .chatContainer .greenBubble.rightBubble::after {
+  border-top-color: #357929 !important; /* Green for right bubble */
 }

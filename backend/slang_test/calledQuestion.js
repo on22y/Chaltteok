@@ -14,8 +14,6 @@ const pool = mysql.createPool({
   debug: false,
 });
 
-// /calledQuestion API - 질문 데이터를 가져옴
-// /calledQuestion API - 질문 데이터를 가져옴
 router.post("/calledQuestion", (req, res) => {
   if (req.session && req.session.user) {
     const questionNum = req.body.num; // 프론트엔드에서 넘겨준 num 값
