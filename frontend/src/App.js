@@ -4,13 +4,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Test from './pages/Test';
+import LoggedTest from './pages/LoggedTest';
 import Voice from './components/Voice';
 import Word from './pages/Word';
 import IsLoggedType from './pages/IsLoggedType';
 import LoggedType from './pages/LoggedType';
 import Loading from './pages/Loading';
 import Mypage from './pages/Mypage';
+import IsLoggedTest from './pages/IsLoggedTest';
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signuppage" element={<Signup />} />
           <Route path="/loginpage" element={<Login />} />
-          <Route path="/Logged/test" element={<Test />} />
+          <Route path="/isLogged/test" element={<IsLoggedTest />} />
+          <Route path="/Logged/test" element={<LoggedTest />} />
           <Route path="/speech_to_text" element={<Voice />} />
           <Route path="/word" element={<Word />} />
           <Route path="/isLogged/type" element={<IsLoggedType />} />

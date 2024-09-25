@@ -16,7 +16,7 @@ function Home() {
   };
 
   const handleTestClick = () => {
-    navigate('/test');
+    navigate('/isLogged/test');
   };
 
   return (
