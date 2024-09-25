@@ -6,7 +6,7 @@ import TextComponent from '../components/TextComponent';
 function Loading() {
   return (
     <div className="loadingPage">
-      <img className="mainImg" src={mainImg} width={185} />
+      <img className="mainImg" src={mainImg} width={198} />
       <TextComponent
         text={
           <>
@@ -18,6 +18,7 @@ function Loading() {
           </>
         }
         fontSize="42px"
+        strokeWidth="2px"
       />
     </div>
   );
