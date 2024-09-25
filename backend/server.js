@@ -45,6 +45,7 @@ const clovaRoutes = require("./speech/clova");
 const take_slang_dbRoutes = require("./speech/take_slang_db");
 const LoggedresultRoutes = require("./slang_test/logged_result");
 const isLoggedresultRoutes = require("./slang_test/islogged_result");
+const calledQuestionRoutes = require("./slang_test/calledQuestion");
 
 app.use("/", mypageRoutes);
 app.use("/", loginRoutes);
@@ -52,8 +53,9 @@ app.use("/", processRoutes);
 app.use("/", signupRoutes);
 app.use("/", clovaRoutes);
 app.use("/", take_slang_dbRoutes);
-app.use("/Logged/type", LoggedresultRoutes); // /Logged 경로로 연결
-app.use("/isLogged/type", isLoggedresultRoutes); // /isLogged 경로로 연결
+app.use("/Logged/type", LoggedresultRoutes);
+app.use("/isLogged/type", isLoggedresultRoutes);
+app.use("/Logged/test", calledQuestionRoutes);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));

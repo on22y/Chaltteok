@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signuppage" element={<Signup />} />
           <Route path="/loginpage" element={<Login />} />
-          <Route path="/test" element={<Test />} />
+          <Route path="/Logged/test" element={<Test />} />
           <Route path="/speech_to_text" element={<Voice />} />
           <Route path="/word" element={<Word />} />
           <Route path="/isLogged/type" element={<IsLoggedType />} />
