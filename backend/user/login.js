@@ -45,9 +45,9 @@ router.post("/process/login", (req, res) => {
           const match = await bcrypt.compare(paramPW, user.password);
           if (match) {
             console.log(
-              "아이디 [%s], 패스워드가 일치하는 이름 [%s] 찾음",
+              "아이디 [%s], 패스워드가 일치하는 상태 [%s] 찾음",
               paramNickname,
-              user.nickname
+              user.state
             );
             req.session.user = {
               nickname: user.nickname,

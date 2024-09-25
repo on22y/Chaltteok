@@ -3,13 +3,13 @@ import axios from "axios"; // axios를 import
 import MypageComponent from "../components/MypageComponent";
 
 function Mypage() {
-  const [typeValue, setTypeValue] = useState("");
+  const [state, setState] = useState(""); // state를 초기화
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post("/Logged/type/getResult");
-        setTypeValue(response.data.type);
+        setState(response.data.state); // response에서 'state'로 받아온 값을 설정
       } catch (error) {
         console.error("Error fetching the type value:", error);
       }
@@ -21,7 +21,7 @@ function Mypage() {
   return (
     <div className="myPage">
       <MypageComponent
-        type={`당신은 '${typeValue}'!`}
+        type={`당신은 '${state}'!`} // state를 올바르게 참조
         detail={
           <>
             당장 주변 고등학교로 뛰어가서
