@@ -4,7 +4,7 @@
 .testComponent {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 100vh;
   box-sizing: border-box;
@@ -35,7 +35,7 @@
   margin: 0 0;
   gap: 20px;
   padding: 0 0;
-  margin-top: 50px;
+  margin-top: 60px;
 }
 
 .testComponent .chatContainer .chatBubble {
