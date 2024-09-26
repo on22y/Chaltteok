@@ -7,3 +7,37 @@
   box-sizing: border-box;
   align-items: flex-start;
 }
+
+.answerComponent .textContainer {
+  margin-bottom: -15px;
+  position: relative;
+  z-index: 2;
+}
+
+.answerComponent .boxContainer {
+  position: relative;
+  z-index: 1;
+  border: 3px solid #2f2f2f;
+}
+
+.answerComponent .solution {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  font-size: 18px;
+  padding: 0 0;
+  margin: 0 0;
+  font-family: 'Pretendard';
+  font-style: normal;
+}
+
+.answerComponent .solution-main {
+  font-weight: 700;
+  color: #357929;
+}
+
+.answerComponent .solution-sub {
+  font-weight: 500;
+  color: #272727;
+}
