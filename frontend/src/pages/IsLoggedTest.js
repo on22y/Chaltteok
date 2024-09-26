@@ -42,22 +42,22 @@ function IsLoggedTest() {
 
   return (
     <div className="testPage">
-      <BoxComponent height="533px">
-        {questionNumbers.length > 0 && (
-          <TestComponent
-            num={`Q${currentQuestionIndex + 1}.`}
-            questionNum={questionNumbers[currentQuestionIndex]} // 실제 문제 번호는 랜덤
-            onNext={handleNextQuestion}
-          />
-        )}
+      {/* <BoxComponent height="533px"> */}
+      {questionNumbers.length > 0 && (
+        <TestComponent
+          num={`Q${currentQuestionIndex + 1}.`}
+          questionNum={questionNumbers[currentQuestionIndex]} // 실제 문제 번호는 랜덤
+          onNext={handleNextQuestion}
+        />
+      )}
 
-        <InputBox text="정답을 입력해주세요." />
+      {/* <InputBox text="정답을 입력해주세요." />
       </BoxComponent>
       <MainBtn
         text={currentQuestionIndex === questionNumbers.length - 1 ? '제출하기' : '다음문제'}
         subText="못돌아가 히히"
         onClick={handleNextQuestion}
-      />
+      /> */}
 
       {/* <MainBtn text="다음문제" subText="못돌아가 히히" onClick={handleNextQuestion} /> */}
     </div>

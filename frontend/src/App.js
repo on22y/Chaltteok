@@ -30,7 +30,7 @@ function App() {
           <Route path="/Logged/type" element={<LoggedType />} />
           <Route path="/loading" element={<Loading />} />
           <Route path="/mypage" element={<Mypage />} />
-          <Route path="/isLogged/answer" element={<IsLoggedAnswer />} />
+          {/* <Route path="/isLogged/answer" element={<IsLoggedAnswer />} /> */}
         </Routes>
       </Router>
     </div>
