@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Test.css';
 import TestComponent from '../components/TestComponent';
 import BoxComponent from '../components/BoxComponent';
 import InputBox from '../components/InputBox';
