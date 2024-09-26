@@ -16,7 +16,7 @@ const pool = mysql.createPool({
 
 router.post("/calledQuestion", (req, res) => {
   if (req.session && req.session.user) {
-    const questionNum = req.body.num; // 프론트엔드에서 넘겨준 num 값
+    const questionCount = req.body.count || 10; // 가져올 문제 개수를 프론트엔드에서 넘겨줌, 기본 10개
 
     pool.getConnection((err, conn) => {
       if (err) {
@@ -25,8 +25,9 @@ router.post("/calledQuestion", (req, res) => {
         return;
       }
 
-      const query = "SELECT text1, text2, value FROM question WHERE id = ?"; // value도 함께 가져옴
-      conn.query(query, [questionNum], (error, results) => {
+      // 랜덤하게 questionCount 개의 문제를 가져옴, 중복 허용하지 않음
+      const query = `SELECT id, text1, text2, value FROM question ORDER BY RAND() LIMIT ?`;
+      conn.query(query, [questionCount], (error, results) => {
         conn.release();
         if (error) {
           console.error("Query Error", error);
@@ -36,9 +37,7 @@ router.post("/calledQuestion", (req, res) => {
 
         if (results.length > 0) {
           res.json({
-            text1: results[0].text1,
-            text2: results[0].text2,
-            value: results[0].value, // value 값을 프론트엔드로 전달
+            questions: results, // 여러 문제를 배열로 반환
           });
         } else {
           res
