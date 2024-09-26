@@ -32,7 +32,7 @@ function TestComponent({ questionNum, num, onNext }) {
     <div className="testComponent">
       {/* <BoxComponent height="533px"> */}
       <div className="questionContent">
-        <TextComponent text={num} fontSize="64px" strokeWidth="1px" />
+        <TextComponent text={num} fontSize="64px" strokeWidth="3px" />
         <div className="question">
           다음 대화를 보고, 녹색 대화창의 <br />
           의미를 작성하시오.

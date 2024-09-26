@@ -36,7 +36,12 @@ function IsLoggedAnswer() {
     if (savedQuestionNumbers && savedQuestionNumbers.length > 0) {
       setQuestionNumbers(savedQuestionNumbers);
     }
-  });
+  }, []); // 빈 배열로 설정하여 컴포넌트 마운트 시 한 번만 실행
+
+  const handleQuestionClick = (questionNum) => {
+    // 클릭한 문제 번호로 currentQuestionIndex 업데이트
+    setCurrentQuestionIndex(questionNum - 1); // 배열 인덱스는 0부터 시작하므로 -1
+  };
 
   const handleSignupClick = () => {
     navigate('/signuppage');
@@ -49,11 +54,11 @@ function IsLoggedAnswer() {
   return (
     <div className="answerPage">
       <BoxComponent height="604px">
-        <NumList totalQuestions={20} />
+        <NumList totalQuestions={20} onQuestionClick={handleQuestionClick} />
         {/* <img className="trueImg" src={trueImg} width={86} height={151} /> */}
         {questionNumbers.length > 0 && (
           <TestComponent
-            num={`Q${currentQuestionIndex + 1}`} // 현재 문제 번호 1부터 시작
+            num={`Q${currentQuestionIndex + 1}.`} // 현재 문제 번호 1부터 시작
             questionNum={questionNumbers[currentQuestionIndex]} // 저장된 문제 번호에서 가져옴
           />
         )}

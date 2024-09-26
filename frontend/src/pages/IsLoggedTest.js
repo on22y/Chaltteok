@@ -42,7 +42,7 @@ function IsLoggedTest() {
       <BoxComponent height="533px">
         {questionNumbers.length > 0 && (
           <TestComponent
-            num={`Q${currentQuestionIndex + 1}`} // 현재 문제 번호 1부터 시작
+            num={`Q${currentQuestionIndex + 1}.`} // 현재 문제 번호 1부터 시작
             questionNum={questionNumbers[currentQuestionIndex]} // 문제 데이터셋에서 순서대로 가져옴
             onNext={handleNextQuestion} // 다음 문제로 이동
           />
