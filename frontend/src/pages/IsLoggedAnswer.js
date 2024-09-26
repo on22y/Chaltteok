@@ -5,6 +5,7 @@ import NumList from '../components/NumList';
 import TestComponent from '../components/TestComponent';
 import MainBtn from '../components/MainBtn';
 import BoxComponent from '../components/BoxComponent';
+import trueImg from '../assets/images/trueImg.png';
 
 function IsLoggedAnswer() {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ function IsLoggedAnswer() {
     <div className="answerPage">
       <BoxComponent height="604px">
         <NumList totalQuestions={20} />
+        <img className="trueImg" src={trueImg} width={86} height={151} />
         <TestComponent num={`Q${questionNumbers[currentQuestionIndex]}`} />
       </BoxComponent>
       <MainBtn text="회원가입" subText="홈으로 돌아가기" onClick={handleSignupClick} />
