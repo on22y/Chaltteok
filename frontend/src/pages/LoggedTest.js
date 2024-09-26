@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "./Test.css";
-import TestComponent from "../components/TestComponent";
-import BoxComponent from "../components/BoxComponent";
-import InputBox from "../components/InputBox";
-import MainBtn from "../components/MainBtn";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Test.css';
+import TestComponent from '../components/TestComponent';
+import BoxComponent from '../components/BoxComponent';
+import InputBox from '../components/InputBox';
+import MainBtn from '../components/MainBtn';
+import axios from 'axios';
 
 function LoggedTest() {
   const totalQuestions = 10; // 총 10문제
@@ -17,12 +17,12 @@ function LoggedTest() {
     // 백엔드에서 랜덤으로 문제 가져오기
     const fetchQuestions = async () => {
       try {
-        const response = await axios.post("/Logged/test/calledQuestion", {
+        const response = await axios.post('/Logged/test/calledQuestion', {
           count: totalQuestions, // 총 10개의 문제를 요청
         });
         setQuestions(response.data.questions);
       } catch (error) {
-        console.error("Error fetching the question data:", error);
+        console.error('Error fetching the question data:', error);
       }
     };
 
@@ -34,9 +34,9 @@ function LoggedTest() {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       // 마지막 문제일 경우 '제출하기' 버튼이 작동
-      navigate("/loading");
+      navigate('/loading');
       setTimeout(() => {
-        navigate("/logged/type");
+        navigate('/logged/type');
       }, 3000);
     }
   };
@@ -46,7 +46,7 @@ function LoggedTest() {
       <BoxComponent height="533px">
         {questions.length > 0 && (
           <TestComponent
-            num={`Q${currentQuestionIndex + 1}`} // 현재 문제 번호 1부터 시작
+            num={`Q${currentQuestionIndex + 1}.`} // 현재 문제 번호 1부터 시작
             question={questions[currentQuestionIndex]} // 백엔드에서 받은 문제 데이터 전달
             onNext={handleNextQuestion} // 다음 문제로 이동
           />
@@ -54,11 +54,7 @@ function LoggedTest() {
         <InputBox text="정답을 입력해주세요." />
       </BoxComponent>
       <MainBtn
-        text={
-          currentQuestionIndex === questions.length - 1
-            ? "제출하기"
-            : "다음문제"
-        }
+        text={currentQuestionIndex === questions.length - 1 ? '제출하기' : '다음문제'}
         subText="못돌아가 히히"
         onClick={handleNextQuestion}
       />

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import "./TestComponent.css";
-import TextComponent from "./TextComponent";
+import React, { useState, useEffect } from 'react';
+import './TestComponent.css';
+import TextComponent from './TextComponent';
 
 function TestComponent({ question, num, onNext }) {
-  const [leftChat, setLeftChat] = useState("");
-  const [rightChat, setRightChat] = useState("");
-  const [chatValue, setChatValue] = useState(""); // value 값을 저장할 state
+  const [leftChat, setLeftChat] = useState('');
+  const [rightChat, setRightChat] = useState('');
+  const [chatValue, setChatValue] = useState(''); // value 값을 저장할 state
 
   useEffect(() => {
     if (question) {
@@ -26,20 +26,8 @@ function TestComponent({ question, num, onNext }) {
       </div>
 
       <div className="chatContainer">
-        <div
-          className={`chatBubble leftBubble ${
-            chatValue === "R" ? "greenBubble" : ""
-          }`}
-        >
-          {leftChat}
-        </div>
-        <div
-          className={`chatBubble rightBubble ${
-            chatValue === "L" ? "greenBubble" : ""
-          }`}
-        >
-          {rightChat}
-        </div>
+        <div className={`chatBubble leftBubble ${chatValue === 'L' ? 'greenBubble' : ''}`}>{leftChat}</div>
+        <div className={`chatBubble rightBubble ${chatValue === 'R' ? 'greenBubble' : ''}`}>{rightChat}</div>
       </div>
     </div>
   );

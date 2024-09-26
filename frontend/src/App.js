@@ -13,6 +13,7 @@ import Loading from './pages/Loading';
 import Mypage from './pages/Mypage';
 import IsLoggedTest from './pages/IsLoggedTest';
 import IsLoggedAnswer from './pages/IsLoggedAnswer';
+import LoggedAnswer from './pages/LoggedAnswer';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/loading" element={<Loading />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/isLogged/answer" element={<IsLoggedAnswer />} />
+          <Route path="/Logged/answer" element={<LoggedAnswer />} />
         </Routes>
       </Router>
     </div>

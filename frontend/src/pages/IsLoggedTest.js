@@ -8,21 +8,29 @@ import MainBtn from '../components/MainBtn';
 
 function IsLoggedTest() {
   const totalQuestions = 20; // 총 20문제
-  const dataset = Array.from({ length: 250 }, (_, index) => index + 1); // 1~250 문제 데이터셋
-
+  const [questions, setQuestions] = useState([]); // 문제 데이터를 저장할 상태
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // 현재 문제 번호는 0부터 시작
-  const [questionNumbers, setQuestionNumbers] = useState([]); // 문제 번호 리스트
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 문제를 랜덤하게 선택하지 않고 순서대로 매김
-    const sequentialQuestions = Array.from({ length: totalQuestions }, (_, index) => index + 1);
-    setQuestionNumbers(sequentialQuestions); // 1부터 20까지 문제 번호 설정
+    // 백엔드에서 랜덤으로 문제 가져오기
+    const fetchQuestions = async () => {
+      try {
+        const response = await axios.post('/IsLogged/test/calledQuestion', {
+          count: totalQuestions, // 총 10개의 문제를 요청
+        });
+        setQuestions(response.data.questions);
+      } catch (error) {
+        console.error('Error fetching the question data:', error);
+      }
+    };
 
-    // 문제 번호 리스트를 로컬 스토리지에 저장
-    localStorage.setItem('testQuestionNumbers', JSON.stringify(sequentialQuestions));
+    fetchQuestions();
   }, []);
+
+  //   // 문제 번호 리스트를 로컬 스토리지에 저장
+  //   localStorage.setItem('testQuestionNumbers', JSON.stringify(sequentialQuestions));
+  // }, []);
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < totalQuestions - 1) {
@@ -40,10 +48,10 @@ function IsLoggedTest() {
   return (
     <div className="testPage">
       <BoxComponent height="533px">
-        {questionNumbers.length > 0 && (
+        {questions.length > 0 && (
           <TestComponent
             num={`Q${currentQuestionIndex + 1}.`} // 현재 문제 번호 1부터 시작
-            questionNum={questionNumbers[currentQuestionIndex]} // 문제 데이터셋에서 순서대로 가져옴
+            question={questions[currentQuestionIndex]} // 백엔드에서 받은 문제 데이터 전달
             onNext={handleNextQuestion} // 다음 문제로 이동
           />
         )}
