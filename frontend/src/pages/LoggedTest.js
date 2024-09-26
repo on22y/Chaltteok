@@ -11,6 +11,7 @@ function LoggedTest() {
   const totalQuestions = 10; // 총 10문제
   const [questions, setQuestions] = useState([]); // 문제 데이터를 저장할 상태
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // 현재 문제 번호는 0부터 시작
+  const [answer, setAnswer] = useState(""); // 입력한 답변을 저장할 상태
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +30,21 @@ function LoggedTest() {
     fetchQuestions();
   }, []);
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = async () => {
+    // 현재 문제에 대한 답변 제출
+    if (answer.trim()) {
+      try {
+        await axios.post("/Logged/test/submitAnswer", {
+          questionId: questions[currentQuestionIndex].id,
+          answer: answer,
+        });
+        setAnswer(""); // 답변 초기화
+      } catch (error) {
+        console.error("Error submitting answer:", error);
+      }
+    }
+
+    // 다음 문제로 이동
     if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
@@ -51,7 +66,12 @@ function LoggedTest() {
             onNext={handleNextQuestion} // 다음 문제로 이동
           />
         )}
-        <InputBox text="정답을 입력해주세요." />
+        {/* InputBox를 통해 사용자의 답변을 입력 */}
+        <InputBox
+          text="정답을 입력해주세요."
+          value={answer} // 입력된 답변 전달
+          onChange={(e) => setAnswer(e.target.value)} // 답변 입력 시 상태 업데이트
+        />
       </BoxComponent>
       <MainBtn
         text={

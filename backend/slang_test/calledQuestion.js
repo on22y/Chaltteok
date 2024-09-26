@@ -5,7 +5,7 @@ const db_config = require("../config/db_config.json");
 
 // MySQL 연결 설정
 const pool = mysql.createPool({
-  connectionLimit: 10,
+  connectionLimit: 50,
   host: db_config.host,
   user: db_config.user,
   password: db_config.password,
