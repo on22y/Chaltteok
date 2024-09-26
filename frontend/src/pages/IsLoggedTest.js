@@ -18,7 +18,7 @@ function IsLoggedTest() {
     // 백엔드에서 랜덤으로 문제 가져오기
     const fetchQuestions = async () => {
       try {
-        const response = await axios.post("/Logged/test/calledQuestion", {
+        const response = await axios.post("/isLogged/test/calledQuestion", {
           count: totalQuestions,
         });
         setQuestions(response.data.questions);
@@ -34,7 +34,7 @@ function IsLoggedTest() {
     // 현재 문제에 대한 답변 제출
     if (answer.trim()) {
       try {
-        await axios.post("/Logged/test/submitAnswer", {
+        await axios.post("/isLogged/test/submitAnswer", {
           questionId: questions[currentQuestionIndex].id,
           answer: answer,
         });
