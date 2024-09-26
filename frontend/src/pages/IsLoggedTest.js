@@ -19,6 +19,9 @@ function IsLoggedTest() {
     // 문제를 랜덤하게 선택하지 않고 순서대로 매김
     const sequentialQuestions = Array.from({ length: totalQuestions }, (_, index) => index + 1);
     setQuestionNumbers(sequentialQuestions); // 1부터 20까지 문제 번호 설정
+
+    // 문제 번호 리스트를 로컬 스토리지에 저장
+    localStorage.setItem('testQuestionNumbers', JSON.stringify(sequentialQuestions));
   }, []);
 
   const handleNextQuestion = () => {

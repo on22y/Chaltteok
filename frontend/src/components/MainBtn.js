@@ -1,7 +1,7 @@
 import React from 'react';
 import './MainBtn.css';
 
-function MainBtn({ text, subText, onClick, width, height, fontSize }) {
+function MainBtn({ text, subText, onClick, onSubTextClick, width, height, fontSize }) {
   const buttonStyle = {
     width: width || '204px',
     height: height || '72px',
@@ -13,7 +13,9 @@ function MainBtn({ text, subText, onClick, width, height, fontSize }) {
       <button type="submit" className="mainBtn" onClick={onClick} style={buttonStyle}>
         {text}
       </button>
-      <div className="mainBtnsubText">{subText}</div>
+      <div className="mainBtnsubText" onClick={onSubTextClick} style={{ cursor: 'pointer' }}>
+        {subText}
+      </div>
     </div>
   );
 }

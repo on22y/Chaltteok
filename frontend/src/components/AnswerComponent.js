@@ -7,7 +7,7 @@ import BoxComponent from './BoxComponent';
 function AnswerComponent() {
   return (
     <div className="answerComponent">
-      <TextComponent text="해설" fontSize="32px" strokeWidth="1px" colorClass="textPink" />
+      <TextComponent text="해설" fontSize="32px" strokeWidth="0.5px" colorClass="textPink" />
       <BoxComponent width="318px" height="177px">
         <div className="solution">
           <div className="solution-main">핵심 단어 (단어)</div>
