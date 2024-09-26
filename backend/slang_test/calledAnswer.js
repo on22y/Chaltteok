@@ -14,9 +14,16 @@ const pool = mysql.createPool({
   debug: false,
 });
 
-router.post("/Logged/test/calledQuestion", (req, res) => {
+//로그인 전용
+router.post("/Logged/answer/calledAnswer", (req, res) => {
   if (req.session && req.session.user) {
-    const questionCount = req.body.count || 10; // 가져올 문제 개수를 프론트엔드에서 넘겨줌, 기본 10개
+    const questionId = req.body.id; // 가져올 문제의 ID를 프론트엔드에서 넘겨줌
+
+    if (!questionId) {
+      return res
+        .status(400)
+        .json({ success: false, message: "ID가 필요합니다." });
+    }
 
     pool.getConnection((err, conn) => {
       if (err) {
@@ -25,9 +32,9 @@ router.post("/Logged/test/calledQuestion", (req, res) => {
         return;
       }
 
-      // 랜덤하게 questionCount 개의 문제를 가져옴, 중복 허용하지 않음
-      const query = `SELECT id, text1, text2, value FROM question ORDER BY RAND() LIMIT ?`;
-      conn.query(query, [questionCount], (error, results) => {
+      // answer, slang_word, meaning을 선택적으로 가져오기
+      const query = `SELECT answer, slang_word, meaning FROM question WHERE id = ?`;
+      conn.query(query, [questionId], (error, results) => {
         conn.release();
         if (error) {
           console.error("Query Error", error);

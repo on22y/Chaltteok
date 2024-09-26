@@ -46,7 +46,8 @@ const take_slang_dbRoutes = require("./speech/take_slang_db");
 const LoggedresultRoutes = require("./slang_test/logged_result");
 const isLoggedresultRoutes = require("./slang_test/islogged_result");
 const calledQuestionRoutes = require("./slang_test/calledQuestion");
-const calledinputAnswer = require("./slang_test/inputAnswer");
+const calledinputAnswerRoutes = require("./slang_test/inputAnswer");
+const calledAnswerRoutes = require("./slang_test/calledAnswer");
 
 app.use("/", mypageRoutes);
 app.use("/", loginRoutes);
@@ -56,8 +57,9 @@ app.use("/", clovaRoutes);
 app.use("/", take_slang_dbRoutes);
 app.use("/Logged/type", LoggedresultRoutes);
 app.use("/isLogged/type", isLoggedresultRoutes);
-app.use("/Logged/test", calledQuestionRoutes);
-app.use("/Logged/test", calledinputAnswer);
+app.use("/", calledQuestionRoutes);
+app.use("/", calledinputAnswerRoutes);
+app.use("/", calledAnswerRoutes);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
