@@ -1,29 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "./Test.css";
-import TestComponent from "../components/TestComponent";
-import BoxComponent from "../components/BoxComponent";
-import InputBox from "../components/InputBox";
-import MainBtn from "../components/MainBtn";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Test.css';
+import TestComponent from '../components/TestComponent';
+import BoxComponent from '../components/BoxComponent';
+import InputBox from '../components/InputBox';
+import MainBtn from '../components/MainBtn';
+import axios from 'axios';
 
 function IsLoggedTest() {
   const totalQuestions = 20;
   const [questions, setQuestions] = useState([]); // 문제 데이터를 저장할 상태
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // 현재 문제 번호는 0부터 시작
-  const [answer, setAnswer] = useState(""); // 입력한 답변을 저장할 상태
+  const [answer, setAnswer] = useState(''); // 입력한 답변을 저장할 상태
   const navigate = useNavigate();
 
   useEffect(() => {
     // 백엔드에서 랜덤으로 문제 가져오기
     const fetchQuestions = async () => {
       try {
-        const response = await axios.post("/isLogged/test/calledQuestion", {
+        const response = await axios.post('/isLogged/test/calledQuestion', {
           count: totalQuestions,
         });
         setQuestions(response.data.questions);
+        // 로컬 스토리지에 문제 저장
+        localStorage.setItem('isloggedtestQuestions', JSON.stringify(response.data.questions));
       } catch (error) {
-        console.error("Error fetching the question data:", error);
+        console.error('Error fetching the question data:', error);
       }
     };
 
@@ -34,13 +36,13 @@ function IsLoggedTest() {
     // 현재 문제에 대한 답변 제출
     if (answer.trim()) {
       try {
-        await axios.post("/isLogged/test/submitAnswer", {
+        await axios.post('/isLogged/test/submitAnswer', {
           questionId: questions[currentQuestionIndex].id,
           answer: answer,
         });
-        setAnswer(""); // 답변 초기화
+        setAnswer(''); // 답변 초기화
       } catch (error) {
-        console.error("Error submitting answer:", error);
+        console.error('Error submitting answer:', error);
       }
     }
 
@@ -49,9 +51,9 @@ function IsLoggedTest() {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       // 마지막 문제일 경우 '제출하기' 버튼이 작동
-      navigate("/loading");
+      navigate('/loading');
       setTimeout(() => {
-        navigate("/logged/type");
+        navigate('/islogged/type');
       }, 3000);
     }
   };
@@ -74,11 +76,7 @@ function IsLoggedTest() {
         />
       </BoxComponent>
       <MainBtn
-        text={
-          currentQuestionIndex === questions.length - 1
-            ? "제출하기"
-            : "다음문제"
-        }
+        text={currentQuestionIndex === questions.length - 1 ? '제출하기' : '다음문제'}
         subText="못돌아가 히히"
         onClick={handleNextQuestion}
       />

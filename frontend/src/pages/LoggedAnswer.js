@@ -12,19 +12,19 @@ import AnswerComponent from '../components/AnswerComponent';
 function LoggedAnswer() {
   const navigate = useNavigate();
 
-  const [questionNumbers, setQuestionNumbers] = useState([]); // 랜덤 문제 번호 배열
+  const [questions, setQuestions] = useState([]); // 문제 데이터 배열
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // 현재 문제 인덱스
 
   const [word, setWord] = useState(''); // 신조어 단어
   const [about_word, setAbout_Word] = useState(''); // 신조어 단어 해설
   const [answer, setAnswer] = useState(''); // 정답 문장
 
+  // 로컬 스토리지에서 문제 리스트를 가져옴
   useEffect(() => {
-    // 로컬 스토리지에서 문제 번호 리스트를 가져옴
-    const savedQuestionNumbers = JSON.parse(localStorage.getItem('testQuestionNumbers'));
+    const savedQuestions = JSON.parse(localStorage.getItem('loggedtestQuestions'));
 
-    if (savedQuestionNumbers && savedQuestionNumbers.length > 0) {
-      setQuestionNumbers(savedQuestionNumbers);
+    if (savedQuestions && savedQuestions.length > 0) {
+      setQuestions(savedQuestions);
     }
   }, []); // 빈 배열로 설정하여 컴포넌트 마운트 시 한 번만 실행
 
@@ -33,7 +33,7 @@ function LoggedAnswer() {
     const fetchAnswerData = async () => {
       try {
         const response = await axios.post('/Logged/answer', {
-          num: questionNumbers[currentQuestionIndex],
+          num: questions[currentQuestionIndex]?.num, // 문제 번호로 해설 데이터 요청
         });
         setWord(response.data.word);
         setAbout_Word(response.data.about_word);
@@ -43,10 +43,10 @@ function LoggedAnswer() {
       }
     };
 
-    if (questionNumbers.length > 0) {
+    if (questions.length > 0) {
       fetchAnswerData();
     }
-  }, [currentQuestionIndex, questionNumbers]);
+  }, [currentQuestionIndex, questions]);
 
   const handleQuestionClick = (questionNum) => {
     // 클릭한 문제 번호로 currentQuestionIndex 업데이트
@@ -64,15 +64,17 @@ function LoggedAnswer() {
   return (
     <div className="answerPage">
       <BoxComponent height="604px">
-        <NumList totalQuestions={10} onQuestionClick={handleQuestionClick} />
+        <NumList totalQuestions={questions.length} onQuestionClick={handleQuestionClick} />
         {/* <img className="trueImg" src={trueImg} width={86} height={151} /> */}
-        {questionNumbers.length > 0 && (
-          <TestComponent
-            num={`Q${currentQuestionIndex + 1}.`} // 현재 문제 번호 1부터 시작
-            questionNum={questionNumbers[currentQuestionIndex]} // 저장된 문제 번호에서 가져옴
-          />
+        {questions.length > 0 && (
+          <>
+            <TestComponent
+              num={`Q${currentQuestionIndex + 1}.`} // 현재 문제 번호 1부터 시작
+              question={questions[currentQuestionIndex]} // 저장된 문제에서 가져옴
+            />
+            <AnswerComponent word={word} about_word={about_word} answer={answer} />
+          </>
         )}
-        <AnswerComponent word={word} about_Word={about_word} answer={answer} />
       </BoxComponent>
       <MainBtn
         text="진단 다시하기"

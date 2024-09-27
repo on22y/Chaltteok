@@ -8,10 +8,10 @@ import MainBtn from "../components/MainBtn";
 import axios from "axios";
 
 function LoggedTest() {
-  const totalQuestions = 10; // 총 10문제
+  const totalQuestions = 10;
   const [questions, setQuestions] = useState([]); // 문제 데이터를 저장할 상태
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // 현재 문제 번호는 0부터 시작
-  const [answer, setAnswer] = useState(""); // 입력한 답변을 저장할 상태
+  const [answer, setAnswer] = useState(''); // 입력한 답변을 저장할 상태
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,6 +22,8 @@ function LoggedTest() {
           count: totalQuestions, // 총 10개의 문제를 요청
         });
         setQuestions(response.data.questions);
+        // 로컬 스토리지에 문제 저장
+        localStorage.setItem('loggedtestQuestions', JSON.stringify(response.data.questions));
       } catch (error) {
         console.error("Error fetching the question data:", error);
       }
@@ -34,13 +36,13 @@ function LoggedTest() {
     // 현재 문제에 대한 답변 제출
     if (answer.trim()) {
       try {
-        await axios.post("/Logged/test/submitAnswer", {
+        await axios.post('/Logged/test/submitAnswer', {
           questionId: questions[currentQuestionIndex].id,
           answer: answer,
         });
-        setAnswer(""); // 답변 초기화
+        setAnswer(''); // 답변 초기화
       } catch (error) {
-        console.error("Error submitting answer:", error);
+        console.error('Error submitting answer:', error);
       }
     }
 
@@ -66,7 +68,6 @@ function LoggedTest() {
             onNext={handleNextQuestion} // 다음 문제로 이동
           />
         )}
-        {/* InputBox를 통해 사용자의 답변을 입력 */}
         <InputBox
           text="정답을 입력해주세요."
           value={answer} // 입력된 답변 전달
