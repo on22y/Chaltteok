@@ -24,6 +24,7 @@ router.get("/api/get-count", (req, res) => {
     res.json({ count });
   });
 });
+
 // 카운트 증가시키기
 router.post("/api/increase-count", (req, res) => {
   pool.query(
@@ -49,4 +50,31 @@ router.post("/api/increase-count", (req, res) => {
     }
   );
 });
+
+// 비로그인 상태에서 임의 닉네임 생성 및 세션에 저장
+router.post("/api/create-anonymous-user", (req, res) => {
+  const generatedNickname = req.body.nickname;
+
+  // 세션에 임의 닉네임 저장
+  req.session.user = {
+    nickname: generatedNickname,
+    authorized: false, // 비로그인 상태
+  };
+
+  // DB에 임의의 사용자 저장 (닉네임만)
+  pool.query(
+    "INSERT INTO users (nickname, password) VALUES (?, 'not login')",
+    [generatedNickname],
+    (error) => {
+      if (error) {
+        console.error("Error inserting user into DB:", error); // 오류 로그 추가
+        return res
+          .status(500)
+          .json({ success: false, message: "DB 저장 실패" });
+      }
+      res.json({ success: true });
+    }
+  );
+});
+
 module.exports = router;

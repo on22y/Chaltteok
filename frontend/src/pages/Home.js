@@ -29,15 +29,21 @@ function Home() {
   };
 
   const handleTestClick = () => {
-    // 진단하기 버튼 클릭 시 카운트를 증가시키고 다음 페이지로 이동
+    // 임의 닉네임 생성 후 서버에 저장 요청
+    const generatedNickname = `user_${Math.floor(Math.random() * 100000)}`;
     axios
-      .post("/api/increase-count")
+      .post("/api/create-anonymous-user", { nickname: generatedNickname })
       .then((response) => {
-        setCount(response.data.count); // 업데이트된 카운트로 상태 업데이트
-        navigate("/isLogged/test");
+        if (response.data.success) {
+          // 성공적으로 닉네임이 생성되면 카운트 증가 후 다음 페이지로 이동
+          axios.post("/api/increase-count").then((countResponse) => {
+            setCount(countResponse.data.count); // 업데이트된 카운트로 상태 업데이트
+            navigate("/isLogged/test");
+          });
+        }
       })
       .catch((error) => {
-        console.error("Error increasing count:", error);
+        console.error("Error creating anonymous user:", error);
       });
   };
 

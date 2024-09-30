@@ -1,4 +1,3 @@
-// islogged_result.js
 const express = require("express");
 const mysql = require("mysql");
 const router = express.Router();
@@ -17,21 +16,27 @@ const pool = mysql.createPool({
 
 // 비로그인 사용자의 state 값을 반환하는 API
 router.post("/getResult", (req, res) => {
-  const nickname = req.session.user.nickname;
+  const nickname = req.session.user?.nickname; // 세션에서 닉네임 가져오기
 
-  // MySQL 쿼리를 통해 사용자 state 값 가져오기
-  const query = "SELECT state FROM users WHERE nickname = ?";
-  pool.query(query, [nickname], (error, results) => {
-    if (error) {
-      return res.status(500).json({ error: "Database query failed" });
-    }
+  if (!nickname) {
+    return res.status(400).json({ error: "User not logged in" });
+  }
 
-    if (results.length > 0) {
-      return res.json({ state: results[0].state });
-    } else {
-      return res.status(404).json({ error: "User not found" });
+  pool.query(
+    "SELECT state FROM users WHERE nickname = ?",
+    [nickname],
+    (error, results) => {
+      if (error) {
+        return res.status(500).json({ error: "Database query failed" });
+      }
+
+      if (results.length > 0) {
+        return res.json({ state: results[0].state });
+      } else {
+        return res.status(404).json({ error: "User not found" });
+      }
     }
-  });
+  );
 });
 
 module.exports = router;
