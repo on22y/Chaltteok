@@ -48,6 +48,7 @@ const isLoggedresultRoutes = require("./slang_test/islogged_result");
 const calledQuestionRoutes = require("./slang_test/calledQuestion");
 const inputAnswerRoutes = require("./slang_test/inputAnswer");
 const calledAnswerRoutes = require("./slang_test/calledAnswer");
+const counting_examineRoutes = require("./slang_test/counting_examine");
 
 app.use("/", mypageRoutes);
 app.use("/", loginRoutes);
@@ -60,6 +61,7 @@ app.use("/isLogged/type", isLoggedresultRoutes);
 app.use("/", calledQuestionRoutes);
 app.use("/", inputAnswerRoutes);
 app.use("/", calledAnswerRoutes);
+app.use("/", counting_examineRoutes);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));

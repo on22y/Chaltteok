@@ -17,25 +17,20 @@ const pool = mysql.createPool({
 
 // 로그인한 사용자의 state 값을 반환하는 API
 router.post("/getResult", (req, res) => {
-  if (req.session && req.session.user) {
-    const nickname = req.session.user.nickname;
+  const nickname = req.session.user.nickname;
 
-    // MySQL 쿼리를 통해 사용자 state 값 가져오기
-    const query = "SELECT state FROM users WHERE nickname = ?";
-    pool.query(query, [nickname], (error, results) => {
-      if (error) {
-        return res.status(500).json({ error: "Database query failed" });
-      }
+  // MySQL 쿼리를 통해 사용자 state 값 가져오기
+  pool.query(query, [nickname], (error, results) => {
+    if (error) {
+      return res.status(500).json({ error: "Database query failed" });
+    }
 
-      if (results.length > 0) {
-        return res.json({ state: results[0].state });
-      } else {
-        return res.status(404).json({ error: "User not found" });
-      }
-    });
-  } else {
-    res.status(401).json({ error: "User not authenticated" });
-  }
+    if (results.length > 0) {
+      return res.json({ state: results[0].state });
+    } else {
+      return res.status(404).json({ error: "User not found" });
+    }
+  });
 });
 
 module.exports = router;
