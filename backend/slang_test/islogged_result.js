@@ -15,11 +15,12 @@ const pool = mysql.createPool({
   debug: false,
 });
 
-// 로그인한 사용자의 state 값을 반환하는 API
+// 비로그인 사용자의 state 값을 반환하는 API
 router.post("/getResult", (req, res) => {
   const nickname = req.session.user.nickname;
 
   // MySQL 쿼리를 통해 사용자 state 값 가져오기
+  const query = "SELECT state FROM users WHERE nickname = ?";
   pool.query(query, [nickname], (error, results) => {
     if (error) {
       return res.status(500).json({ error: "Database query failed" });
