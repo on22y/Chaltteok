@@ -29,7 +29,12 @@
   margin-top: 20px;
 }
 
-.loginPage .imgComponent {
+/* .loginPage .imgComponent {
   padding: 0 0;
   margin-top: 20px;
+} */
+
+.backBtn {
+  width: calc(19.35px * var(--scale));
+  height: calc(38.35px * var(--scale));
 }

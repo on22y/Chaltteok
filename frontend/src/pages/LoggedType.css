@@ -46,8 +46,10 @@
   right: 21px;
 }
 
-.LoggedTypePage-textDeco .textDecoImg {
-  margin-top: -10px;
+.textDecoImg {
+  margin-top: calc(-10px * var(--scale));
+  width: calc(100px * var(--scale));
+  height: calc(45px * var(--scale));
 }
 
 .LoggedTypePage-textDeco .textRed {
