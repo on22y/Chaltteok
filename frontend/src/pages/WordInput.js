@@ -9,23 +9,25 @@ import InputBox from '../components/InputBox';
 import SelectBtn from '../components/SelectBtn';
 import backBtn from '../assets/images/backBtn.png';
 
-function Word() {
+function WordInput() {
   const [word, setWord] = useState('');
   const [chat_first, setChat_first] = useState('');
   const [chat_second, setChat_second] = useState('');
   const [answer, setAnswer] = useState('');
+  const [year, setYear] = useState('');
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (word && chat_first && chat_second && answer) {
+    if (word && chat_first && chat_second && answer && year) {
       const wordData = {
         word,
         chat_first,
         chat_second,
         answer,
+        year,
       };
 
       try {
@@ -67,7 +69,7 @@ function Word() {
 
         <div className="yearSelectionRow">
           <TextComponent text="유행 년도" colorClass="textYellow" fontSize="24px" strokeWidth="0.5px" />
-          <SelectBtn />
+          <SelectBtn onYearChange={setYear} />
         </div>
 
         <TextComponent text="예시 대화" colorClass="textYellow" fontSize="24px" strokeWidth="0.5px" />
@@ -92,4 +94,4 @@ function Word() {
   );
 }
 
-export default Word;
+export default WordInput;

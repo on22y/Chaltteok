@@ -6,7 +6,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import LoggedTest from './pages/LoggedTest';
 import Voice from './components/Voice';
-import Word from './pages/Word';
+import WordInput from './pages/WordInput';
 import IsLoggedType from './pages/IsLoggedType';
 import LoggedType from './pages/LoggedType';
 import Loading from './pages/Loading';
@@ -14,6 +14,7 @@ import Mypage from './pages/Mypage';
 import IsLoggedTest from './pages/IsLoggedTest';
 import IsLoggedAnswer from './pages/IsLoggedAnswer';
 import LoggedAnswer from './pages/LoggedAnswer';
+import AdWordCheck from './pages/AdWordCheck';
 
 function App() {
   const updateScale = () => {
@@ -51,13 +52,14 @@ function App() {
           <Route path="/isLogged/test" element={<IsLoggedTest />} />
           <Route path="/Logged/test" element={<LoggedTest />} />
           <Route path="/speech_to_text" element={<Voice />} />
-          <Route path="/word" element={<Word />} />
+          <Route path="/word/input" element={<WordInput />} />
           <Route path="/isLogged/type" element={<IsLoggedType />} />
           <Route path="/Logged/type" element={<LoggedType />} />
           <Route path="/loading" element={<Loading />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/isLogged/answer" element={<IsLoggedAnswer />} />
           <Route path="/Logged/answer" element={<LoggedAnswer />} />
+          <Route path="/word/check" element={<AdWordCheck />} />
         </Routes>
       </Router>
     </div>

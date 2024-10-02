@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import { RxTriangleDown } from 'react-icons/rx';
 
-function SelectBtn() {
+function SelectBtn({ onYearChange }) {
   const yearOptions = Array.from({ length: 41 }, (_, i) => ({
     value: 1980 + i,
     label: `${1980 + i}`,
@@ -12,7 +12,10 @@ function SelectBtn() {
   const [year, setYear] = useState(null);
 
   const handleYearChange = (selectedOption) => {
-    setYear(selectedOption ? selectedOption.value : null);
+    const selectedYear = selectedOption ? selectedOption.value : null;
+    setYear(selectedYear);
+    onYearChange(selectedYear); // 선택된 년도를 부모 컴포넌트로 전달
+    // setYear(selectedOption ? selectedOption.value : null);
   };
 
   const customStyles = {
