@@ -90,11 +90,23 @@ router.post("/loading/updateState", (req, res) => {
           }
         }
       });
-
+      // 나이에 따른 상태(state) 설정
+      let state = "";
+      if (age_change < 19) {
+        state = "잼민";
+      } else if (age_change >= 19 && age_change < 22) {
+        state = "샌애기";
+      } else if (age_change >= 22 && age_change < 25) {
+        state = "화석";
+      } else if (age_change >= 25 && age_change < 34) {
+        state = "삼촌";
+      } else {
+        state = "아재";
+      }
       // users 테이블에서 nickname에 해당하는 사용자의 나이를 업데이트
       pool.query(
-        "UPDATE users SET age = ? WHERE nickname = ?",
-        [age_change, nickname],
+        "UPDATE users SET age = ?, state = ? WHERE nickname = ?",
+        [age_change, state, nickname],
         (updateError, updateResults) => {
           if (updateError) {
             console.error("Error updating user age:", updateError);
@@ -103,9 +115,10 @@ router.post("/loading/updateState", (req, res) => {
 
           // 나이 업데이트 성공 시 결과 반환
           res.json({
-            message: "Age updated successfully",
+            message: "Age and state updated successfully",
             nickname,
             updatedAge: age_change,
+            updatedState: state,
           });
         }
       );
