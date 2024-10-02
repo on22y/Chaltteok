@@ -40,7 +40,7 @@ function Login() {
 
         if (data.success) {
           alert('로그인 성공!');
-          navigate('/Logged/type'); // 로그인 성공 시 마이페이지로 이동
+          navigate('/mypage'); // 로그인 성공 시 마이페이지로 이동
         } else {
           alert(data.message);
         }

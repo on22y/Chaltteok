@@ -3,9 +3,9 @@ import './MainBtn.css';
 
 function MainBtn({ text, subText, onClick, onSubTextClick, width, height, fontSize }) {
   const buttonStyle = {
-    width: width || '204px',
-    height: height || '72px',
-    fontSize: fontSize || '28px',
+    width: width ? `calc(${width} * var(--scale))` : 'calc(204px * var(--scale))',
+    height: height ? `calc(${height} * var(--scale))` : 'calc(72px * var(--scale))',
+    fontSize: fontSize ? `calc(${fontSize} * var(--scale))` : 'calc(28px * var(--scale))',
   };
 
   return (

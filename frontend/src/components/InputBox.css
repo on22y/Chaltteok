@@ -7,14 +7,13 @@
 }
 
 .inputBoxContainer input {
-  width: 290px;
-  height: 48px;
-  padding: 0 0;
+  width: calc(290px * var(--scale));
+  height: calc(48px * var(--scale));
+  padding-left: calc(15px * var(--scale));
   margin: 0 0;
-  padding-left: 15px;
-  border: 3px solid #2f2f2f;
-  border-radius: 30px;
-  font-size: 18px;
+  border: calc(3px * var(--scale)) solid #2f2f2f;
+  border-radius: calc(30px * var(--scale));
+  font-size: calc(18px * var(--scale));
   background-color: inherit;
   color: #929292;
   outline: none;
@@ -25,4 +24,5 @@
 
 .inputBoxContainer input::placeholder {
   color: #929292;
+  font-size: calc(18px * var(--scale));
 }

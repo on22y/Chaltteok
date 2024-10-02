@@ -2,11 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: calc(5px * var(--scale));
   font-family: 'Jua', sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 14px;
+  font-size: calc(14px * var(--scale));
   text-align: center;
   padding: 0 0;
   margin: 0 0;

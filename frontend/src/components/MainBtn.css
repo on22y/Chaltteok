@@ -16,11 +16,10 @@
 .mainBtnsubText {
   background-color: inherit;
   color: #272727;
-  font-size: 11px;
-  margin: 0 0;
   padding: 0 0;
-  margin-top: 5px;
-  letter-spacing: 0.5px;
+  font-size: calc(11px * var(--scale));
+  margin-top: calc(5px * var(--scale));
+  letter-spacing: calc(0.5px * var(--scale));
 }
 
 .mainBtn {
@@ -29,17 +28,14 @@
   font-size: 28px;
   margin: 0 0;
   padding: 0 0;
-  border: 3px solid #2f2f2f;
-  border-radius: 30px;
+  border: calc(3px * var(--scale)) solid #2f2f2f;
+  border-radius: calc(30px * var(--scale));
   cursor: pointer;
   text-align: center;
 
-  -webkit-text-stroke: 1px #2f2f2f;
+  -webkit-text-stroke: calc(1px * var(--scale)) #2f2f2f;
   /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
-  letter-spacing: 1.5px;
-
-  width: 204px;
-  height: 72px;
+  letter-spacing: calc(1.5px * var(--scale));
 }
 
 .mainBtn:active {

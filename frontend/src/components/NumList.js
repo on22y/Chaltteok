@@ -9,7 +9,12 @@ function NumList({ totalQuestions = 20, onQuestionClick }) {
         const questionNum = index + 1;
 
         return (
-          <div key={questionNum} className="numList-Click" onClick={() => onQuestionClick(questionNum)}>
+          <div
+            key={questionNum}
+            className="numList-Click"
+            onClick={() => onQuestionClick(questionNum)}
+            style={{ fontSize: `calc(14px * var(--scale))` }}
+          >
             {questionNum}
             {/* 문제 번호 클릭 시 호출 */}
           </div>
