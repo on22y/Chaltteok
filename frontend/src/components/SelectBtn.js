@@ -30,6 +30,17 @@ function SelectBtn() {
       width: '107px',
       height: '48px',
       boxShadow: 'none',
+      outline: 'none',
+      transition: 'border-color 0.2s',
+      '&:hover': {
+        borderColor: '#2F2F2F',
+      },
+      '&:focus': {
+        borderColor: '#2F2F2F',
+      },
+      '&:focus-within': {
+        borderColor: '#2F2F2F',
+      },
     }),
     placeholder: (provided) => ({
       ...provided,
@@ -53,12 +64,28 @@ function SelectBtn() {
       borderRadius: '10px',
       border: '3px solid #2F2F2F',
     }),
+    menuList: (provided) => ({
+      ...provided,
+      borderRadius: '10px', // 리스트 자체도 둥글게
+      '::-webkit-scrollbar': {
+        display: 'none', // 스크롤바를 숨김
+      },
+      '::-webkit-scrollbar-track': {
+        display: 'none',
+      },
+      '::-webkit-scrollbar-thumb': {
+        display: 'none',
+      },
+    }),
     option: (provided, state) => ({
       ...provided,
       backgroundColor: state.isSelected ? '#6EC207' : state.isFocused ? '#C0EBA6' : '#fffbe6',
       color: state.isSelected ? '#2F2F2F' : '#929292',
       fontFamily: 'Jua, sans-serif',
       fontSize: '18px',
+      ':active': {
+        backgroundColor: state.isSelected ? '#6EC207' : '#C0EBA6', // 클릭 시 기본값 대신 커스텀한 색 유지
+      },
     }),
     clearIndicator: (provided) => ({
       ...provided,
