@@ -49,6 +49,7 @@ const calledQuestionRoutes = require("./slang_test/calledQuestion");
 const inputAnswerRoutes = require("./slang_test/inputAnswer");
 const calledAnswerRoutes = require("./slang_test/calledAnswer");
 const counting_examineRoutes = require("./slang_test/counting_examine");
+const updateStateRoutes = require("./slang_test/updateState");
 
 app.use("/", mypageRoutes);
 app.use("/", loginRoutes);
@@ -62,6 +63,7 @@ app.use("/", calledQuestionRoutes);
 app.use("/", inputAnswerRoutes);
 app.use("/", calledAnswerRoutes);
 app.use("/", counting_examineRoutes);
+app.use("/loading", updateStateRoutes);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
