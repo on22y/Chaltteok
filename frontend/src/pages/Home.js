@@ -13,7 +13,6 @@ function Home() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    // 페이지 로드 시 현재 참여자 수 가져오기
     axios
       .get("/api/get-count")
       .then((response) => {
@@ -29,21 +28,22 @@ function Home() {
   };
 
   const handleTestClick = () => {
-    // 서버에서 현재 카운트를 가져온 후 닉네임을 생성
     axios
       .get("/api/get-count")
       .then((countResponse) => {
-        const currentCount = countResponse.data.count; // 현재 카운트를 가져옴
-        const generatedNickname = `user_${currentCount}`; // 카운트 기반 닉네임 생성
+        const currentCount = countResponse.data.count;
+        const generatedNickname = `user_${currentCount}`;
 
-        // 생성된 닉네임으로 서버에 저장 요청
         axios
           .post("/api/create-anonymous-user", { nickname: generatedNickname })
           .then((response) => {
             if (response.data.success) {
-              // 성공적으로 닉네임이 생성되면 카운트 증가 후 다음 페이지로 이동
+              // 닉네임을 localStorage에 저장
+              localStorage.setItem("nickname", generatedNickname);
+
+              // 카운트 증가 후 다음 페이지로 이동
               axios.post("/api/increase-count").then((increaseResponse) => {
-                setCount(increaseResponse.data.count); // 업데이트된 카운트로 상태 업데이트
+                setCount(increaseResponse.data.count);
                 navigate("/isLogged/test");
               });
             }
@@ -73,9 +73,7 @@ function Home() {
             colorClass="textLightgreen"
             fontSize="42px"
           />
-
           <img className="imgComponent" src={mainImg} width={198} />
-
           <TextComponent
             text={
               <>

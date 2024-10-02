@@ -15,23 +15,102 @@ const pool = mysql.createPool({
   debug: false,
 });
 
-// 로그인한 사용자의 state 값을 반환하는 API
-router.post("/updateState", (req, res) => {
-  const nickname = req.session.user?.nickname;
+// POST 요청을 처리하는 라우트
+router.post("/loading/updateState", (req, res) => {
+  const nickname = req.body.nickname;
+  // 서버로 전달된 닉네임을 로그로 출력
+  console.log("서버에서 받은 닉네임:", nickname);
+  if (!nickname) {
+    return res.status(400).json({ message: "닉네임이 제공되지 않았습니다." });
+  }
 
-  // MySQL 쿼리를 통해 사용자 state 값 가져오기
-  const query = "SELECT state FROM users WHERE nickname = ?";
-  pool.query(query, [nickname], (error, results) => {
-    if (error) {
-      return res.status(500).json({ error: "Database query failed" });
-    }
+  let age_change = 19; // age_change의 초기값은 19
 
-    if (results.length > 0) {
-      return res.json({ state: results[0].state });
-    } else {
-      return res.status(404).json({ error: "User not found" });
+  // user_answers 테이블에서 해당 닉네임에 해당하는 행들을 모두 조회
+  pool.query(
+    "SELECT similarity, year FROM user_answers WHERE nickname = ?",
+    [nickname],
+    (error, results) => {
+      if (error) {
+        console.error("Error fetching user data:", error);
+        return res.status(500).send("Server error");
+      }
+
+      if (results.length === 0) {
+        return res
+          .status(404)
+          .json({ message: "No data found for the given nickname" });
+      }
+
+      console.log("Fetched user data:", results);
+
+      // 모든 행에 대해 바로 age_change 계산
+      results.forEach((row) => {
+        const similarity = row.similarity; // similarity는 accuracy에 해당
+        const year = row.year;
+
+        // 조건에 따른 나이 변화 계산 및 age_change 업데이트
+        if (year === 2024) {
+          if (similarity >= 80) {
+            age_change -= 1.5;
+          } else if (similarity === -50) {
+            // 변동 없음
+          } else {
+            age_change += 1.5;
+          }
+        } else if (year === 2023) {
+          if (similarity >= 80) {
+            age_change -= 1.0;
+          } else if (similarity === -50) {
+            // 변동 없음
+          } else {
+            age_change += 2;
+          }
+        } else if (year >= 2020 && year <= 2022) {
+          if (similarity >= 80) {
+            age_change -= 0.5;
+          } else if (similarity === -50) {
+            // 변동 없음
+          } else {
+            age_change += 2;
+          }
+        } else if (year >= 2010) {
+          if (similarity >= 80) {
+            age_change -= 0.5;
+          } else if (similarity === -50) {
+            // 변동 없음
+          } else {
+            age_change += 1.0;
+          }
+        } else if (year >= 2000) {
+          if (similarity === -50) {
+            // 변동 없음
+          } else if (similarity < 80) {
+            age_change += 1.0;
+          }
+        }
+      });
+
+      // users 테이블에서 nickname에 해당하는 사용자의 나이를 업데이트
+      pool.query(
+        "UPDATE users SET age = ? WHERE nickname = ?",
+        [age_change, nickname],
+        (updateError, updateResults) => {
+          if (updateError) {
+            console.error("Error updating user age:", updateError);
+            return res.status(500).send("Server error while updating age");
+          }
+
+          // 나이 업데이트 성공 시 결과 반환
+          res.json({
+            message: "Age updated successfully",
+            nickname,
+            updatedAge: age_change,
+          });
+        }
+      );
     }
-  });
+  );
 });
 
 module.exports = router;

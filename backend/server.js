@@ -51,19 +51,20 @@ const calledAnswerRoutes = require("./slang_test/calledAnswer");
 const counting_examineRoutes = require("./slang_test/counting_examine");
 const updateStateRoutes = require("./slang_test/updateState");
 
+app.use("/Logged/type", LoggedresultRoutes);
+app.use("/isLogged/type", isLoggedresultRoutes);
+app.use("/", updateStateRoutes);
 app.use("/", mypageRoutes);
 app.use("/", loginRoutes);
 app.use("/", processRoutes);
 app.use("/", signupRoutes);
 app.use("/", clovaRoutes);
 app.use("/", take_slang_dbRoutes);
-app.use("/Logged/type", LoggedresultRoutes);
-app.use("/isLogged/type", isLoggedresultRoutes);
+
 app.use("/", calledQuestionRoutes);
 app.use("/", inputAnswerRoutes);
 app.use("/", calledAnswerRoutes);
 app.use("/", counting_examineRoutes);
-app.use("/", updateStateRoutes);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
