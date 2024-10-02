@@ -6,7 +6,7 @@ import MainBtn from '../components/MainBtn';
 import BoxComponent from '../components/BoxComponent';
 import TextComponent from '../components/TextComponent';
 import InputBox from '../components/InputBox';
-import mainImg from '../assets/images/mainImg.png';
+import loginpageImg from '../assets/images/loginpageImg.png';
 import backBtn from '../assets/images/backBtn.png';
 
 function Login() {
@@ -73,7 +73,7 @@ function Login() {
           fontSize="24px"
           strokeWidth="0.5px"
         />
-        <img className="mainImg" src={mainImg} width={185} />
+        <img className="loginpageImg" src={loginpageImg} width={185} />
         <InputBox text="닉네임을 입력해주세요." value={nickname} onChange={handleNicknameChange} />
         <InputBox
           text="비밀번호를 입력해주세요."
