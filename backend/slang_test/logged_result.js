@@ -21,18 +21,21 @@ router.post("/getResult", (req, res) => {
     const nickname = req.session.user.nickname;
 
     // MySQL 쿼리를 통해 사용자 state 값 가져오기
-    const query = "SELECT state FROM users WHERE nickname = ?";
-    pool.query(query, [nickname], (error, results) => {
-      if (error) {
-        return res.status(500).json({ error: "Database query failed" });
-      }
+    pool.query(
+      "SELECT state FROM users WHERE nickname = ?",
+      [nickname],
+      (error, results) => {
+        if (error) {
+          return res.status(500).json({ error: "Database query failed" });
+        }
 
-      if (results.length > 0) {
-        return res.json({ state: results[0].state });
-      } else {
-        return res.status(404).json({ error: "User not found" });
+        if (results.length > 0) {
+          return res.json({ state: results[0].state });
+        } else {
+          return res.status(404).json({ error: "User not found" });
+        }
       }
-    });
+    );
   } else {
     res.status(401).json({ error: "User not authenticated" });
   }

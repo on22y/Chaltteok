@@ -53,14 +53,13 @@ const updateStateRoutes = require("./slang_test/updateState");
 
 app.use("/Logged/type", LoggedresultRoutes);
 app.use("/isLogged/type", isLoggedresultRoutes);
+app.use("/mypage", mypageRoutes);
 app.use("/", updateStateRoutes);
-app.use("/", mypageRoutes);
 app.use("/", loginRoutes);
 app.use("/", processRoutes);
 app.use("/", signupRoutes);
 app.use("/", clovaRoutes);
 app.use("/", take_slang_dbRoutes);
-
 app.use("/", calledQuestionRoutes);
 app.use("/", inputAnswerRoutes);
 app.use("/", calledAnswerRoutes);
