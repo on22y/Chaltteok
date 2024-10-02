@@ -21,8 +21,8 @@
   align-items: flex-start;
 }
 
-.wordPage .inputBoxContainer {
-  margin-top: 15px;
+.wordPage .inputBoxForChat {
+  margin-bottom: 8px;
 }
 
 .wordPage .mainBtnContainer {

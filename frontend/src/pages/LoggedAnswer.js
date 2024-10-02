@@ -57,8 +57,8 @@ function LoggedAnswer() {
     navigate('/Logged/test');
   };
 
-  const handleGoHomeClick = () => {
-    navigate('/');
+  const handleGoMypageClick = () => {
+    navigate('/mypage');
   };
 
   return (
@@ -80,7 +80,7 @@ function LoggedAnswer() {
         text="진단 다시하기"
         subText="홈으로 돌아가기"
         onClick={handleLoggedTestClick}
-        onSubTextClick={handleGoHomeClick}
+        onSubTextClick={handleGoMypageClick}
       />
     </div>
   );

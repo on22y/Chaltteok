@@ -13,17 +13,19 @@ function Word() {
   const [word, setWord] = useState('');
   const [chat_first, setChat_first] = useState('');
   const [chat_second, setChat_second] = useState('');
+  const [answer, setAnswer] = useState('');
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (word && chat_first && chat_second) {
+    if (word && chat_first && chat_second && answer) {
       const wordData = {
         word,
         chat_first,
         chat_second,
+        answer,
       };
 
       try {
@@ -59,7 +61,7 @@ function Word() {
 
       <TextComponent text="단어 정보 입력" fontSize="28px" strokeWidth="1px" />
 
-      <BoxComponent height="383px">
+      <BoxComponent height="468px">
         <TextComponent text="단어 입력" colorClass="textYellow" fontSize="24px" strokeWidth="0.5px" />
         <InputBox text="단어를 입력해주세요." value={word} onChange={(e) => setWord(e.target.value)} />
 
@@ -69,16 +71,21 @@ function Word() {
         </div>
 
         <TextComponent text="예시 대화" colorClass="textYellow" fontSize="24px" strokeWidth="0.5px" />
-        <InputBox
-          text="첫번째 대화를 입력해주세요."
-          value={chat_first}
-          onChange={(e) => setChat_first(e.target.value)}
-        />
+        <div className="inputBoxForChat">
+          <InputBox
+            text="첫번째 대화를 입력해주세요."
+            value={chat_first}
+            onChange={(e) => setChat_first(e.target.value)}
+          />
+        </div>
         <InputBox
           text="두번째 대화를 입력해주세요."
           value={chat_second}
           onChange={(e) => setChat_second(e.target.value)}
         />
+
+        <TextComponent text="뜻" colorClass="textYellow" fontSize="24px" strokeWidth="0.5px" />
+        <InputBox text="대화의 정답을 입력해주세요." value={answer} onChange={(e) => setAnswer(e.target.value)} />
       </BoxComponent>
       <MainBtn text="신조어 제보" subText="라떼는 단어도 언젠가는 신조어!" onClick={handleSubmit} />
     </div>
