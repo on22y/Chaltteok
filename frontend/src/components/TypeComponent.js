@@ -33,7 +33,7 @@ function TypeComponent({ type, detail }) {
     <div className="typeComponent">
       <TextComponent text={type} fontSize="42px" />
 
-      <img className="typeImg" src={imgSrc} width={198} alt={type} />
+      <img className="imgComponent" src={imgSrc} width={198} alt={type} />
 
       <TextComponent colorClass="textLightgreen" text={detail} fontSize="24px" strokeWidth="0.5px" />
     </div>

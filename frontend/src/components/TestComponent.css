@@ -19,7 +19,7 @@
 }
 
 .testComponent .question {
-  font-size: 22px;
+  font-size: calc(22px * var(--scale));
   padding: 0 0;
   margin: 0 0;
   font-family: 'Pretendard';
@@ -32,21 +32,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 0;
-  gap: 20px;
+  gap: calc(20px * var(--scale));
+  margin-top: calc(60px * var(--scale));
   padding: 0 0;
-  margin-top: 60px;
 }
 
 .testComponent .chatContainer .chatBubble {
-  max-width: 280px;
+  max-width: calc(280px * var(--scale));
+  padding: calc(10px * var(--scale)) calc(15px * var(--scale));
+  padding-left: calc(20px * var(--scale));
+  padding-right: calc(20px * var(--scale));
+  border-radius: calc(20px * var(--scale));
   margin: 0 0;
-  padding: 10px 15px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-radius: 20px;
   line-height: 1.4;
-  font-size: 18px;
+  font-size: calc(18px * var(--scale));
   font-family: 'Pretendard';
   font-weight: 700;
   /*bold*/
@@ -55,7 +54,7 @@
 }
 
 .testComponent .chatContainer .leftBubble {
-  background-color: #525252; /* Default gray */
+  background-color: #525252;
   color: #fffbe6;
   align-self: flex-start;
 }
@@ -67,13 +66,13 @@
   left: 1px;
   width: 0;
   height: 0;
-  border-top: 20px solid #525252; /* Default gray */
-  border-right: 20px solid transparent;
+  border-top: calc(20px * var(--scale)) solid #525252;
+  border-right: calc(20px * var(--scale)) solid transparent;
   border-bottom: 0 solid transparent;
 }
 
 .testComponent .chatContainer .rightBubble {
-  background-color: #525252; /* Default gray */
+  background-color: #525252;
   color: #fffbe6;
   align-self: flex-end;
 }
@@ -85,8 +84,8 @@
   right: 1px;
   width: 0;
   height: 0;
-  border-top: 15px solid #525252; /* Default gray */
-  border-left: 15px solid transparent;
+  border-top: calc(15px * var(--scale)) solid #525252;
+  border-left: calc(15px * var(--scale)) solid transparent;
   border-bottom: 0 solid transparent;
 }
 

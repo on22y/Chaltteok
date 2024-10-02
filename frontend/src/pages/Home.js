@@ -55,7 +55,7 @@ function Home() {
           <TextComponent text="인터넷나이" fontSize="64px" strokeWidth="3px" />
           <TextComponent text="테스트" strokeWidth="2px" colorClass="textLightgreen" fontSize="42px" />
 
-          <img className="mainImg" src={mainImg} width={198} />
+          <img className="imgComponent" src={mainImg} width={198} />
 
           <TextComponent
             text={

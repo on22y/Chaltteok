@@ -83,7 +83,7 @@ function Signup() {
           strokeWidth="0.5px"
         />
 
-        <img className="signuppageImg" src={signuppageImg} width={198} />
+        <img className="imgComponent" src={signuppageImg} width={198} />
 
         <InputBox text="닉네임을 입력해주세요." value={nickname} onChange={handleNicknameChange} />
         <InputBox

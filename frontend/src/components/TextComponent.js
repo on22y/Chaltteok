@@ -5,8 +5,8 @@ function TextComponent({ text, colorClass, fontSize, strokeWidth = '3px', stroke
   const appliedClass = colorClass ? `textContainer ${colorClass}` : 'textContainer textGreen';
 
   const textStyle = {
-    fontSize: fontSize,
-    WebkitTextStroke: `${strokeWidth}  ${strokeColor}`,
+    fontSize: `calc(${fontSize} * var(--scale))`,
+    WebkitTextStroke: `calc(${strokeWidth} * var(--scale)) ${strokeColor}`,
     ...style,
   };
 

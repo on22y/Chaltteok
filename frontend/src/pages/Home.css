@@ -29,7 +29,11 @@
   margin-top: 30px;
 }
 
-.homePage .mainImg {
+.imgComponent {
   padding: 0 0;
   margin: 0 0;
+  width: calc(198px * var(--scale));
+  height: auto; /* 자동으로 비율을 유지하며 크기 변경 */
+  padding: 0;
+  margin: 0;
 }

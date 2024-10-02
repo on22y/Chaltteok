@@ -5,9 +5,9 @@
   text-align: center;
   padding: 0 0;
   margin: 0 0;
-  -webkit-text-stroke: 3px #2f2f2f;
+  -webkit-text-stroke: calc(3px * var(--scale)) #2f2f2f;
+  letter-spacing: calc(1px * var(--scale));
   /* text-shadow: -1px 0 #2f2f2f, 0 1px #2f2f2f, 1px 0 #2f2f2f, 0 -1px #2f2f2f; */
-  letter-spacing: 1px;
 }
 
 .textGreen {
