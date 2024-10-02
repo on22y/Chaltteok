@@ -7,9 +7,9 @@ import type3 from '../assets/images/type3.png';
 import type4 from '../assets/images/type4.png';
 import type5 from '../assets/images/type5.png';
 
-function TypeComponent({ type, detail }) {
+function TypeComponent({ state, detail }) {
   let imgSrc;
-  switch (type) {
+  switch (state) {
     case '잼민이':
       imgSrc = type1;
       break;
@@ -31,9 +31,9 @@ function TypeComponent({ type, detail }) {
 
   return (
     <div className="typeComponent">
-      <TextComponent text={type} fontSize="42px" />
+      <TextComponent text={`당신은 '${state}'!`} fontSize="42px" />
 
-      <img className="imgComponent" src={imgSrc} width={198} alt={type} />
+      <img className="imgComponent" src={imgSrc} width={198} alt={state} />
 
       <TextComponent colorClass="textLightgreen" text={detail} fontSize="24px" strokeWidth="0.5px" />
     </div>
