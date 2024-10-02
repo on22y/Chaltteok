@@ -93,7 +93,7 @@ router.post("/loading/updateState", (req, res) => {
       // 나이에 따른 상태(state) 설정
       let state = "";
       if (age_change < 19) {
-        state = "잼민";
+        state = "잼민이";
       } else if (age_change >= 19 && age_change < 22) {
         state = "샌애기";
       } else if (age_change >= 22 && age_change < 25) {
