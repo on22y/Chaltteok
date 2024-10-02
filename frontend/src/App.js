@@ -10,6 +10,7 @@ import WordInput from './pages/WordInput';
 import IsLoggedType from './pages/IsLoggedType';
 import LoggedType from './pages/LoggedType';
 import Loading from './pages/Loading';
+import LoggedLoading from './pages/LoggedLoading';
 import Mypage from './pages/Mypage';
 import IsLoggedTest from './pages/IsLoggedTest';
 import IsLoggedAnswer from './pages/IsLoggedAnswer';
@@ -56,6 +57,7 @@ function App() {
           <Route path="/isLogged/type" element={<IsLoggedType />} />
           <Route path="/Logged/type" element={<LoggedType />} />
           <Route path="/loading" element={<Loading />} />
+          <Route path="/logged/loading" element={<LoggedLoading />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/isLogged/answer" element={<IsLoggedAnswer />} />
           <Route path="/Logged/answer" element={<LoggedAnswer />} />
