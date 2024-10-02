@@ -52,7 +52,7 @@ function LoggedType() {
 
       <div className="LoggedTypePage-content">
         <TypeComponent
-          type={`당신은 '${state}'!`} // state를 올바르게 참조
+          state={state}
           detail={
             <>
               당장 주변 고등학교로 뛰어가서
