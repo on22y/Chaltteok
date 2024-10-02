@@ -63,7 +63,7 @@ app.use("/", calledQuestionRoutes);
 app.use("/", inputAnswerRoutes);
 app.use("/", calledAnswerRoutes);
 app.use("/", counting_examineRoutes);
-app.use("/loading", updateStateRoutes);
+app.use("/", updateStateRoutes);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
