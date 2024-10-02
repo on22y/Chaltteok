@@ -17,13 +17,13 @@ function Login() {
   // nickname 값은 영어만 입력 가능
   const handleNicknameChange = (e) => {
     const value = e.target.value;
-    const regex = /^[a-zA-Z]*$/;
+    const regex = /^[a-zA-Z0-9]*$/;
 
     if (regex.test(value)) {
       setNickname(value);
     } else {
-      // 영어가 아닌 값이 포함되면 경고창 표시
-      alert('닉네임은 영문자만 입력 가능합니다.');
+      // 영어나 숫자가 아닌 값이 포함되면 경고창 표시
+      alert('닉네임은 영문자와 숫자만 입력 가능합니다.');
     }
   };
 
