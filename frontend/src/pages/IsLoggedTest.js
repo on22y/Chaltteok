@@ -9,20 +9,18 @@ import axios from "axios";
 
 function IsLoggedTest() {
   const totalQuestions = 10;
-  const [questions, setQuestions] = useState([]); // 문제 데이터를 저장할 상태
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // 현재 문제 번호는 0부터 시작
-  const [answer, setAnswer] = useState(""); // 입력한 답변을 저장할 상태
+  const [questions, setQuestions] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 백엔드에서 랜덤으로 문제 가져오기
     const fetchQuestions = async () => {
       try {
         const response = await axios.post("/isLogged/test/calledQuestion", {
           count: totalQuestions,
         });
         setQuestions(response.data.questions);
-        // 로컬 스토리지에 문제 저장
         localStorage.setItem(
           "isloggedtestQuestions",
           JSON.stringify(response.data.questions)
@@ -36,28 +34,22 @@ function IsLoggedTest() {
   }, []);
 
   const handleNextQuestion = async () => {
-    // 현재 문제에 대한 답변 제출
     if (answer.trim()) {
       try {
         await axios.post("/isLogged/test/submitAnswer", {
           questionId: questions[currentQuestionIndex].id,
           answer: answer,
         });
-        setAnswer(""); // 답변 초기화
+        setAnswer("");
       } catch (error) {
         console.error("Error submitting answer:", error);
       }
     }
 
-    // 다음 문제로 이동
     if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      // 마지막 문제일 경우 '제출하기' 버튼이 작동
-      navigate("/loading");
-      setTimeout(() => {
-        navigate("/islogged/type");
-      }, 3000);
+      navigate("/loading"); // 마지막 문제일 경우 /loading 페이지로 이동
     }
   };
 
@@ -66,16 +58,15 @@ function IsLoggedTest() {
       <BoxComponent height="533px">
         {questions.length > 0 && (
           <TestComponent
-            num={`Q${currentQuestionIndex + 1}.`} // 현재 문제 번호 1부터 시작
-            question={questions[currentQuestionIndex]} // 백엔드에서 받은 문제 데이터 전달
-            onNext={handleNextQuestion} // 다음 문제로 이동
+            num={`Q${currentQuestionIndex + 1}.`}
+            question={questions[currentQuestionIndex]}
+            onNext={handleNextQuestion}
           />
         )}
-        {/* InputBox를 통해 사용자의 답변을 입력 */}
         <InputBox
           text="정답을 입력해주세요."
-          value={answer} // 입력된 답변 전달
-          onChange={(e) => setAnswer(e.target.value)} // 답변 입력 시 상태 업데이트
+          value={answer}
+          onChange={(e) => setAnswer(e.target.value)}
         />
       </BoxComponent>
       <MainBtn
