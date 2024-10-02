@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
@@ -16,8 +16,33 @@ import IsLoggedAnswer from './pages/IsLoggedAnswer';
 import LoggedAnswer from './pages/LoggedAnswer';
 
 function App() {
+  const updateScale = () => {
+    const scaleWidth = window.innerWidth / 393;
+    const scaleHeight = window.innerHeight / 852;
+    const scale = Math.min(scaleWidth, scaleHeight);
+    document.documentElement.style.setProperty('--scale', scale);
+
+    const appContainer = document.querySelector('.appContainer');
+    if (scale < 1) {
+      // 작은 화면에서는 스케일을 줄여서 맞춤
+      appContainer.style.transform = `scale(${scale})`;
+    } else {
+      // 큰 화면에서는 고정 크기로 유지 (393x852)하고 중앙에 배치
+      appContainer.style.transform = 'scale(1)';
+    }
+  };
+
+  useEffect(() => {
+    updateScale();
+    window.addEventListener('resize', updateScale);
+
+    return () => {
+      window.removeEventListener('resize', updateScale);
+    };
+  }, []);
+
   return (
-    <div>
+    <div className="appContainer">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
