@@ -1,12 +1,12 @@
 import React from 'react';
 import './Loading.css';
-import mainImg from '../assets/images/mainImg.png';
+import loadingImg from '../assets/images/loadingImg.png';
 import TextComponent from '../components/TextComponent';
 
 function Loading() {
   return (
     <div className="loadingPage">
-      <img className="mainImg" src={mainImg} width={198} />
+      <img className="loadingImg" src={loadingImg} width={198} />
       <TextComponent
         text={
           <>
