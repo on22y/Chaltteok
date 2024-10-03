@@ -1,34 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import './Mypage.css';
-import TypeComponent from '../components/TypeComponent';
-import MainBtn from '../components/MainBtn';
-import lineImg from '../assets/images/lineImg.png';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./Mypage.css";
+import TypeComponent from "../components/TypeComponent";
+import MainBtn from "../components/MainBtn";
+import lineImg from "../assets/images/lineImg.png";
 
 function Mypage() {
-  const [state, setState] = useState('');
+  const [state, setState] = useState("");
 
   const navigate = useNavigate();
 
-  const handleLoggedTestClick = () => {
-    navigate('/Logged/test');
-  };
+  const handleLoggedTestClick = async () => {
+    try {
+      // user_answers 테이블에서 사용자의 모든 행 삭제 요청
+      await axios.post("/Logged/deleteAnswers");
 
+      // 삭제 후 진단 페이지로 이동
+      navigate("/Logged/test");
+    } catch (error) {
+      console.error("Error deleting user answers:", error);
+    }
+  };
   const handleWordClick = () => {
-    navigate('/word');
+    navigate("/word");
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log('1번');
-        const response = await axios.get('/mypage/getResult');
-        console.log('Response 전체:', response); // response 객체 전체를 로그로 출력
+        console.log("1번");
+        const response = await axios.get("/mypage/getResult");
+        console.log("Response 전체:", response); // response 객체 전체를 로그로 출력
         setState(response.data.state); // response에서 'state'로 받아온 값을 설정
-        console.log('3번, state:', response.data.state);
+        console.log("3번, state:", response.data.state);
       } catch (error) {
-        console.error('Error fetching the type value:', error);
+        console.error("Error fetching the type value:", error);
       }
     };
 
@@ -48,7 +55,11 @@ function Mypage() {
         }
       />
 
-      <MainBtn text="진단 다시하기" subText="여전히 내 나이 인정 못한다면?" onClick={handleLoggedTestClick} />
+      <MainBtn
+        text="진단 다시하기"
+        subText="여전히 내 나이 인정 못한다면?"
+        onClick={handleLoggedTestClick}
+      />
       <img className="lineImg" src={lineImg} width={318} />
       <MainBtn
         text="신조어 제보"
