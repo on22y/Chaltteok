@@ -32,7 +32,18 @@ function Mypage() {
         console.log("1번");
         const response = await axios.get("/mypage/getResult");
         console.log("Response 전체:", response); // response 객체 전체를 로그로 출력
-        setState(response.data.state); // response에서 'state'로 받아온 값을 설정
+        const newState = response.data.state; // 서버에서 받아온 현재 상태
+        setState(newState);
+
+        // 로컬 스토리지에 저장된 이전 상태 불러오기
+        const previousState = localStorage.getItem("previousState");
+        console.log(
+          `Previous state: ${previousState}, Current state: ${newState}`
+        );
+
+        // 로컬 스토리지에 새로운 state 저장
+        localStorage.setItem("previousState", previousState);
+        localStorage.setItem("currentState", newState);
         console.log("3번, state:", response.data.state);
       } catch (error) {
         console.error("Error fetching the type value:", error);
