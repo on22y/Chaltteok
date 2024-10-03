@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './NumList.css';
 
-// 기본 문제 개수 20개로 설정
-function NumList({ totalQuestions = 20, onQuestionClick, selectedQuestion }) {
+// 기본 문제 개수 10개로 설정
+function NumList({ totalQuestions = 10, onQuestionClick, selectedQuestion, scores = [] }) {
   // const [selectedQuestion, setSelectedQuestion] = useState(1);
 
   // const handleClick = (questionNum) => {
@@ -15,16 +15,17 @@ function NumList({ totalQuestions = 20, onQuestionClick, selectedQuestion }) {
       {Array.from({ length: totalQuestions }, (_, index) => {
         const questionNum = index + 1;
         const isSelected = questionNum === selectedQuestion; // 현재 선택된 문제 번호인지 확인
+        const score = scores[index] || 0; // 각 문제의 점수를 가져옴, 기본값은 0
+        const color = score >= 80 ? '#357929' : '#FF4E4E'; // 점수가 80 이상이면 기본 색, 아니면 오답 색
 
         return (
           <div
             key={questionNum}
             className={`numList-Click ${isSelected ? 'selected' : ''}`}
             onClick={() => onQuestionClick(questionNum)}
-            style={{ fontSize: `calc(14px * var(--scale))` }}
+            style={{ fontSize: `calc(14px * var(--scale))`, color: color }}
           >
             {questionNum}
-            {/* 문제 번호 클릭 시 호출 */}
           </div>
         );
       })}
