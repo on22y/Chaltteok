@@ -28,7 +28,16 @@ function IsLoggedType() {
     const fetchData = async () => {
       try {
         const response = await axios.post('/isLogged/type/getResult');
-        setState(response.data.state || 'default_state'); // state 값을 제대로 받지 못하면 기본값으로 설정
+        const newState = response.data.state || 'default_state'; // 새로운 진단 결과
+
+        setState(newState);
+
+        // 로컬 스토리지에서 이전 진단 결과 불러오기
+        const previousState = localStorage.getItem('currentState');
+
+        // 비교 후 저장
+        localStorage.setItem('previousState', previousState); // 기존 currentState를 previousState로 이동
+        localStorage.setItem('currentState', newState); // 새로운 state를 currentState로 저장
       } catch (error) {
         console.error('Error fetching the state value:', error);
       }
