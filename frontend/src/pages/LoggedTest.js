@@ -33,7 +33,10 @@ function LoggedTest() {
   }, []);
 
   const handleNextQuestion = async () => {
-    // 현재 문제에 대한 답변 제출
+    // if (answer.trim() === '') {
+    //   alert('정답을 입력해주세요!');
+    //   return;
+    // }
     if (answer.trim()) {
       try {
         await axios.post('/Logged/test/submitAnswer', {
