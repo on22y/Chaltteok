@@ -3,13 +3,6 @@ import './NumList.css';
 
 // 기본 문제 개수 10개로 설정
 function NumList({ totalQuestions = 10, onQuestionClick, selectedQuestion, scores = [] }) {
-  // const [selectedQuestion, setSelectedQuestion] = useState(1);
-
-  // const handleClick = (questionNum) => {
-  //   setSelectedQuestion(questionNum);
-  //   onQuestionClick(questionNum);
-  // };
-
   return (
     <div className="numListContainer">
       {Array.from({ length: totalQuestions }, (_, index) => {
@@ -23,7 +16,7 @@ function NumList({ totalQuestions = 10, onQuestionClick, selectedQuestion, score
             key={questionNum}
             className={`numList-Click ${isSelected ? 'selected' : ''}`}
             onClick={() => onQuestionClick(questionNum)}
-            style={{ fontSize: `calc(14px * var(--scale))`, color: color }}
+            style={{ fontSize: '14px', color: color }}
           >
             {questionNum}
           </div>

@@ -37,8 +37,8 @@ svg {
 
 /* .trueImg {
   position: absolute;
-  top: calc(-20px * var(--scale));
-  left: calc(-5px * var(--scale));
+  top: -20px;
+  left: -5px;
   z-index: 10;
 } */
 

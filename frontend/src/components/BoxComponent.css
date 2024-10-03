@@ -7,8 +7,8 @@
   background-color: #fffbe6;
   margin: 0 0;
   padding: 20px;
-  width: calc(356px * var(--scale));
-  max-width: calc(400px * var(--scale));
+  width: 356px;
+  max-width: 400px;
   margin: 0 auto;
   box-sizing: border-box;
   /* text-align: center; */

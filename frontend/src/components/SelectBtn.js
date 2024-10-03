@@ -25,13 +25,13 @@ function SelectBtn({ onYearChange }) {
       flexDirection: 'column',
       alignItems: 'center',
       backgroundColor: '#fffbe6',
-      border: `calc(3px * var(--scale)) solid #2F2F2F`,
-      borderRadius: `calc(30px * var(--scale))`,
+      border: '3px solid #2F2F2F',
+      borderRadius: '30px ',
       fontFamily: 'Jua, sans-serif',
-      padding: `calc(5px * var(--scale))`,
-      fontSize: `calc(18px * var(--scale))`,
-      width: `calc(107px * var(--scale))`,
-      height: `calc(48px * var(--scale))`,
+      padding: '5px ',
+      fontSize: '18px',
+      width: '107px',
+      height: '48px ',
       boxShadow: 'none',
       outline: 'none',
       transition: 'border-color 0.2s',
@@ -59,19 +59,19 @@ function SelectBtn({ onYearChange }) {
     dropdownIndicator: (provided) => ({
       ...provided,
       color: '#2F2F2F',
-      padding: `0 calc(5px * var(--scale))`,
+      padding: '5px',
     }),
     menu: (provided) => ({
       ...provided,
       backgroundColor: '#fffbe6',
-      borderRadius: `calc(10px * var(--scale))`,
-      border: `calc(3px * var(--scale)) solid #2F2F2F`,
+      borderRadius: '10px',
+      border: '3px solid #2F2F2F',
     }),
     menuList: (provided) => ({
       ...provided,
-      borderRadius: `calc(10px * var(--scale))`,
+      borderRadius: '10px ',
       '::-webkit-scrollbar': {
-        display: 'none', // 스크롤바를 숨김
+        display: 'none',
       },
       '::-webkit-scrollbar-track': {
         display: 'none',
@@ -85,7 +85,7 @@ function SelectBtn({ onYearChange }) {
       backgroundColor: state.isSelected ? '#6EC207' : state.isFocused ? '#C0EBA6' : '#fffbe6',
       color: state.isSelected ? '#2F2F2F' : '#929292',
       fontFamily: 'Jua, sans-serif',
-      fontSize: `calc(18px * var(--scale))`,
+      fontSize: '18px',
       ':active': {
         backgroundColor: state.isSelected ? '#6EC207' : '#C0EBA6', // 클릭 시 기본값 대신 커스텀한 색 유지
       },
@@ -100,13 +100,8 @@ function SelectBtn({ onYearChange }) {
   const customComponents = {
     DropdownIndicator: (props) => {
       return (
-        <div
-          {...props.innerProps}
-          style={{ display: 'flex', alignItems: 'center', paddingRight: `calc(10px * var(--scale))` }}
-        >
-          <RxTriangleDown
-            style={{ width: `calc(30px * var(--scale))`, height: `calc(30px * var(--scale))`, color: '#2F2F2F' }}
-          />
+        <div {...props.innerProps} style={{ display: 'flex', alignItems: 'center', paddingRight: '10px' }}>
+          <RxTriangleDown style={{ width: '30px', height: '30px ', color: '#2F2F2F' }} />
         </div>
       );
     },

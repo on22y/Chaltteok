@@ -35,6 +35,6 @@
 } */
 
 .backBtn {
-  width: calc(19.35px * var(--scale));
-  height: calc(38.35px * var(--scale));
+  width: 19.35px;
+  height: 38.35px;
 }

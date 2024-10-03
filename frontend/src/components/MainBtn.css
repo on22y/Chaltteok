@@ -17,9 +17,9 @@
   background-color: inherit;
   color: #272727;
   padding: 0 0;
-  font-size: calc(11px * var(--scale));
-  margin-top: calc(5px * var(--scale));
-  letter-spacing: calc(0.5px * var(--scale));
+  font-size: 11px;
+  margin-top: 5px;
+  letter-spacing: 0.5px;
 }
 
 .mainBtn {
@@ -28,11 +28,11 @@
   font-size: 28px;
   margin: 0 0;
   padding: 0 0;
-  border: calc(3px * var(--scale)) solid #2f2f2f;
-  border-radius: calc(30px * var(--scale));
+  border: 3px solid #2f2f2f;
+  border-radius: 30px;
   cursor: pointer;
   text-align: center;
-  letter-spacing: calc(1.5px * var(--scale));
+  letter-spacing: 1.5px;
 }
 
 .mainBtn span {

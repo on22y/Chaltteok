@@ -5,7 +5,7 @@ function TextComponent({ text, colorClass, fontSize, shadowSize = '3.7px', shado
   const appliedClass = colorClass ? `textContainer ${colorClass}` : 'textContainer textGreen';
 
   const textStyle = {
-    fontSize: `calc(${fontSize} * var(--scale))`,
+    fontSize: `${fontSize}`,
     textShadow: `
       -${shadowSize} 0 0 ${shadowColor},
       ${shadowSize} 0 0 ${shadowColor},

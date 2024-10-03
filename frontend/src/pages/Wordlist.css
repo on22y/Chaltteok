@@ -22,20 +22,20 @@
 
 .wordlistTitle {
   display: flex;
-  gap: calc(40px * var(--scale));
+  gap: 40px;
   justify-content: flex-start;
-  margin-bottom: calc(17px * var(--scale));
-  padding-left: calc(10px * var(--scale));
+  margin-bottom: 17px;
+  padding-left: 10px;
 }
 
 .wordlistContent {
   display: flex;
-  padding-bottom: calc(5px * var(--scale));
+  padding-bottom: 5px;
   border-bottom: 1px solid #272727;
 }
 
 .lists {
-  font-size: calc(16px * var(--scale));
+  font-size: 16px;
   padding: 0 0;
   margin: 0 0;
   font-family: 'Pretendard';
@@ -45,7 +45,7 @@
   white-space: normal;
   line-height: 1;
   /* max-width: 321px; */
-  /* width: calc(321px * var(--scale)); */
+  /* width: 321px ; */
 }
 
 /* 첫 번째 리스트(단어)와 두 번째 리스트(년도)는 폭을 고정 */

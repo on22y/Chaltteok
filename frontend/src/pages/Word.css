@@ -26,7 +26,7 @@
 }
 
 .chats {
-  font-size: calc(14px * var(--scale));
+  font-size: 14px;
   padding: 0 0;
   margin: 0 0;
   font-family: 'Pretendard';
@@ -36,7 +36,7 @@
   white-space: normal; /* 텍스트가 길어지면 줄바꿈되도록 설정 */
   line-height: 2;
   max-width: 321px;
-  width: calc(321px * var(--scale));
+  width: 321px;
 
   /* 텍스트 줄 아래에만 선을 추가 */
   background-image: linear-gradient(to bottom, transparent 95%, #272727 100%);
@@ -49,7 +49,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: calc(5px * var(--scale));
+  margin-bottom: 5px;
 }
 
 .wordCheckMain {
@@ -68,5 +68,5 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: calc(10px * var(--scale));
+  margin-left: 10px;
 }
