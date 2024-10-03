@@ -35,9 +35,9 @@ function AdWordList() {
       <BoxComponent width="356px" height="695px">
         <div className="wordlist-container">
           <div className="wordlistTitle">
-            <TextComponent text="단어" colorClass="textYellow" fontSize="16px" strokeWidth="0.5px" />
-            <TextComponent text="년도" colorClass="textYellow" fontSize="16px" strokeWidth="0.5px" />
-            <TextComponent text="예시 대화" colorClass="textYellow" fontSize="16px" strokeWidth="0.5px" />
+            <TextComponent text="단어" colorClass="textYellow" fontSize="16px" shadowSize="1.8px" />
+            <TextComponent text="년도" colorClass="textYellow" fontSize="16px" shadowSize="1.8px" />
+            <TextComponent text="예시 대화" colorClass="textYellow" fontSize="16px" shadowSize="1.8px" />
           </div>
 
           {/* <div className="wordlistContent">

@@ -56,6 +56,7 @@ function Mypage() {
         width="130px"
         height="48px"
         fontSize="18px"
+        shadowSize={1.9}
         onClick={handleWordClick}
       />
     </div>

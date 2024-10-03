@@ -64,15 +64,10 @@ function Login() {
         <img className="backBtn" src={backBtn} width={19.35} height={38.35} onClick={handleBackClick} />
       </div>
 
-      <TextComponent text="로그인" fontSize="28px" strokeWidth="1px" />
+      <TextComponent text="로그인" fontSize="28px" shadowSize="2.2px" />
 
       <BoxComponent height="426px">
-        <TextComponent
-          text="신조어 공부는 많이 하셨어요?"
-          colorClass="textYellow"
-          fontSize="24px"
-          strokeWidth="0.5px"
-        />
+        <TextComponent text="신조어 공부는 많이 하셨어요?" colorClass="textYellow" fontSize="24px" shadowSize="2.1px" />
         <img className="imgComponent" src={loginpageImg} width={185} />
         <InputBox text="닉네임을 입력해주세요." value={nickname} onChange={handleNicknameChange} />
         <InputBox

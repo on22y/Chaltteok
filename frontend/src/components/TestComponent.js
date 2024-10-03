@@ -18,7 +18,7 @@ function TestComponent({ question, num, onNext }) {
   return (
     <div className="testComponent">
       <div className="questionContent">
-        <TextComponent text={num} fontSize="calc(64px * var(--scale))" strokeWidth="calc(3px * var(--scale))" />
+        <TextComponent text={num} fontSize="calc(64px * var(--scale))" shadowSize="3.7px" />
         <div className="question">
           다음 대화를 보고, 녹색 대화창의 <br />
           의미를 작성하시오.

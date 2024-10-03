@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "./Home.css";
-import axios from "axios";
-import MainBtn from "../components/MainBtn";
-import BoxComponent from "../components/BoxComponent";
-import TextComponent from "../components/TextComponent";
-import mainImg from "../assets/images/mainImg.png";
-import UnderlineBtn from "../components/UnderlineBtn";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Home.css';
+import axios from 'axios';
+import MainBtn from '../components/MainBtn';
+import BoxComponent from '../components/BoxComponent';
+import TextComponent from '../components/TextComponent';
+import mainImg from '../assets/images/mainImg.png';
+import UnderlineBtn from '../components/UnderlineBtn';
 
 function Home() {
   const navigate = useNavigate();
@@ -14,65 +14,56 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("/api/get-count")
+      .get('/api/get-count')
       .then((response) => {
         setCount(response.data.count);
       })
       .catch((error) => {
-        console.error("Error fetching count:", error);
+        console.error('Error fetching count:', error);
       });
   }, []);
 
   const handleLogin = () => {
-    navigate("/loginpage");
+    navigate('/loginpage');
   };
 
   const handleTestClick = () => {
     axios
-      .get("/api/get-count")
+      .get('/api/get-count')
       .then((countResponse) => {
         const currentCount = countResponse.data.count;
         const generatedNickname = `user_${currentCount}`;
 
         axios
-          .post("/api/create-anonymous-user", { nickname: generatedNickname })
+          .post('/api/create-anonymous-user', { nickname: generatedNickname })
           .then((response) => {
             if (response.data.success) {
               // 닉네임을 localStorage에 저장
-              localStorage.setItem("nickname", generatedNickname);
+              localStorage.setItem('nickname', generatedNickname);
 
               // 카운트 증가 후 다음 페이지로 이동
-              axios.post("/api/increase-count").then((increaseResponse) => {
+              axios.post('/api/increase-count').then((increaseResponse) => {
                 setCount(increaseResponse.data.count);
-                navigate("/isLogged/test");
+                navigate('/isLogged/test');
               });
             }
           })
           .catch((error) => {
-            console.error("Error creating anonymous user:", error);
+            console.error('Error creating anonymous user:', error);
           });
       })
       .catch((error) => {
-        console.error("Error fetching current count:", error);
+        console.error('Error fetching current count:', error);
       });
   };
 
   return (
     <div className="homePage">
-      <UnderlineBtn
-        subText="테스트 경험이 있다면!"
-        text="로그인"
-        onClick={handleLogin}
-      />
+      <UnderlineBtn subText="테스트 경험이 있다면!" text="로그인" onClick={handleLogin} />
       <div className="homePage-content">
         <BoxComponent height="482px">
-          <TextComponent text="인터넷나이" fontSize="64px" strokeWidth="3px" />
-          <TextComponent
-            text="테스트"
-            strokeWidth="2px"
-            colorClass="textLightgreen"
-            fontSize="42px"
-          />
+          <TextComponent text="인터넷나이" fontSize="64px" shadowSize="3.7px" />
+          <TextComponent text="테스트" colorClass="textLightgreen" fontSize="42px" shadowSize="3.2px" />
           <img className="imgComponent" src={mainImg} width={198} />
           <TextComponent
             text={
@@ -84,15 +75,11 @@ function Home() {
             }
             colorClass="textYellow"
             fontSize="24px"
-            strokeWidth="0.5px"
-            style={{ marginTop: "0px" }}
+            shadowSize="2.1px"
+            style={{ marginTop: '0px' }}
           />
         </BoxComponent>
-        <MainBtn
-          text="진단하기"
-          subText={`지금까지 ${count}명이 참여했어요`}
-          onClick={handleTestClick}
-        />
+        <MainBtn text="진단하기" subText={`지금까지 ${count}명이 참여했어요`} onClick={handleTestClick} />
       </div>
     </div>
   );

@@ -46,7 +46,7 @@ function IsLoggedType() {
           state={state}
           detail={
             <>
-              ` 당장 주변 고등학교로 뛰어가서
+              당장 주변 고등학교로 뛰어가서
               <br />
               즐거운 대화를 나누세요.
             </>
@@ -61,6 +61,7 @@ function IsLoggedType() {
           width="130px"
           height="48px"
           fontSize="18px"
+          shadowSize={1.9}
           onClick={handleWordClick}
         />
       </div>

@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import "./Signup.css";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import MainBtn from "../components/MainBtn";
-import BoxComponent from "../components/BoxComponent";
-import TextComponent from "../components/TextComponent";
-import InputBox from "../components/InputBox";
-import signuppageImg from "../assets/images/signuppageImg.png";
-import backBtn from "../assets/images/backBtn.png";
+import React, { useState } from 'react';
+import './Signup.css';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import MainBtn from '../components/MainBtn';
+import BoxComponent from '../components/BoxComponent';
+import TextComponent from '../components/TextComponent';
+import InputBox from '../components/InputBox';
+import signuppageImg from '../assets/images/signuppageImg.png';
+import backBtn from '../assets/images/backBtn.png';
 
 function Signup() {
-  const [newnickname, setNickname] = useState("");
-  const [password, setPassword] = useState("");
+  const [newnickname, setNickname] = useState('');
+  const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ function Signup() {
     if (regex.test(value)) {
       setNickname(value);
     } else {
-      alert("닉네임은 영문자와 숫자만 입력 가능합니다.");
+      alert('닉네임은 영문자와 숫자만 입력 가능합니다.');
     }
   };
 
@@ -31,7 +31,7 @@ function Signup() {
     event.preventDefault();
 
     // 로컬스토리지에서 기존 닉네임 가져오기
-    const nickname = localStorage.getItem("nickname");
+    const nickname = localStorage.getItem('nickname');
 
     if (nickname && newnickname && password) {
       const signupData = {
@@ -42,21 +42,21 @@ function Signup() {
 
       try {
         // 서버로 회원가입 요청을 보냄
-        const response = await axios.post("/process/signup", signupData);
+        const response = await axios.post('/process/signup', signupData);
         const result = response.data;
 
         if (result.success) {
-          alert("회원가입 성공!");
-          navigate("/loginpage");
+          alert('회원가입 성공!');
+          navigate('/loginpage');
         } else {
           alert(result.message);
         }
       } catch (error) {
-        console.error("회원가입 요청 중 오류 발생:", error);
-        alert("회원가입 요청 중 오류가 발생했습니다.");
+        console.error('회원가입 요청 중 오류 발생:', error);
+        alert('회원가입 요청 중 오류가 발생했습니다.');
       }
     } else {
-      alert("필수 정보를 입력해주세요.");
+      alert('필수 정보를 입력해주세요.');
     }
   };
 
@@ -68,16 +68,10 @@ function Signup() {
   return (
     <div className="signupPage">
       <div className="backBtn-content">
-        <img
-          className="backBtn"
-          src={backBtn}
-          width={19.35}
-          height={38.35}
-          onClick={handleBackClick}
-        />
+        <img className="backBtn" src={backBtn} width={19.35} height={38.35} onClick={handleBackClick} />
       </div>
 
-      <TextComponent text="회원가입" fontSize="28px" strokeWidth="1px" />
+      <TextComponent text="회원가입" fontSize="28px" shadowSize="2.2px" />
 
       <BoxComponent height="467px">
         <TextComponent
@@ -90,16 +84,12 @@ function Signup() {
           }
           colorClass="textYellow"
           fontSize="24px"
-          strokeWidth="0.5px"
+          shadowSize="2.1px"
         />
 
         <img className="imgComponent" src={signuppageImg} width={198} />
 
-        <InputBox
-          text="닉네임을 입력해주세요."
-          value={newnickname}
-          onChange={handleNicknameChange}
-        />
+        <InputBox text="닉네임을 입력해주세요." value={newnickname} onChange={handleNicknameChange} />
         <InputBox
           text="비밀번호를 입력해주세요."
           type="password"
@@ -107,11 +97,7 @@ function Signup() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </BoxComponent>
-      <MainBtn
-        text="회원가입"
-        subText="동의한사람만눌러주세요."
-        onClick={handleSubmit}
-      />
+      <MainBtn text="회원가입" subText="동의한사람만눌러주세요." onClick={handleSubmit} />
     </div>
   );
 }

@@ -1,24 +1,24 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "./Loading.css";
-import loadingImg from "../assets/images/loadingImg.png";
-import TextComponent from "../components/TextComponent";
-import axios from "axios";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Loading.css';
+import loadingImg from '../assets/images/loadingImg.png';
+import TextComponent from '../components/TextComponent';
+import axios from 'axios';
 
 function Loading() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const nickname = localStorage.getItem("nickname"); // localStorage에서 닉네임 가져오기
+    const nickname = localStorage.getItem('nickname'); // localStorage에서 닉네임 가져오기
 
     // API 호출
     const updateAge = async () => {
       try {
-        console.log("내 닉네임", { nickname });
-        const response = await axios.post("/loading/updateState", { nickname });
-        console.log("서버 응답:", response.data);
+        console.log('내 닉네임', { nickname });
+        const response = await axios.post('/loading/updateState', { nickname });
+        console.log('서버 응답:', response.data);
       } catch (error) {
-        console.error("나이 업데이트 중 오류 발생:", error);
+        console.error('나이 업데이트 중 오류 발생:', error);
       }
     };
 
@@ -27,7 +27,7 @@ function Loading() {
 
     // 3초 후에 다음 페이지로 이동
     const timer = setTimeout(() => {
-      navigate("/islogged/type"); // 3초 후에 다음 페이지로 이동
+      navigate('/islogged/type'); // 3초 후에 다음 페이지로 이동
     }, 3000);
 
     // 컴포넌트 언마운트 시 타이머 클리어
@@ -48,7 +48,7 @@ function Loading() {
           </>
         }
         fontSize="42px"
-        strokeWidth="2px"
+        shadowSize="3.2px"
       />
     </div>
   );

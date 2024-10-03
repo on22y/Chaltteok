@@ -31,11 +31,11 @@ function TypeComponent({ state, detail }) {
 
   return (
     <div className="typeComponent">
-      <TextComponent text={`당신은 '${state}'!`} fontSize="42px" />
+      <TextComponent text={`당신은 '${state}'!`} fontSize="42px" shadowSize="3.2px" />
 
       <img className="imgComponent" src={imgSrc} width={198} alt={state} />
 
-      <TextComponent colorClass="textLightgreen" text={detail} fontSize="24px" strokeWidth="0.5px" />
+      <TextComponent colorClass="textLightgreen" text={detail} fontSize="24px" shadowSize="2.1px" />
     </div>
   );
 }

@@ -1,12 +1,21 @@
 import React from 'react';
 import './TextComponent.css';
 
-function TextComponent({ text, colorClass, fontSize, strokeWidth = '3px', strokeColor = '#2f2f2f', style }) {
+function TextComponent({ text, colorClass, fontSize, shadowSize = '3.7px', shadowColor = '#2f2f2f', style }) {
   const appliedClass = colorClass ? `textContainer ${colorClass}` : 'textContainer textGreen';
 
   const textStyle = {
     fontSize: `calc(${fontSize} * var(--scale))`,
-    WebkitTextStroke: `calc(${strokeWidth} * var(--scale)) ${strokeColor}`,
+    textShadow: `
+      -${shadowSize} 0 0 ${shadowColor},
+      ${shadowSize} 0 0 ${shadowColor},
+      0 -${shadowSize} 0 ${shadowColor},
+      0 ${shadowSize} 0 ${shadowColor},
+      -${shadowSize} -${shadowSize} 0 ${shadowColor},
+      ${shadowSize} -${shadowSize} 0 ${shadowColor},
+      -${shadowSize} ${shadowSize} 0 ${shadowColor},
+      ${shadowSize} ${shadowSize} 0 ${shadowColor},
+      0px 0px 5px ${shadowColor}`,
     ...style,
   };
 

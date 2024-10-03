@@ -44,7 +44,7 @@ function LoggedType() {
       <UnderlineBtn subText="인터넷 생활 오답노트가 필요하다면," text="해설지 확인" onClick={handleLoggedAnswerClick} />
 
       <div className="LoggedTypePage-textDeco">
-        <TextComponent text="여전히" colorClass="textRed" fontSize="28px" strokeWidth="0.5px" />
+        <TextComponent text="여전히" colorClass="textRed" fontSize="28px" shadowSize="2.2px" />
         <div className="typeComponent-content">
           <img className="textDecoImg" src={textDecoImg} width={100} height={45} />
         </div>
@@ -70,6 +70,7 @@ function LoggedType() {
           width="130px"
           height="48px"
           fontSize="18px"
+          shadowSize={1.9}
           onClick={handleWordClick}
         />
       </div>

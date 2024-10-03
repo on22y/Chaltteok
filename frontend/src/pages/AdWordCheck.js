@@ -74,38 +74,38 @@ function AdWordCheck() {
         <img className="backBtn" src={backBtn} width={19.35} height={38.35} onClick={handleBackClick} />
       </div>
 
-      <TextComponent text="단어 정보 확인" fontSize="28px" strokeWidth="1px" />
+      <TextComponent text="단어 정보 확인" fontSize="28px" shadowSize="2.2px" />
 
       <BoxComponent width="356px" height="454px">
         <div className="wordCheckMain">
           <div className="wordCheckMaintitle">
-            <TextComponent text="단어 : " colorClass="textYellow" fontSize="24px" strokeWidth="0.5px" />
-            <TextComponent text="유행 년도 : " colorClass="textYellow" fontSize="20px" strokeWidth="0.5px" />
+            <TextComponent text="단어 : " colorClass="textYellow" fontSize="24px" shadowSize="2.1px" />
+            <TextComponent text="유행 년도 : " colorClass="textYellow" fontSize="20px" shadowSize="2px" />
           </div>
 
           <div className="wordCheckMainContent">
-            <TextComponent text={wordData.word} fontSize="24px" strokeWidth="0.5px" />
-            <TextComponent text={wordData.year} fontSize="20px" strokeWidth="0.5px" />
+            <TextComponent text={wordData.word} fontSize="24px" shadowSize="2.1px" />
+            <TextComponent text={wordData.year} fontSize="20px" shadowSize="2px" />
           </div>
         </div>
 
         <div className="textWithLine">
-          <TextComponent text="첫번째대화 :" colorClass="textYellow" fontSize="20px" strokeWidth="0.5px" />
+          <TextComponent text="첫번째대화 :" colorClass="textYellow" fontSize="20px" shadowSize="2px" />
           <div className="chats">{wordData.chat_first}</div>
         </div>
 
         <div className="textWithLine">
-          <TextComponent text="두번째대화 :" colorClass="textYellow" fontSize="20px" strokeWidth="0.5px" />
+          <TextComponent text="두번째대화 :" colorClass="textYellow" fontSize="20px" shadowSize="2px" />
           <div className="chats">{wordData.chat_second}</div>
         </div>
 
         <div className="textWithLine">
-          <TextComponent text="뜻 :" colorClass="textYellow" fontSize="20px" strokeWidth="0.5px" />
+          <TextComponent text="뜻 :" colorClass="textYellow" fontSize="20px" shadowSize="2px" />
           <div className="chats">{wordData.answer}</div>
         </div>
       </BoxComponent>
 
-      <MainBtn text="등록하기" width="161px" height="57px" fontSize="20px" onClick={handleSubmit} />
+      <MainBtn text="등록하기" width="161px" height="57px" fontSize="20px" onClick={handleSubmit} shadowSize={2} />
       <MainBtn
         text="반려하기"
         width="161px"
@@ -113,6 +113,7 @@ function AdWordCheck() {
         fontSize="20px"
         backgroundColor="#FF4E4E"
         onClick={handleReject}
+        shadowSize={2}
       />
     </div>
   );

@@ -32,10 +32,12 @@
   border-radius: calc(30px * var(--scale));
   cursor: pointer;
   text-align: center;
-
-  -webkit-text-stroke: calc(1px * var(--scale)) #2f2f2f;
-  /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
   letter-spacing: calc(1.5px * var(--scale));
+}
+
+.mainBtn span {
+  text-shadow: -2.2px 0 0 #2f2f2f, 2.2px 0 0 #2f2f2f, 0 -2.2px 0 #2f2f2f, 0 2.2px 0 #2f2f2f, -2.2px -2.2px 0 #2f2f2f,
+    2.2px -2.2px 0 #2f2f2f, -2.2px 2.2px 0 #2f2f2f, 2.2px 2.2px 0 #2f2f2f, 0px 0px 5px #2f2f2f;
 }
 
 .mainBtn:active {

@@ -61,18 +61,18 @@ function WordInput() {
         <img className="backBtn" src={backBtn} width={19.35} height={38.35} onClick={handleBackClick} />
       </div>
 
-      <TextComponent text="단어 정보 입력" fontSize="28px" strokeWidth="1px" />
+      <TextComponent text="단어 정보 입력" fontSize="28px" shadowSize="2.2px" />
 
       <BoxComponent height="468px">
-        <TextComponent text="단어 입력" colorClass="textYellow" fontSize="24px" strokeWidth="0.5px" />
+        <TextComponent text="단어 입력" colorClass="textYellow" fontSize="24px" shadowSize="2.1px" />
         <InputBox text="단어를 입력해주세요." value={word} onChange={(e) => setWord(e.target.value)} />
 
         <div className="yearSelectionRow">
-          <TextComponent text="유행 년도" colorClass="textYellow" fontSize="24px" strokeWidth="0.5px" />
+          <TextComponent text="유행 년도" colorClass="textYellow" fontSize="24px" shadowSize="2.1px" />
           <SelectBtn onYearChange={setYear} />
         </div>
 
-        <TextComponent text="예시 대화" colorClass="textYellow" fontSize="24px" strokeWidth="0.5px" />
+        <TextComponent text="예시 대화" colorClass="textYellow" fontSize="24px" shadowSize="2.1px" />
         <div className="inputBoxForChat">
           <InputBox
             text="첫번째 대화를 입력해주세요."
@@ -86,7 +86,7 @@ function WordInput() {
           onChange={(e) => setChat_second(e.target.value)}
         />
 
-        <TextComponent text="뜻" colorClass="textYellow" fontSize="24px" strokeWidth="0.5px" />
+        <TextComponent text="뜻" colorClass="textYellow" fontSize="24px" shadowSize="2.1px" />
         <InputBox text="대화의 정답을 입력해주세요." value={answer} onChange={(e) => setAnswer(e.target.value)} />
       </BoxComponent>
       <MainBtn text="신조어 제보" subText="라떼는 단어도 언젠가는 신조어!" onClick={handleSubmit} />
