@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Answer.css';
-import axios from 'axios';
-import NumList from '../components/NumList';
-import TestComponent from '../components/TestComponent';
-import MainBtn from '../components/MainBtn';
-import BoxComponent from '../components/BoxComponent';
-import trueImg from '../assets/images/trueImg.png';
-import AnswerComponent from '../components/AnswerComponent';
-import CustomLeftArrowIcon from '../components/CustomLeftArrowIcon';
-import CustomRightArrowIcon from '../components/CustomRightArrowIcon';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Answer.css";
+import axios from "axios";
+import NumList from "../components/NumList";
+import TestComponent from "../components/TestComponent";
+import MainBtn from "../components/MainBtn";
+import BoxComponent from "../components/BoxComponent";
+import trueImg from "../assets/images/trueImg.png";
+import AnswerComponent from "../components/AnswerComponent";
+import CustomLeftArrowIcon from "../components/CustomLeftArrowIcon";
+import CustomRightArrowIcon from "../components/CustomRightArrowIcon";
 
 function LoggedAnswer() {
   const navigate = useNavigate();
@@ -18,13 +18,15 @@ function LoggedAnswer() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // 현재 문제 인덱스
   const [selectedQuestion, setSelectedQuestion] = useState(1); // 선택된 문제 번호
 
-  const [word, setWord] = useState(''); // 신조어 단어
-  const [about_word, setAbout_Word] = useState(''); // 신조어 단어 해설
-  const [answer, setAnswer] = useState(''); // 정답 문장
+  const [word, setWord] = useState("[]"); // 신조어 단어
+  const [about_word, setAbout_Word] = useState("[]"); // 신조어 단어 해설
+  const [answer, setAnswer] = useState("[]"); // 정답 문장
 
   // 로컬 스토리지에서 문제 리스트를 가져옴
   useEffect(() => {
-    const savedQuestions = JSON.parse(localStorage.getItem('loggedtestQuestions'));
+    const savedQuestions = JSON.parse(
+      localStorage.getItem("loggedtestQuestions")
+    );
 
     if (savedQuestions && savedQuestions.length > 0) {
       setQuestions(savedQuestions);
@@ -35,14 +37,14 @@ function LoggedAnswer() {
   useEffect(() => {
     const fetchAnswerData = async () => {
       try {
-        const response = await axios.post('/Logged/answer', {
+        const response = await axios.post("/Logged/answer", {
           num: questions[currentQuestionIndex]?.num, // 문제 번호로 해설 데이터 요청
         });
         setWord(response.data.word);
         setAbout_Word(response.data.about_word);
         setAnswer(response.data.answer);
       } catch (error) {
-        console.error('Error fetching the answer data:', error);
+        console.error("Error fetching the answer data:", error);
       }
     };
 
@@ -70,19 +72,27 @@ function LoggedAnswer() {
     }
   };
 
-  const handleLoggedTestClick = () => {
-    navigate('/Logged/test');
+  const handleLoggedTestClick = async () => {
+    try {
+      // user_answers 테이블에서 사용자의 모든 행 삭제 요청
+      await axios.post("/Logged/deleteAnswers");
+
+      // 삭제 후 진단 페이지로 이동
+      navigate("/Logged/test");
+    } catch (error) {
+      console.error("Error deleting user answers:", error);
+    }
   };
 
   const handleGoMypageClick = () => {
-    navigate('/mypage');
+    navigate("/mypage");
   };
 
   return (
     <div className="answerPage">
       <BoxComponent height="604px">
         <div className="numListWithArrows">
-          <div onClick={handleLeftArrowClick} style={{ cursor: 'pointer' }}>
+          <div onClick={handleLeftArrowClick} style={{ cursor: "pointer" }}>
             <CustomLeftArrowIcon />
           </div>
           <NumList
@@ -90,7 +100,7 @@ function LoggedAnswer() {
             onQuestionClick={handleQuestionClick}
             selectedQuestion={selectedQuestion}
           />
-          <div onClick={handleRightArrowClick} style={{ cursor: 'pointer' }}>
+          <div onClick={handleRightArrowClick} style={{ cursor: "pointer" }}>
             <CustomRightArrowIcon />
           </div>
         </div>
@@ -101,7 +111,11 @@ function LoggedAnswer() {
               num={`Q${currentQuestionIndex + 1}.`} // 현재 문제 번호 1부터 시작
               question={questions[currentQuestionIndex]} // 저장된 문제에서 가져옴
             />
-            <AnswerComponent word={word} about_word={about_word} answer={answer} />
+            <AnswerComponent
+              word={word}
+              about_word={about_word}
+              answer={answer}
+            />
           </>
         )}
       </BoxComponent>
