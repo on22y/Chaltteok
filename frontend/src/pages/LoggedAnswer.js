@@ -18,9 +18,9 @@ function LoggedAnswer() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // 현재 문제 인덱스
   const [selectedQuestion, setSelectedQuestion] = useState(1); // 선택된 문제 번호
 
-  const [word, setWord] = useState("[]"); // 신조어 단어
-  const [about_word, setAbout_Word] = useState("[]"); // 신조어 단어 해설
-  const [answer, setAnswer] = useState("[]"); // 정답 문장
+  const [word, setWord] = useState(""); // 신조어 단어
+  const [about_word, setAbout_Word] = useState(""); // 신조어 단어 해설
+  const [answer, setAnswer] = useState(""); // 정답 문장
 
   // 로컬 스토리지에서 문제 리스트를 가져옴
   useEffect(() => {
@@ -37,12 +37,15 @@ function LoggedAnswer() {
   useEffect(() => {
     const fetchAnswerData = async () => {
       try {
-        const response = await axios.post("/Logged/answer", {
-          num: questions[currentQuestionIndex]?.num, // 문제 번호로 해설 데이터 요청
-        });
-        setWord(response.data.word);
-        setAbout_Word(response.data.about_word);
-        setAnswer(response.data.answer);
+        const response = await axios.post("/Logged/answer");
+        const answers = response.data.answers;
+
+        if (answers.length > 0) {
+          const currentAnswer = answers[currentQuestionIndex]; // 현재 문제에 맞는 해설 가져오기
+          setWord(currentAnswer.word);
+          setAbout_Word(currentAnswer.about_word);
+          setAnswer(currentAnswer.answer);
+        }
       } catch (error) {
         console.error("Error fetching the answer data:", error);
       }
@@ -51,7 +54,7 @@ function LoggedAnswer() {
     if (questions.length > 0) {
       fetchAnswerData();
     }
-  }, [currentQuestionIndex, questions]);
+  }, [currentQuestionIndex, questions]); // currentQuestionIndex가 변경될 때마다 실행
 
   const handleQuestionClick = (questionNum) => {
     setCurrentQuestionIndex(questionNum - 1); // 클릭한 문제 번호로 currentQuestionIndex 업데이트

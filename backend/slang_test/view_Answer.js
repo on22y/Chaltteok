@@ -18,8 +18,9 @@ router.post("/Logged/answer", (req, res) => {
   if (req.session && req.session.user) {
     const user_nickname = req.session.user.nickname;
 
+    // 해당 닉네임에 맞는 데이터를 위에서부터 순차적으로 가져옴
     pool.query(
-      "SELECT * FROM user_answers WHERE nickname = ?",
+      "SELECT * FROM user_answers WHERE nickname = ? ORDER BY created_at ASC",
       [user_nickname],
       (error, results) => {
         if (error) {
@@ -28,9 +29,12 @@ router.post("/Logged/answer", (req, res) => {
 
         if (results.length > 0) {
           return res.json({
-            word: results[0].word,
-            about_word: results[0].meaning,
-            answer: results[0].answer,
+            answers: results.map((result) => ({
+              word: result.word,
+              about_word: result.meaning,
+              answer: result.answer,
+              question: result.question,
+            })),
           });
         } else {
           return res.status(404).json({ error: "User not found" });
