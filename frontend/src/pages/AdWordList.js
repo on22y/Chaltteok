@@ -19,7 +19,7 @@ function AdWordList() {
   useEffect(() => {
     const fetchWordData = async () => {
       try {
-        const response = await axios.get('/process/wordlist'); // 서버에서 단어 목록 정보를 가져옴
+        const response = await axios.get('/admin/word/list'); // 서버에서 단어 목록 정보를 가져옴
         setWordDataList(response.data); // 단일 데이터가 아니라 배열로 저장
       } catch (error) {
         console.error('단어 정보를 가져오는 중 오류 발생:', error);
@@ -41,16 +41,16 @@ function AdWordList() {
           </div>
 
           {/* <div className="wordlistContent">
-            <div className="lists">스불재</div>
+            <div className="lists">word</div>
             <div className="lists">2024</div>
-            <div className="lists">이건 너의 스불재야.</div>
+            <div className="lists">chatchat</div>
           </div> */}
 
           {wordDataList.map((wordData, index) => (
             <div key={index} className="wordlistContent">
-              <div className="lists">스불재{wordData.word}</div>
-              <div className="lists">2024{wordData.year}</div>
-              <div className="lists">이건 너의 스불재야.{wordData.chat_first}</div>
+              <div className="lists">{wordData.word}</div>
+              <div className="lists">{wordData.year}</div>
+              <div className="lists">{wordData.chat_first}</div>
             </div>
           ))}
         </div>

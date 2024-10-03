@@ -18,11 +18,27 @@
 }
 
 .wordPage .boxContainer {
+  display: flex;
+  flex-direction: column;
   align-items: flex-start;
 }
 
 .wordPage .mainBtnContainer {
   margin-top: 20px;
+}
+
+/* .yearSelectionRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 109px;
+} */
+
+.yearSelectionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .chats {

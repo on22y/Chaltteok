@@ -62,8 +62,8 @@ function App() {
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/isLogged/answer" element={<IsLoggedAnswer />} />
           <Route path="/Logged/answer" element={<LoggedAnswer />} />
-          <Route path="/word/check" element={<AdWordCheck />} />
-          <Route path="/word/list" element={<AdWordList />} />
+          <Route path="/admin/word/check" element={<AdWordCheck />} />
+          <Route path="/admin/word/list" element={<AdWordList />} />
         </Routes>
       </Router>
     </div>

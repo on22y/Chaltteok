@@ -21,7 +21,7 @@ function AdWordCheck() {
   useEffect(() => {
     const fetchWordData = async () => {
       try {
-        const response = await axios.get('/process/word'); // 서버에서 단어 정보를 가져옴
+        const response = await axios.get('/admin/word/check'); // 서버에서 단어 정보를 가져옴
         setWordData(response.data);
       } catch (error) {
         console.error('단어 정보를 가져오는 중 오류 발생:', error);
@@ -35,7 +35,7 @@ function AdWordCheck() {
   // 단어 등록하기
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('/process/word/submit', { wordData });
+      const response = await axios.post('/admin/word/check', { wordData });
       if (response.data.success) {
         alert('단어가 성공적으로 등록되었습니다.');
         navigate('/word/list');
@@ -51,7 +51,7 @@ function AdWordCheck() {
   // 단어 반려하기
   const handleReject = async () => {
     try {
-      const response = await axios.post('/process/word/reject', { wordData });
+      const response = await axios.post('/admin/word/check', { wordData });
       if (response.data.success) {
         alert('단어가 반려되었습니다.');
         navigate('/word/list');
