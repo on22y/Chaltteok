@@ -34,6 +34,7 @@ router.post("/Logged/answer", (req, res) => {
               about_word: result.meaning,
               answer: result.answer,
               question: result.question,
+              score: result.similarity,
             })),
           });
         } else {
