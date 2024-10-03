@@ -50,7 +50,11 @@ function IsLoggedTest() {
     if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
+      // 마지막 문제일 경우 '제출하기' 버튼이 작동
       navigate('/loading');
+      setTimeout(() => {
+        navigate('/islogged/type');
+      }, 3000);
     }
   };
 

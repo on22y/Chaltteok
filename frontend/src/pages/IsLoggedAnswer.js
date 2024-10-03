@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "./Answer.css";
-import axios from "axios";
-import NumList from "../components/NumList";
-import TestComponent from "../components/TestComponent";
-import MainBtn from "../components/MainBtn";
-import BoxComponent from "../components/BoxComponent";
-import trueImg from "../assets/images/trueImg.png";
-import AnswerComponent from "../components/AnswerComponent";
-import CustomLeftArrowIcon from "../components/CustomLeftArrowIcon";
-import CustomRightArrowIcon from "../components/CustomRightArrowIcon";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Answer.css';
+import axios from 'axios';
+import NumList from '../components/NumList';
+import TestComponent from '../components/TestComponent';
+import MainBtn from '../components/MainBtn';
+import BoxComponent from '../components/BoxComponent';
+import trueImg from '../assets/images/trueImg.png';
+import AnswerComponent from '../components/AnswerComponent';
+import CustomLeftArrowIcon from '../components/CustomLeftArrowIcon';
+import CustomRightArrowIcon from '../components/CustomRightArrowIcon';
 
 function IsLoggedAnswer() {
   const navigate = useNavigate();
@@ -17,16 +17,15 @@ function IsLoggedAnswer() {
   const [questions, setQuestions] = useState([]); // 문제 데이터 배열
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // 현재 문제 인덱스
   const [selectedQuestion, setSelectedQuestion] = useState(1); // 선택된 문제 번호
+  const [scores, setScores] = useState([]); // 각 문제의 점수를 저장할 배열
 
-  const [word, setWord] = useState(""); // 신조어 단어
-  const [about_word, setAbout_Word] = useState(""); // 신조어 단어 해설
-  const [answer, setAnswer] = useState(""); // 정답 문장
+  const [word, setWord] = useState(''); // 신조어 단어
+  const [about_word, setAbout_Word] = useState(''); // 신조어 단어 해설
+  const [answer, setAnswer] = useState(''); // 정답 문장
 
   // 로컬 스토리지에서 문제 리스트를 가져옴
   useEffect(() => {
-    const savedQuestions = JSON.parse(
-      localStorage.getItem("isloggedtestQuestions")
-    );
+    const savedQuestions = JSON.parse(localStorage.getItem('isloggedtestQuestions'));
 
     if (savedQuestions && savedQuestions.length > 0) {
       setQuestions(savedQuestions);
@@ -37,8 +36,8 @@ function IsLoggedAnswer() {
   useEffect(() => {
     const fetchAnswerData = async () => {
       try {
-        const nickname = localStorage.getItem("nickname"); // localStorage에서 닉네임 가져오기
-        const response = await axios.post("/islogged/answer", { nickname });
+        const nickname = localStorage.getItem('nickname'); // localStorage에서 닉네임 가져오기
+        const response = await axios.post('/islogged/answer', { nickname });
         const answers = response.data.answers;
 
         if (answers.length > 0) {
@@ -46,9 +45,10 @@ function IsLoggedAnswer() {
           setWord(currentAnswer.word);
           setAbout_Word(currentAnswer.about_word);
           setAnswer(currentAnswer.answer);
+          setScores(answers.map((answer) => answer.score)); // 모든 문제의 점수 설정
         }
       } catch (error) {
-        console.error("Error fetching the answer data:", error);
+        console.error('Error fetching the answer data:', error);
       }
     };
 
@@ -78,34 +78,35 @@ function IsLoggedAnswer() {
 
   const handleSignupClick = async () => {
     try {
-      const nickname = localStorage.getItem("nickname"); // localStorage에서 닉네임 가져오기
+      const nickname = localStorage.getItem('nickname'); // localStorage에서 닉네임 가져오기
       console.log(nickname);
-      await axios.post("/isLogged/deleteAnswers", { nickname });
+      await axios.post('/isLogged/deleteAnswers', { nickname });
       console.log(nickname);
       // 삭제 후 회원가입으로 이동
-      navigate("/signuppage");
+      navigate('/signuppage');
     } catch (error) {
-      console.error("Error deleting user answers:", error);
+      console.error('Error deleting user answers:', error);
     }
   };
 
   const handleGoHomeClick = () => {
-    navigate("/");
+    navigate('/');
   };
 
   return (
     <div className="answerPage">
       <BoxComponent height="604px">
         <div className="numListWithArrows">
-          <div onClick={handleLeftArrowClick} style={{ cursor: "pointer" }}>
+          <div onClick={handleLeftArrowClick} style={{ cursor: 'pointer' }}>
             <CustomLeftArrowIcon />
           </div>
           <NumList
             totalQuestions={questions.length}
             onQuestionClick={handleQuestionClick}
             selectedQuestion={selectedQuestion}
+            scores={scores}
           />
-          <div onClick={handleRightArrowClick} style={{ cursor: "pointer" }}>
+          <div onClick={handleRightArrowClick} style={{ cursor: 'pointer' }}>
             <CustomRightArrowIcon />
           </div>
         </div>
@@ -116,11 +117,7 @@ function IsLoggedAnswer() {
               num={`Q${currentQuestionIndex + 1}.`} // 현재 문제 번호 1부터 시작
               question={questions[currentQuestionIndex]} // 저장된 문제에서 가져옴
             />
-            <AnswerComponent
-              word={word}
-              about_word={about_word}
-              answer={answer}
-            />
+            <AnswerComponent word={word} about_word={about_word} answer={answer} />
           </>
         )}
       </BoxComponent>
