@@ -7,7 +7,6 @@
   margin: 0 0;
   /* text-shadow: -3.5px 0 0 #2f2f2f, 3.5px 0 0 #2f2f2f, 0 -3.5px 0 #2f2f2f, 0 3.5px 0 #2f2f2f, -3.5px -3.5px 0 #2f2f2f,
     3.5px -3.5px 0 #2f2f2f, -3.5px 3.5px 0 #2f2f2f, 3.5px 3.5px 0 #2f2f2f, 0px 0px 5px #2f2f2f; */
-  /* -webkit-text-stroke: calc(3px * var(--scale)) #2f2f2f; */
   letter-spacing: 3px;
   /* letter-spacing: calc(1px * var(--scale)); */
 }
