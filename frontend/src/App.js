@@ -16,6 +16,7 @@ import IsLoggedTest from './pages/IsLoggedTest';
 import IsLoggedAnswer from './pages/IsLoggedAnswer';
 import LoggedAnswer from './pages/LoggedAnswer';
 import AdWordCheck from './pages/AdWordCheck';
+import AdWordList from './pages/AdWordList';
 
 function App() {
   const updateScale = () => {
@@ -62,6 +63,7 @@ function App() {
           <Route path="/isLogged/answer" element={<IsLoggedAnswer />} />
           <Route path="/Logged/answer" element={<LoggedAnswer />} />
           <Route path="/word/check" element={<AdWordCheck />} />
+          <Route path="/word/list" element={<AdWordList />} />
         </Routes>
       </Router>
     </div>
