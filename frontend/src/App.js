@@ -54,7 +54,7 @@ function App() {
           <Route path="/isLogged/test" element={<IsLoggedTest />} />
           <Route path="/Logged/test" element={<LoggedTest />} />
           <Route path="/speech_to_text" element={<Voice />} />
-          <Route path="/word/input" element={<WordInput />} />
+          <Route path="/word" element={<WordInput />} />
           <Route path="/isLogged/type" element={<IsLoggedType />} />
           <Route path="/Logged/type" element={<LoggedType />} />
           <Route path="/loading" element={<Loading />} />
