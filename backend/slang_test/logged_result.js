@@ -22,7 +22,7 @@ router.post("/getResult", (req, res) => {
 
     // MySQL 쿼리를 통해 사용자 state 값 가져오기
     pool.query(
-      "SELECT state FROM users WHERE nickname = ?",
+      "SELECT state,nickname FROM users WHERE nickname = ?",
       [nickname],
       (error, results) => {
         if (error) {
@@ -30,7 +30,10 @@ router.post("/getResult", (req, res) => {
         }
 
         if (results.length > 0) {
-          return res.json({ state: results[0].state });
+          return res.json({
+            state: results[0].state,
+            nickname: results[0].nickname,
+          });
         } else {
           return res.status(404).json({ error: "User not found" });
         }
