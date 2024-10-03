@@ -8,12 +8,15 @@ import MainBtn from '../components/MainBtn';
 import BoxComponent from '../components/BoxComponent';
 import trueImg from '../assets/images/trueImg.png';
 import AnswerComponent from '../components/AnswerComponent';
+import CustomLeftArrowIcon from '../components/CustomLeftArrowIcon';
+import CustomRightArrowIcon from '../components/CustomRightArrowIcon';
 
 function IsLoggedAnswer() {
   const navigate = useNavigate();
 
   const [questions, setQuestions] = useState([]); // 문제 데이터 배열
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // 현재 문제 인덱스
+  const [selectedQuestion, setSelectedQuestion] = useState(1); // 선택된 문제 번호
 
   const [word, setWord] = useState(''); // 신조어 단어
   const [about_word, setAbout_Word] = useState(''); // 신조어 단어 해설
@@ -49,8 +52,22 @@ function IsLoggedAnswer() {
   }, [currentQuestionIndex, questions]);
 
   const handleQuestionClick = (questionNum) => {
-    // 클릭한 문제 번호로 currentQuestionIndex 업데이트
-    setCurrentQuestionIndex(questionNum - 1);
+    setCurrentQuestionIndex(questionNum - 1); // 클릭한 문제 번호로 currentQuestionIndex 업데이트
+    setSelectedQuestion(questionNum); // 선택된 문제 번호 업데이트
+  };
+
+  const handleLeftArrowClick = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+      setSelectedQuestion(currentQuestionIndex); // selectedQuestion과 동기화
+    }
+  };
+
+  const handleRightArrowClick = () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setSelectedQuestion(currentQuestionIndex + 2); // selectedQuestion과 동기화
+    }
   };
 
   const handleSignupClick = () => {
@@ -64,7 +81,19 @@ function IsLoggedAnswer() {
   return (
     <div className="answerPage">
       <BoxComponent height="604px">
-        <NumList totalQuestions={questions.length} onQuestionClick={handleQuestionClick} />
+        <div className="numListWithArrows">
+          <div onClick={handleLeftArrowClick} style={{ cursor: 'pointer' }}>
+            <CustomLeftArrowIcon />
+          </div>
+          <NumList
+            totalQuestions={questions.length}
+            onQuestionClick={handleQuestionClick}
+            selectedQuestion={selectedQuestion}
+          />
+          <div onClick={handleRightArrowClick} style={{ cursor: 'pointer' }}>
+            <CustomRightArrowIcon />
+          </div>
+        </div>
         {/* <img className="trueImg" src={trueImg} width={86} height={151} /> */}
         {questions.length > 0 && (
           <>

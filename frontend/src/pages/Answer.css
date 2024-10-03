@@ -15,3 +15,13 @@
 .answerPage .boxContainer {
   display: flex;
 }
+
+.numListWithArrows {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+svg {
+  display: inline-block;
+}

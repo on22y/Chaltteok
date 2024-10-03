@@ -10,4 +10,27 @@
   text-align: center;
   padding: 0 0;
   margin: 0 0;
+  color: #357929;
+}
+
+.numList-Click {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.numList-Click.selected::before {
+  content: '•';
+  position: absolute;
+  top: -14px;
+  color: #357929;
+  font-size: calc(16px * var(--scale));
+}
+
+.numList-Click:hover {
+  background-color: #e0e0e0;
 }
