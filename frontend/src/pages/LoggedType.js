@@ -59,26 +59,28 @@ function LoggedType() {
     <div className="LoggedTypePage">
       <UnderlineBtn subText="인터넷 생활 오답노트가 필요하다면," text="해설지 확인" onClick={handleLoggedAnswerClick} />
 
-      {showTextDeco && ( // 이전과 동일한 경우에만 표시
-        <div className="LoggedTypePage-textDeco">
-          <TextComponent text="여전히" colorClass="textRed" fontSize="28px" shadowSize="2.2px" />
-          <div className="typeComponent-content">
-            <img className="textDecoImg" src={textDecoImg} width={100} height={45} />
-          </div>
-        </div>
-      )}
-
       <div className="LoggedTypePage-content">
-        <TypeComponent
-          state={state}
-          detail={
-            <>
-              당장 주변 고등학교로 뛰어가서
-              <br />
-              즐거운 대화를 나누세요.
-            </>
-          }
-        />
+        <div className="stateWithTextDeco">
+          {showTextDeco && ( // 이전과 동일한 경우에만 표시
+            <div className="LoggedTypePage-textDeco">
+              <TextComponent text="여전히" colorClass="textRed" fontSize="28px" shadowSize="2.2px" />
+              <div className="typeComponent-content">
+                <img className="textDecoImg" src={textDecoImg} width={100} height={45} />
+              </div>
+            </div>
+          )}
+
+          <TypeComponent
+            state={state}
+            detail={
+              <>
+                당장 주변 고등학교로 뛰어가서
+                <br />
+                즐거운 대화를 나누세요.
+              </>
+            }
+          />
+        </div>
 
         <MainBtn text="진단 다시하기" subText="여전히 내 나이 인정 못한다면?" onClick={handleLoggedTestClick} />
         <img className="lineImg" src={lineImg} width={318} />

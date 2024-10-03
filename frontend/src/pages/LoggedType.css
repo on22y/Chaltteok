@@ -39,11 +39,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0 0;
-  margin: 0 auto 0 auto;
-  position: relative;
-  top: 15px;
-  right: 21px;
+  padding: 0;
+  margin-right: calc(10px * var(--scale));
 }
 
 .textDecoImg {
@@ -54,4 +51,12 @@
 
 .LoggedTypePage-textDeco .textRed {
   transform: rotate(-10deg);
+}
+
+.stateWithTextDeco {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: calc(10px * var(--scale));
+  flex-direction: column;
 }
