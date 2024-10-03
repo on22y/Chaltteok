@@ -25,3 +25,40 @@
 svg {
   display: inline-block;
 }
+
+/* .testComponentContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  align-items: stretch;
+} */
+
+/* .trueImg {
+  position: absolute;
+  top: calc(-20px * var(--scale));
+  left: calc(-5px * var(--scale));
+  z-index: 10;
+} */
+
+/* .trueImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-14%, -15%);
+  z-index: 10;
+  height: auto;
+} */
+
+.imgWrapper {
+  position: absolute;
+  top: 100px;
+  left: 32px;
+  z-index: 10;
+}
+
+.trueImg {
+  width: 100px;
+  height: 151px;
+}

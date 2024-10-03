@@ -7,6 +7,7 @@ import TestComponent from '../components/TestComponent';
 import MainBtn from '../components/MainBtn';
 import BoxComponent from '../components/BoxComponent';
 import trueImg from '../assets/images/trueImg.png';
+import falseImg from '../assets/images/falseImg.png';
 import AnswerComponent from '../components/AnswerComponent';
 import CustomLeftArrowIcon from '../components/CustomLeftArrowIcon';
 import CustomRightArrowIcon from '../components/CustomRightArrowIcon';
@@ -108,7 +109,14 @@ function LoggedAnswer() {
             <CustomRightArrowIcon />
           </div>
         </div>
-        {/* <img className="trueImg" src={trueImg} width={86} height={151} /> */}
+
+        <div className="imgWrapper">
+          {scores[currentQuestionIndex] >= 80 ? (
+            <img className="trueImg" src={trueImg} alt="True" />
+          ) : (
+            <img className="falseImg" src={falseImg} alt="False" />
+          )}
+        </div>
         {questions.length > 0 && (
           <>
             <TestComponent
