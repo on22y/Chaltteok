@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Test.css';
 import TestComponent from '../components/TestComponent';
 import BoxComponent from '../components/BoxComponent';
-import InputBox from '../components/InputBox';
+import TextArea from '../components/TextArea';
 import MainBtn from '../components/MainBtn';
 import axios from 'axios';
 
@@ -68,14 +68,10 @@ function LoggedTest() {
           <TestComponent
             num={`Q${currentQuestionIndex + 1}.`} // 현재 문제 번호 1부터 시작
             question={questions[currentQuestionIndex]} // 백엔드에서 받은 문제 데이터 전달
-            onNext={handleNextQuestion} // 다음 문제로 이동
+            onNext={handleNextQuestion}
           />
         )}
-        <InputBox
-          text="정답을 입력해주세요."
-          value={answer} // 입력된 답변 전달
-          onChange={(e) => setAnswer(e.target.value)} // 답변 입력 시 상태 업데이트
-        />
+        <TextArea text="정답을 입력해주세요." value={answer} onChange={(e) => setAnswer(e.target.value)} />
       </BoxComponent>
       <MainBtn
         text={currentQuestionIndex === questions.length - 1 ? '제출하기' : '다음문제'}
