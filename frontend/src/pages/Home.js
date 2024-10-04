@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import axios from 'axios';
@@ -7,8 +7,11 @@ import BoxComponent from '../components/BoxComponent';
 import TextComponent from '../components/TextComponent';
 import mainImg from '../assets/images/mainImg.png';
 import UnderlineBtn from '../components/UnderlineBtn';
+import { LoadingContext } from '../components/LoadingContext';
 
 function Home() {
+  const { startLoading, stopLoading } = useContext(LoadingContext);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const navigate = useNavigate();
   const [count, setCount] = useState(0);
 
@@ -22,6 +25,12 @@ function Home() {
         console.error('Error fetching count:', error);
       });
   }, []);
+
+  // 이미지가 로드되면 로딩을 멈춤
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+    stopLoading();
+  };
 
   const handleLogin = () => {
     navigate('/loginpage');
@@ -64,7 +73,8 @@ function Home() {
         <BoxComponent height="482px">
           <TextComponent text="인터넷나이" fontSize="64px" shadowSize="3.7px" />
           <TextComponent text="테스트" colorClass="textLightgreen" fontSize="42px" shadowSize="3.2px" />
-          <img className="imgComponent" src={mainImg} width={198} />
+          {!imageLoaded && <TextComponent text="Loading image..." fontSize="18px" shadowSize="1.9px" />}
+          <img className="imgComponent" src={mainImg} width={198} onLoad={handleImageLoad} alt="Login visual" />
           <TextComponent
             text={
               <>

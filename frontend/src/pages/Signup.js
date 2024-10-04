@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './Signup.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -8,10 +8,13 @@ import TextComponent from '../components/TextComponent';
 import InputBox from '../components/InputBox';
 import signuppageImg from '../assets/images/signuppageImg.png';
 import backBtn from '../assets/images/backBtn.png';
+import { LoadingContext } from '../components/LoadingContext';
 
 function Signup() {
   const [newnickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
+  const { startLoading, stopLoading } = useContext(LoadingContext);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const navigate = useNavigate();
 
@@ -25,6 +28,12 @@ function Signup() {
     } else {
       alert('닉네임은 영문자와 숫자만 입력 가능합니다.');
     }
+  };
+
+  // 이미지가 로드되면 로딩을 멈춤
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+    stopLoading();
   };
 
   const handleSubmit = async (event) => {
@@ -87,7 +96,8 @@ function Signup() {
           shadowSize="2.1px"
         />
 
-        <img className="imgComponent" src={signuppageImg} width={198} />
+        {!imageLoaded && <TextComponent text="Loading image..." fontSize="18px" shadowSize="1.9px" />}
+        <img className="imgComponent" src={signuppageImg} width={198} onLoad={handleImageLoad} />
 
         <InputBox text="닉네임을 입력해주세요." value={newnickname} onChange={handleNicknameChange} />
         <InputBox

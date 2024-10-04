@@ -1,6 +1,8 @@
 import './App.css';
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LoadingProvider } from './components/LoadingContext';
+import LoadingIndicator from './components/LoadingIndicator';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -46,26 +48,29 @@ function App() {
 
   return (
     <div className="appContainer">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signuppage" element={<Signup />} />
-          <Route path="/loginpage" element={<Login />} />
-          <Route path="/isLogged/test" element={<IsLoggedTest />} />
-          <Route path="/Logged/test" element={<LoggedTest />} />
-          <Route path="/speech_to_text" element={<Voice />} />
-          <Route path="/word" element={<WordInput />} />
-          <Route path="/isLogged/type" element={<IsLoggedType />} />
-          <Route path="/Logged/type" element={<LoggedType />} />
-          <Route path="/loading" element={<Loading />} />
-          <Route path="/logged/loading" element={<LoggedLoading />} />
-          <Route path="/mypage" element={<Mypage />} />
-          <Route path="/isLogged/answer" element={<IsLoggedAnswer />} />
-          <Route path="/Logged/answer" element={<LoggedAnswer />} />
-          <Route path="/admin/word/check" element={<AdWordCheck />} />
-          <Route path="/admin/word/list" element={<AdWordList />} />
-        </Routes>
-      </Router>
+      <LoadingProvider>
+        <Router>
+          <LoadingIndicator />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/signuppage" element={<Signup />} />
+            <Route path="/loginpage" element={<Login />} />
+            <Route path="/isLogged/test" element={<IsLoggedTest />} />
+            <Route path="/Logged/test" element={<LoggedTest />} />
+            <Route path="/speech_to_text" element={<Voice />} />
+            <Route path="/word" element={<WordInput />} />
+            <Route path="/isLogged/type" element={<IsLoggedType />} />
+            <Route path="/Logged/type" element={<LoggedType />} />
+            <Route path="/loading" element={<Loading />} />
+            <Route path="/logged/loading" element={<LoggedLoading />} />
+            <Route path="/mypage" element={<Mypage />} />
+            <Route path="/isLogged/answer" element={<IsLoggedAnswer />} />
+            <Route path="/Logged/answer" element={<LoggedAnswer />} />
+            <Route path="/admin/word/check" element={<AdWordCheck />} />
+            <Route path="/admin/word/list" element={<AdWordList />} />
+          </Routes>
+        </Router>
+      </LoadingProvider>
     </div>
   );
 }

@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Loading.css';
 import loadingImg from '../assets/images/loadingImg.png';
 import TextComponent from '../components/TextComponent';
 import axios from 'axios';
+import { LoadingContext } from '../components/LoadingContext';
 
 function Loading() {
+  const { startLoading, stopLoading } = useContext(LoadingContext);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,9 +37,16 @@ function Loading() {
     return () => clearTimeout(timer);
   }, [navigate]);
 
+  // 이미지가 로드되면 로딩을 멈춤
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+    stopLoading();
+  };
+
   return (
     <div className="loadingPage">
-      <img className="imgComponent" src={loadingImg} width={198} />
+      {!imageLoaded && <TextComponent text="Loading image..." fontSize="18px" shadowSize="1.9px" />}
+      <img className="imgComponent" src={loadingImg} width={198} onLoad={handleImageLoad} alt="Login visual" />
       <TextComponent
         text={
           <>
