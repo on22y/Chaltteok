@@ -8,6 +8,7 @@ import TextArea from '../components/TextArea';
 import MainBtn from '../components/MainBtn';
 import axios from 'axios';
 import { LoadingContext } from '../components/LoadingContext';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 function IsLoggedTest() {
   const totalQuestions = 10;
@@ -15,6 +16,7 @@ function IsLoggedTest() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answer, setAnswer] = useState('');
   const [isLoadingQuestions, setIsLoadingQuestions] = useState(true); // 질문 로딩 상태
+  const [isLoadingNext, setIsLoadingNext] = useState(false); // 다음 질문 로딩 상태
   const { startLoading, stopLoading } = useContext(LoadingContext);
   const navigate = useNavigate();
 
@@ -44,7 +46,7 @@ function IsLoggedTest() {
     const nickname = localStorage.getItem('nickname');
     if (answer.trim()) {
       try {
-        startLoading(); // 로딩 시작
+        setIsLoadingNext(true); // 다음 질문 로딩 시작
         await axios.post('/isLogged/test/submitAnswer', {
           questionId: questions[currentQuestionIndex].id,
           answer: answer,
@@ -54,17 +56,15 @@ function IsLoggedTest() {
       } catch (error) {
         console.error('Error submitting answer:', error);
       } finally {
-        stopLoading(); // 로딩 종료
+        setIsLoadingNext(false); // 다음 질문 로딩 종료
       }
     }
 
     if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      startLoading(); // 로딩 시작 (마지막 질문 제출 시)
       navigate('/loading');
       setTimeout(() => {
-        stopLoading(); // 로딩 종료
         navigate('/islogged/type');
       }, 3000);
     }
@@ -83,6 +83,11 @@ function IsLoggedTest() {
               onNext={handleNextQuestion}
             />
           )
+        )}
+        {isLoadingNext && currentQuestionIndex < totalQuestions - 1 && (
+          <div className="loading-icon">
+            <AiOutlineLoading3Quarters className="loading-spin" size={48} />
+          </div>
         )}
         <TextArea text="정답을 입력해주세요." value={answer} onChange={(e) => setAnswer(e.target.value)} />
       </BoxComponent>

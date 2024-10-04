@@ -10,3 +10,16 @@
   align-items: center;
   z-index: 9999; /* 가장 앞에 표시 */
 }
+
+.loading-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

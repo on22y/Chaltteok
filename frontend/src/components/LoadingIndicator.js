@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { LoadingContext } from '../components/LoadingContext';
 import './LoadingIndicator.css';
 import TextComponent from './TextComponent';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 function LoadingIndicator() {
   const { loading } = useContext(LoadingContext);
@@ -10,7 +11,7 @@ function LoadingIndicator() {
 
   return (
     <div className="loading-overlay">
-      <TextComponent text="Loading..." fontSize="42px" colorClass="textRed" shadowSize="3.2px" />
+      <AiOutlineLoading3Quarters className="loading-spin" size={48} />
     </div>
   );
 }
