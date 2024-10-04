@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Test.css';
+import TextComponent from '../components/TextComponent';
 import TestComponent from '../components/TestComponent';
 import BoxComponent from '../components/BoxComponent';
 import TextArea from '../components/TextArea';
@@ -12,6 +13,7 @@ function LoggedTest() {
   const [questions, setQuestions] = useState([]); // 문제 데이터를 저장할 상태
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // 현재 문제 번호는 0부터 시작
   const [answer, setAnswer] = useState(''); // 입력한 답변을 저장할 상태
+  const [isLoadingQuestions, setIsLoadingQuestions] = useState(true); // 질문 로딩 상태
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,6 +28,8 @@ function LoggedTest() {
         localStorage.setItem('loggedtestQuestions', JSON.stringify(response.data.questions));
       } catch (error) {
         console.error('Error fetching the question data:', error);
+      } finally {
+        setIsLoadingQuestions(false); // 질문 로딩 상태 해제
       }
     };
 
@@ -64,12 +68,16 @@ function LoggedTest() {
   return (
     <div className="testPage">
       <BoxComponent height="533px">
-        {questions.length > 0 && (
-          <TestComponent
-            num={`Q${currentQuestionIndex + 1}.`} // 현재 문제 번호 1부터 시작
-            question={questions[currentQuestionIndex]} // 백엔드에서 받은 문제 데이터 전달
-            onNext={handleNextQuestion}
-          />
+        {isLoadingQuestions ? (
+          <TextComponent text="Loading questions..." fontSize="24px" shadowSize="2.1px" colorClass="textRed" />
+        ) : (
+          questions.length > 0 && (
+            <TestComponent
+              num={`Q${currentQuestionIndex + 1}.`}
+              question={questions[currentQuestionIndex]}
+              onNext={handleNextQuestion}
+            />
+          )
         )}
         <TextArea text="정답을 입력해주세요." value={answer} onChange={(e) => setAnswer(e.target.value)} />
       </BoxComponent>

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { LoadingContext } from '../components/LoadingContext';
 import './LoadingIndicator.css';
+import TextComponent from './TextComponent';
 
 function LoadingIndicator() {
   const { loading } = useContext(LoadingContext);
@@ -9,7 +10,7 @@ function LoadingIndicator() {
 
   return (
     <div className="loading-overlay">
-      <div className="loading-text">Loading...</div>
+      <TextComponent text="Loading..." fontSize="42px" colorClass="textRed" shadowSize="3.2px" />
     </div>
   );
 }

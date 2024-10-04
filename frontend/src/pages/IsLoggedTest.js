@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Test.css';
+import TextComponent from '../components/TextComponent';
 import TestComponent from '../components/TestComponent';
 import BoxComponent from '../components/BoxComponent';
 import TextArea from '../components/TextArea';
@@ -12,6 +13,7 @@ function IsLoggedTest() {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answer, setAnswer] = useState('');
+  const [isLoadingQuestions, setIsLoadingQuestions] = useState(true); // 질문 로딩 상태
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,6 +26,8 @@ function IsLoggedTest() {
         localStorage.setItem('isloggedtestQuestions', JSON.stringify(response.data.questions));
       } catch (error) {
         console.error('Error fetching the question data:', error);
+      } finally {
+        setIsLoadingQuestions(false); // 질문 로딩 상태 해제
       }
     };
 
@@ -63,12 +67,16 @@ function IsLoggedTest() {
   return (
     <div className="testPage">
       <BoxComponent height="533px">
-        {questions.length > 0 && (
-          <TestComponent
-            num={`Q${currentQuestionIndex + 1}.`}
-            question={questions[currentQuestionIndex]}
-            onNext={handleNextQuestion}
-          />
+        {isLoadingQuestions ? (
+          <TextComponent text="Loading questions..." fontSize="24px" shadowSize="2.1px" colorClass="textRed" />
+        ) : (
+          questions.length > 0 && (
+            <TestComponent
+              num={`Q${currentQuestionIndex + 1}.`}
+              question={questions[currentQuestionIndex]}
+              onNext={handleNextQuestion}
+            />
+          )
         )}
         <TextArea text="정답을 입력해주세요." value={answer} onChange={(e) => setAnswer(e.target.value)} />
       </BoxComponent>
