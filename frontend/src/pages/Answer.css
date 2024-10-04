@@ -26,39 +26,19 @@ svg {
   display: inline-block;
 }
 
-/* .testComponentContainer {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  align-items: stretch;
-} */
-
-/* .trueImg {
-  position: absolute;
-  top: -20px;
-  left: -5px;
-  z-index: 10;
-} */
-
-/* .trueImg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(-14%, -15%);
-  z-index: 10;
-  height: auto;
-} */
-
 .imgWrapper {
   position: absolute;
-  top: 100px;
-  left: 32px;
   z-index: 10;
+  padding: 0;
+  margin-top: 10px;
 }
 
 .trueImg {
-  width: 100px;
+  width: 88px;
   height: 151px;
+}
+
+.falseImg {
+  width: 108px;
+  height: 110px;
 }
