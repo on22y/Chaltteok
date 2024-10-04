@@ -7,6 +7,7 @@ import BoxComponent from '../components/BoxComponent';
 import TextArea from '../components/TextArea';
 import MainBtn from '../components/MainBtn';
 import axios from 'axios';
+import { LoadingContext } from '../components/LoadingContext';
 
 function LoggedTest() {
   const totalQuestions = 10;
@@ -14,6 +15,7 @@ function LoggedTest() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // 현재 문제 번호는 0부터 시작
   const [answer, setAnswer] = useState(''); // 입력한 답변을 저장할 상태
   const [isLoadingQuestions, setIsLoadingQuestions] = useState(true); // 질문 로딩 상태
+  const { startLoading, stopLoading } = useContext(LoadingContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,6 +45,7 @@ function LoggedTest() {
     // }
     if (answer.trim()) {
       try {
+        startLoading(); // 로딩 시작
         await axios.post('/Logged/test/submitAnswer', {
           questionId: questions[currentQuestionIndex].id,
           answer: answer,
@@ -50,6 +53,8 @@ function LoggedTest() {
         setAnswer(''); // 답변 초기화
       } catch (error) {
         console.error('Error submitting answer:', error);
+      } finally {
+        stopLoading(); // 로딩 종료
       }
     }
 
@@ -57,9 +62,10 @@ function LoggedTest() {
     if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      // 마지막 문제일 경우 '제출하기' 버튼이 작동
+      startLoading(); // 로딩 시작 (마지막 질문 제출 시)
       navigate('/logged/loading');
       setTimeout(() => {
+        stopLoading(); // 로딩 종료
         navigate('/logged/type');
       }, 3000);
     }
