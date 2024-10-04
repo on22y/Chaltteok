@@ -39,7 +39,6 @@ function WordInput() {
 
         if (result.success) {
           alert('신조어 등록 성공!');
-          navigate('/');
         } else {
           alert(result.message);
         }
