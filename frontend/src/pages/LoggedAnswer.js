@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Answer.css';
 import axios from 'axios';
 import NumList from '../components/NumList';
+import TextComponent from '../components/TextComponent';
 import TestComponent from '../components/TestComponent';
 import MainBtn from '../components/MainBtn';
 import BoxComponent from '../components/BoxComponent';
@@ -23,6 +24,7 @@ function LoggedAnswer() {
   const [word, setWord] = useState(''); // 신조어 단어
   const [about_word, setAbout_Word] = useState(''); // 신조어 단어 해설
   const [answer, setAnswer] = useState(''); // 정답 문장
+  const [isLoadingAnswers, setIsLoadingAnswers] = useState(true);
 
   // 로컬 스토리지에서 문제 리스트를 가져옴
   useEffect(() => {
@@ -49,6 +51,8 @@ function LoggedAnswer() {
         }
       } catch (error) {
         console.error('Error fetching the answer data:', error);
+      } finally {
+        setIsLoadingAnswers(false); // 답변 로딩 상태 해제
       }
     };
 
@@ -60,12 +64,14 @@ function LoggedAnswer() {
   const handleQuestionClick = (questionNum) => {
     setCurrentQuestionIndex(questionNum - 1); // 클릭한 문제 번호로 currentQuestionIndex 업데이트
     setSelectedQuestion(questionNum); // 선택된 문제 번호 업데이트
+    setIsLoadingAnswers(true); // 답변을 다시 로딩 상태로 설정
   };
 
   const handleLeftArrowClick = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
       setSelectedQuestion(currentQuestionIndex); // selectedQuestion과 동기화
+      setIsLoadingAnswers(true); // 이전 질문으로 넘어가면 다시 로딩
     }
   };
 
@@ -73,6 +79,7 @@ function LoggedAnswer() {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedQuestion(currentQuestionIndex + 2); // selectedQuestion과 동기화
+      setIsLoadingAnswers(true); // 다음 질문으로 넘어가면 다시 로딩
     }
   };
 
@@ -123,7 +130,11 @@ function LoggedAnswer() {
               num={`Q${currentQuestionIndex + 1}.`} // 현재 문제 번호 1부터 시작
               question={questions[currentQuestionIndex]} // 저장된 문제에서 가져옴
             />
-            <AnswerComponent word={word} about_word={about_word} answer={answer} />
+            {isLoadingAnswers ? (
+              <TextComponent text="Loading answer..." fontSize="24px" shadowSize="2.1px" colorClass="textRed" />
+            ) : (
+              <AnswerComponent word={word} about_word={about_word} answer={answer} />
+            )}
           </>
         )}
       </BoxComponent>

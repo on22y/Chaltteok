@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './Word.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import TextComponent from '../components/TextComponent';
 import InputBox from '../components/InputBox';
 import SelectBtn from '../components/SelectBtn';
 import backBtn from '../assets/images/backBtn.png';
+import { LoadingContext } from '../components/LoadingContext';
 
 function WordInput() {
   const [word, setWord] = useState('');
@@ -15,6 +16,7 @@ function WordInput() {
   const [chat_second, setChat_second] = useState('');
   const [answer, setAnswer] = useState('');
   const [year, setYear] = useState('');
+  const { startLoading, stopLoading } = useContext(LoadingContext);
 
   const navigate = useNavigate();
 
@@ -29,7 +31,7 @@ function WordInput() {
         answer,
         year,
       };
-
+      startLoading(); // 로딩 시작
       try {
         // 서버로 신조어 제보 요청을 보냄
         const response = await axios.post('/process/word', wordData);
@@ -44,6 +46,8 @@ function WordInput() {
       } catch (error) {
         console.error('신조어 등록 중 오류 발생:', error);
         alert('신조어 등록 중 오류가 발생했습니다.');
+      } finally {
+        stopLoading(); // 로딩 종료
       }
     } else {
       alert('모든 정보를 입력해주세요.');

@@ -48,7 +48,7 @@ function Signup() {
         newnickname, // 새 닉네임 (입력 받은 값)
         password, // 새 비밀번호 (입력 받은 값)
       };
-
+      startLoading(); // 로딩 시작
       try {
         // 서버로 회원가입 요청을 보냄
         const response = await axios.post('/process/signup', signupData);
@@ -63,6 +63,8 @@ function Signup() {
       } catch (error) {
         console.error('회원가입 요청 중 오류 발생:', error);
         alert('회원가입 요청 중 오류가 발생했습니다.');
+      } finally {
+        stopLoading(); // 로딩 종료
       }
     } else {
       alert('필수 정보를 입력해주세요.');
