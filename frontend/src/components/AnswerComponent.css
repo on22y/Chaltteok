@@ -1,28 +1,4 @@
-.answerComponent {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  height: 100vh;
-  box-sizing: border-box;
-  align-items: flex-start;
-}
-
-.answerComponent .textContainer {
-  margin-bottom: -18px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  position: relative;
-  z-index: 2;
-}
-
-.answerComponent .boxContainer {
-  position: relative;
-  z-index: 1;
-  border: 3px solid #2f2f2f;
-}
-
-.answerComponent .solution {
+.solution {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -34,12 +10,12 @@
   font-style: normal;
 }
 
-.answerComponent .solution-main {
+.solution .solution-main {
   font-weight: 700;
   color: #357929;
 }
 
-.answerComponent .solution-sub {
+.solution .solution-sub {
   font-weight: 500;
   color: #272727;
 }

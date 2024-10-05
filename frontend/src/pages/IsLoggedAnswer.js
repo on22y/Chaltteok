@@ -119,9 +119,6 @@ function IsLoggedAnswer() {
           </div>
         </div>
 
-        {/* <div className="testComponentContainer">
-          <img className="trueImg" src={trueImg} width={86} height={151} /> */}
-
         <div className="imgWrapper">
           {scores[currentQuestionIndex] >= 80 ? (
             <img className="trueImg" src={trueImg} alt="True" />
@@ -136,11 +133,17 @@ function IsLoggedAnswer() {
               num={`Q${currentQuestionIndex + 1}.`} // 현재 문제 번호 1부터 시작
               question={questions[currentQuestionIndex]} // 저장된 문제에서 가져옴
             />
-            {isLoadingAnswers ? (
-              <TextComponent text="Loading answer..." fontSize="24px" shadowSize="2.1px" colorClass="textRed" />
-            ) : (
-              <AnswerComponent word={word} about_word={about_word} answer={answer} />
-            )}
+
+            <div className="answerComponent">
+              <TextComponent text="해설" fontSize="32px" shadowSize="2.5px" colorClass="textPink" />
+              <BoxComponent width="318px" height="177px">
+                {isLoadingAnswers ? (
+                  <TextComponent text="Loading answer..." fontSize="24px" shadowSize="2.1px" colorClass="textRed" />
+                ) : (
+                  <AnswerComponent word={word} about_word={about_word} answer={answer} />
+                )}
+              </BoxComponent>
+            </div>
           </>
         )}
       </BoxComponent>
