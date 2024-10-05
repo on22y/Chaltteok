@@ -1,12 +1,9 @@
-// 제보된 단어 정보를 서버에서 불러오고, 해당 단어를 등록 및 반려하는 코드
-
-const express = require('express');
-const mysql = require('mysql');
-const axios = require('axios');
+const express = require("express");
+const mysql = require("mysql");
 const router = express.Router();
-const db_config = require('../config/db_config.json');
+const db_config = require("../config/db_config.json");
 
-// MySQL 연결 설정
+// MySQL connection pool
 const pool = mysql.createPool({
   connectionLimit: 50,
   host: db_config.host,
@@ -17,50 +14,85 @@ const pool = mysql.createPool({
   debug: false,
 });
 
-// 단어 정보 확인 및 불러오기
-router.get('/', (req, res) => {
-  const wordId = req.query.id; // id는 쿼리 스트링 또는 다른 방식으로 받아올 수 있습니다.
-  console.log('back', wordId);
+router.get("/word/check/:id", (req, res) => {
+  const wordId = req.params.id;
+  if (!wordId) {
+    console.error("Word ID is undefined");
+    return res
+      .status(400)
+      .json({ error: "Invalid request: wordId is required" });
+  }
+
   pool.getConnection((err, conn) => {
     if (err) {
-      console.error('데이터 조회 중 에러 발생:', err);
-      return res.status(500).json({ error: 'Database connection failed' });
+      console.error("Database connection error:", err.message); // 내부 로그는 그대로
+      return res.status(500).json({ error: "Internal server error" });
     }
 
-    conn.query('SELECT * FROM user_make_data WHERE id = ?', [wordId], (err, results) => {
-      conn.release();
-      if (err) {
-        console.error('데이터 조회 중 에러 발생:', err);
-        return res.status(500).json({ error: 'Database query failed' });
+    conn.query(
+      "SELECT * FROM user_make_data WHERE id = ?",
+      [wordId],
+      (err, results) => {
+        conn.release();
+        if (err) {
+          console.error("Error fetching data:", err.message);
+          return res.status(500).json({ error: "Internal server error" });
+        }
+        if (results.length === 0) {
+          return res.status(404).json({ error: "No data found" });
+        }
+
+        res.json(results[0]);
       }
-      res.json(results[0] || {}); // 결과가 없으면 빈 객체 반환
-    });
+    );
   });
 });
 
-// 단어 등록 및 반려하기
-router.post('/approve', (req, res) => {
-  const { id, action } = req.body; // action: 'approve' 또는 'reject'
+router.post("/approve", (req, res) => {
+  const { id, action } = req.body;
+  if (!id || !action) {
+    return res
+      .status(400)
+      .json({
+        success: false,
+        message: "Invalid request: id and action are required",
+      });
+  }
 
   pool.getConnection((err, conn) => {
     if (err) {
-      console.error('Database connection error', err);
-      return res.status(500).json({ success: false, message: 'DB 서버 연결 실패' });
+      console.error("Database connection error:", err.message);
+      return res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
     }
 
-    if (action === 'approve') {
-      // 승인 처리 로직, 데이터베이스 변경 없이 기타 처리를 수행
-      console.log(`Word id ${id} approved.`);
-      res.json({ success: true, message: '단어가 성공적으로 승인되었습니다.' });
-    } else if (action === 'reject') {
-      // 반려 처리 로직, 데이터베이스 변경 없이 기타 처리를 수행
-      console.log(`Word id ${id} rejected.`);
-      res.json({ success: true, message: '단어가 성공적으로 반려되었습니다.' });
-    } else {
-      res.status(400).json({ success: false, message: '잘못된 요청입니다.' });
-    }
+    const status = action === "approve" ? 1 : 0; // 예: 1 = 승인, 0 = 반려
+    const query = "UPDATE user_make_data SET status = ? WHERE id = ?";
 
-    conn.release();
+    conn.query(query, [status, id], (err, results) => {
+      conn.release();
+      if (err) {
+        console.error("Error updating word status:", err.message);
+        return res
+          .status(500)
+          .json({ success: false, message: "Internal server error" });
+      }
+
+      if (results.affectedRows === 0) {
+        return res
+          .status(404)
+          .json({ success: false, message: "Word not found" });
+      }
+
+      res.json({
+        success: true,
+        message:
+          action === "approve"
+            ? "Word successfully approved."
+            : "Word successfully rejected.",
+      });
+    });
   });
 });
 

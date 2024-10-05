@@ -1,92 +1,56 @@
-import React, { useState, useEffect } from 'react';
-import './Word.css';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import MainBtn from '../components/MainBtn';
-import BoxComponent from '../components/BoxComponent';
-import TextComponent from '../components/TextComponent';
-import backBtn from '../assets/images/backBtn.png';
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
+import MainBtn from "../components/MainBtn";
+import BoxComponent from "../components/BoxComponent";
+import TextComponent from "../components/TextComponent";
+import backBtn from "../assets/images/backBtn.png";
+import "./Word.css";
 
 function AdWordCheck() {
-  // const [wordData, setWordData] = useState({
-  //   word: '',
-  //   year: '',
-  //   chat_first: '',
-  //   chat_second: '',
-  //   answer: '',
-  // });
-
   const [wordData, setWordData] = useState({});
-
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // useEffect(() => {
-  //   const fetchWordData = async () => {
-  //     try {
-  //       const response = await axios.get('/admin/word/check'); // 서버에서 단어 정보를 가져옴
-  //       setWordData(response.data);
-  //     } catch (error) {
-  //       console.error('단어 정보를 가져오는 중 오류 발생:', error);
-  //       alert('단어 정보를 가져오는 중 오류가 발생했습니다.');
-  //     }
-  //   };
-
-  //   fetchWordData();
-  // }, []);
+  // URLSearchParams로 쿼리 파라미터에서 'id'를 추출
+  const queryParams = new URLSearchParams(location.search);
+  const wordId = queryParams.get("id");
 
   useEffect(() => {
-    const wordId = 'the_id_of_the_word';
-    axios.get(`/word/check?id=${wordId}`).then((response) => {
-      console.log('front', response.data);
-      setWordData(response.data);
-    });
-  }, []);
-
-  // 단어 등록하기
+    console.log("Word ID:", wordId); // This should log the wordId
+    if (wordId) {
+      axios
+        .get(`/admin/word/check/${wordId}`)
+        .then((response) => {
+          setWordData(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching word data:", error);
+        });
+    }
+  }, [wordId]);
 
   const handleApprove = () => {
-    axios.post('/word/check', { id: wordData.id, action: 'approve' }).then(() => {
-      navigate('/admin/word/list');
-    });
+    axios
+      .post("/admin/approve", { id: wordData.id, action: "approve" })
+      .then(() => {
+        navigate("/admin/word/list");
+      })
+      .catch((error) => {
+        console.error("Error approving word:", error);
+      });
   };
-
-  // const handleApprove = async () => {
-  //   try {
-  //     const response = await axios.post('/admin/word/check', { wordData });
-  //     if (response.data.success) {
-  //       alert('단어가 성공적으로 등록되었습니다.');
-  //       navigate('/word/list');
-  //     } else {
-  //       alert(response.data.message);
-  //     }
-  //   } catch (error) {
-  //     console.error('단어 등록 중 오류 발생:', error);
-  //     alert('단어 등록 중 오류가 발생했습니다.');
-  //   }
-  // };
-
-  // 단어 반려하기
 
   const handleReject = () => {
-    axios.post('/admin/word/check/approve', { id: wordData.id, action: 'reject' }).then(() => {
-      navigate('/word/list');
-    });
+    axios
+      .post("/admin/approve", { id: wordData.id, action: "reject" })
+      .then(() => {
+        navigate("/admin/word/list");
+      })
+      .catch((error) => {
+        console.error("Error rejecting word:", error);
+      });
   };
-
-  // const handleReject = async () => {
-  //   try {
-  //     const response = await axios.post('/admin/word/check', { wordData });
-  //     if (response.data.success) {
-  //       alert('단어가 반려되었습니다.');
-  //       navigate('/word/list');
-  //     } else {
-  //       alert(response.data.message);
-  //     }
-  //   } catch (error) {
-  //     console.error('단어 반려 중 오류 발생:', error);
-  //     alert('단어 반려 중 오류가 발생했습니다.');
-  //   }
-  // };
 
   const handleBackClick = () => {
     navigate(-1);
@@ -95,7 +59,13 @@ function AdWordCheck() {
   return (
     <div className="wordPage">
       <div className="backBtn-content">
-        <img className="backBtn" src={backBtn} width={19.35} height={38.35} onClick={handleBackClick} />
+        <img
+          className="backBtn"
+          src={backBtn}
+          width={19.35}
+          height={38.35}
+          onClick={handleBackClick}
+        />
       </div>
 
       <TextComponent text="단어 정보 확인" fontSize="28px" shadowSize="2.2px" />
@@ -103,33 +73,73 @@ function AdWordCheck() {
       <BoxComponent width="356px" height="454px">
         <div className="wordCheckMain">
           <div className="wordCheckMaintitle">
-            <TextComponent text="단어 : " colorClass="textYellow" fontSize="24px" shadowSize="2.1px" />
-            <TextComponent text="유행 년도 : " colorClass="textYellow" fontSize="20px" shadowSize="2px" />
+            <TextComponent
+              text="단어 : "
+              colorClass="textYellow"
+              fontSize="24px"
+              shadowSize="2.1px"
+            />
+            <TextComponent
+              text="유행 년도 : "
+              colorClass="textYellow"
+              fontSize="20px"
+              shadowSize="2px"
+            />
           </div>
 
           <div className="wordCheckMainContent">
-            <TextComponent text={wordData.word} fontSize="24px" shadowSize="2.1px" />
-            <TextComponent text={wordData.year} fontSize="20px" shadowSize="2px" />
+            <TextComponent
+              text={wordData.word}
+              fontSize="24px"
+              shadowSize="2.1px"
+            />
+            <TextComponent
+              text={wordData.year}
+              fontSize="20px"
+              shadowSize="2px"
+            />
           </div>
         </div>
 
         <div className="textWithLine">
-          <TextComponent text="첫번째대화 :" colorClass="textYellow" fontSize="20px" shadowSize="2px" />
-          <div className="chats">{wordData.chat_first}</div>
+          <TextComponent
+            text="첫번째대화 :"
+            colorClass="textYellow"
+            fontSize="20px"
+            shadowSize="2px"
+          />
+          <div className="chats">{wordData.text1}</div>
         </div>
 
         <div className="textWithLine">
-          <TextComponent text="두번째대화 :" colorClass="textYellow" fontSize="20px" shadowSize="2px" />
-          <div className="chats">{wordData.chat_second}</div>
+          <TextComponent
+            text="두번째대화 :"
+            colorClass="textYellow"
+            fontSize="20px"
+            shadowSize="2px"
+          />
+          <div className="chats">{wordData.text2}</div>
         </div>
 
         <div className="textWithLine">
-          <TextComponent text="뜻 :" colorClass="textYellow" fontSize="20px" shadowSize="2px" />
-          <div className="chats">{wordData.answer}</div>
+          <TextComponent
+            text="뜻 :"
+            colorClass="textYellow"
+            fontSize="20px"
+            shadowSize="2px"
+          />
+          <div className="chats">{wordData.meaning}</div>
         </div>
       </BoxComponent>
 
-      <MainBtn text="등록하기" width="161px" height="57px" fontSize="20px" onClick={handleApprove} shadowSize={2} />
+      <MainBtn
+        text="등록하기"
+        width="161px"
+        height="57px"
+        fontSize="20px"
+        onClick={handleApprove}
+        shadowSize={2}
+      />
       <MainBtn
         text="반려하기"
         width="161px"
