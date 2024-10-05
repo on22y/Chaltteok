@@ -14,6 +14,7 @@ const pool = mysql.createPool({
   debug: false,
 });
 
+// 단어 정보를 가져오는 라우트
 router.get("/word/check/:id", (req, res) => {
   const wordId = req.params.id;
   if (!wordId) {
@@ -48,15 +49,14 @@ router.get("/word/check/:id", (req, res) => {
   });
 });
 
+// 승인 또는 반려 요청을 처리하는 라우트
 router.post("/approve", (req, res) => {
-  const { id, action } = req.body;
+  const { id, action, about_word } = req.body; // about_word 받기
   if (!id || !action) {
-    return res
-      .status(400)
-      .json({
-        success: false,
-        message: "Invalid request: id and action are required",
-      });
+    return res.status(400).json({
+      success: false,
+      message: "Invalid request: id and action are required",
+    });
   }
 
   pool.getConnection((err, conn) => {
@@ -64,35 +64,64 @@ router.post("/approve", (req, res) => {
       console.error("Database connection error:", err.message);
       return res
         .status(500)
-        .json({ success: false, message: "Internal server error" });
+        .json({ success: false, message: "Database server error" });
     }
 
-    const status = action === "approve" ? 1 : 0; // 예: 1 = 승인, 0 = 반려
-    const query = "UPDATE user_make_data SET status = ? WHERE id = ?";
+    if (action === "approve") {
+      // 승인 처리: 상태를 업데이트하고 meaning 업데이트
+      const query =
+        "UPDATE user_make_data SET status = ?, word_meaning = ? WHERE id = ?";
+      conn.query(query, ["accept", about_word, id], (err, results) => {
+        conn.release();
+        if (err) {
+          console.error("Error updating word status:", err.message);
+          return res
+            .status(500)
+            .json({ success: false, message: "Failed to approve word" });
+        }
 
-    conn.query(query, [status, id], (err, results) => {
-      conn.release();
-      if (err) {
-        console.error("Error updating word status:", err.message);
-        return res
-          .status(500)
-          .json({ success: false, message: "Internal server error" });
-      }
+        if (results.affectedRows === 0) {
+          return res
+            .status(404)
+            .json({ success: false, message: "Word not found" });
+        }
 
-      if (results.affectedRows === 0) {
-        return res
-          .status(404)
-          .json({ success: false, message: "Word not found" });
-      }
-
-      res.json({
-        success: true,
-        message:
-          action === "approve"
-            ? "Word successfully approved."
-            : "Word successfully rejected.",
+        res.json({
+          success: true,
+          message: "Word successfully approved.",
+        });
       });
-    });
+    } else if (action === "reject") {
+      // 반려 처리: 데이터를 삭제
+      const deleteQuery = "DELETE FROM user_make_data WHERE id = ?";
+      conn.query(deleteQuery, [id], (err, results) => {
+        conn.release();
+        if (err) {
+          console.error("Error deleting word:", err.message);
+          return res.status(500).json({
+            success: false,
+            message: "Failed to reject and delete word",
+          });
+        }
+
+        if (results.affectedRows === 0) {
+          return res
+            .status(404)
+            .json({ success: false, message: "Word not found" });
+        }
+
+        res.json({
+          success: true,
+          message: "Word successfully rejected and deleted.",
+        });
+      });
+    } else {
+      conn.release();
+      res.status(400).json({
+        success: false,
+        message: "Invalid action. Allowed actions are 'approve' or 'reject'.",
+      });
+    }
   });
 });
 
