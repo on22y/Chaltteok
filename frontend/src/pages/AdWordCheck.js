@@ -92,11 +92,7 @@ function AdWordCheck() {
           <TextComponent text="뜻 :" colorClass="textYellow" fontSize="20px" shadowSize="2px" />
           <div className="chats">{wordData.meaning}</div>
         </div>
-        <InputBox
-          text="단어의 정답을 입력해주세요."
-          value={wordData.about_word}
-          onChange={(e) => setWordData.about_word(e.target.value)}
-        />
+        <InputBox text="단어의 정답을 입력해주세요." value={wordData.about_word} />
       </BoxComponent>
 
       <MainBtn text="등록하기" width="161px" height="57px" fontSize="20px" onClick={handleApprove} shadowSize={2} />
