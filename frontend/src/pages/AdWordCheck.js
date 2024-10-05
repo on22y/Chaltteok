@@ -8,61 +8,85 @@ import TextComponent from '../components/TextComponent';
 import backBtn from '../assets/images/backBtn.png';
 
 function AdWordCheck() {
-  const [wordData, setWordData] = useState({
-    word: '',
-    year: '',
-    chat_first: '',
-    chat_second: '',
-    answer: '',
-  });
+  // const [wordData, setWordData] = useState({
+  //   word: '',
+  //   year: '',
+  //   chat_first: '',
+  //   chat_second: '',
+  //   answer: '',
+  // });
+
+  const [wordData, setWordData] = useState({});
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchWordData = async () => {
-      try {
-        const response = await axios.get('/admin/word/check'); // 서버에서 단어 정보를 가져옴
-        setWordData(response.data);
-      } catch (error) {
-        console.error('단어 정보를 가져오는 중 오류 발생:', error);
-        alert('단어 정보를 가져오는 중 오류가 발생했습니다.');
-      }
-    };
+  // useEffect(() => {
+  //   const fetchWordData = async () => {
+  //     try {
+  //       const response = await axios.get('/admin/word/check'); // 서버에서 단어 정보를 가져옴
+  //       setWordData(response.data);
+  //     } catch (error) {
+  //       console.error('단어 정보를 가져오는 중 오류 발생:', error);
+  //       alert('단어 정보를 가져오는 중 오류가 발생했습니다.');
+  //     }
+  //   };
 
-    fetchWordData();
+  //   fetchWordData();
+  // }, []);
+
+  useEffect(() => {
+    const wordId = 'the_id_of_the_word';
+    axios.get(`/word/check?id=${wordId}`).then((response) => {
+      console.log('front', response.data);
+      setWordData(response.data);
+    });
   }, []);
 
   // 단어 등록하기
-  const handleSubmit = async () => {
-    try {
-      const response = await axios.post('/admin/word/check', { wordData });
-      if (response.data.success) {
-        alert('단어가 성공적으로 등록되었습니다.');
-        navigate('/word/list');
-      } else {
-        alert(response.data.message);
-      }
-    } catch (error) {
-      console.error('단어 등록 중 오류 발생:', error);
-      alert('단어 등록 중 오류가 발생했습니다.');
-    }
+
+  const handleApprove = () => {
+    axios.post('/word/check', { id: wordData.id, action: 'approve' }).then(() => {
+      navigate('/admin/word/list');
+    });
   };
 
+  // const handleApprove = async () => {
+  //   try {
+  //     const response = await axios.post('/admin/word/check', { wordData });
+  //     if (response.data.success) {
+  //       alert('단어가 성공적으로 등록되었습니다.');
+  //       navigate('/word/list');
+  //     } else {
+  //       alert(response.data.message);
+  //     }
+  //   } catch (error) {
+  //     console.error('단어 등록 중 오류 발생:', error);
+  //     alert('단어 등록 중 오류가 발생했습니다.');
+  //   }
+  // };
+
   // 단어 반려하기
-  const handleReject = async () => {
-    try {
-      const response = await axios.post('/admin/word/check', { wordData });
-      if (response.data.success) {
-        alert('단어가 반려되었습니다.');
-        navigate('/word/list');
-      } else {
-        alert(response.data.message);
-      }
-    } catch (error) {
-      console.error('단어 반려 중 오류 발생:', error);
-      alert('단어 반려 중 오류가 발생했습니다.');
-    }
+
+  const handleReject = () => {
+    axios.post('/admin/word/check/approve', { id: wordData.id, action: 'reject' }).then(() => {
+      navigate('/word/list');
+    });
   };
+
+  // const handleReject = async () => {
+  //   try {
+  //     const response = await axios.post('/admin/word/check', { wordData });
+  //     if (response.data.success) {
+  //       alert('단어가 반려되었습니다.');
+  //       navigate('/word/list');
+  //     } else {
+  //       alert(response.data.message);
+  //     }
+  //   } catch (error) {
+  //     console.error('단어 반려 중 오류 발생:', error);
+  //     alert('단어 반려 중 오류가 발생했습니다.');
+  //   }
+  // };
 
   const handleBackClick = () => {
     navigate(-1);
@@ -105,7 +129,7 @@ function AdWordCheck() {
         </div>
       </BoxComponent>
 
-      <MainBtn text="등록하기" width="161px" height="57px" fontSize="20px" onClick={handleSubmit} shadowSize={2} />
+      <MainBtn text="등록하기" width="161px" height="57px" fontSize="20px" onClick={handleApprove} shadowSize={2} />
       <MainBtn
         text="반려하기"
         width="161px"

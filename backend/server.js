@@ -54,6 +54,7 @@ const view_AnswerRoutes = require('./slang_test/view_Answer');
 const islogged_view_AnswerRoutes = require('./slang_test/islogged_view_Answer');
 const delete_testRoutes = require('./user/delete_test');
 const inputWordRoutes = require('./slang_test/inputWord');
+const check_WordRoutes = require('./admin/check_Word');
 
 app.use('/Logged/type', LoggedresultRoutes);
 app.use('/isLogged/type', isLoggedresultRoutes);
@@ -72,6 +73,7 @@ app.use('/logged/answer', view_AnswerRoutes);
 app.use('/islogged/answer', islogged_view_AnswerRoutes);
 app.use('/', delete_testRoutes);
 app.use('/', inputWordRoutes);
+app.use('/word/check/', check_WordRoutes);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
