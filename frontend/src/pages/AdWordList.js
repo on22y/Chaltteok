@@ -19,7 +19,10 @@ function AdWordList() {
   useEffect(() => {
     const fetchWordData = async () => {
       try {
-        const response = await axios.get('/admin/word/list'); // 서버에서 단어 목록 정보를 가져옴
+        const response = await axios.post('/admin/word/list', {
+          headers: { 'Cache-Control': 'no-cache' }, // 항상 최신 데이터를 불러옴
+        });
+        console.log('API 응답 데이터:', response.data);
         if (Array.isArray(response.data)) {
           // 서버에서 응답받은 데이터가 배열인지 확인
           setWordDataList(response.data);
@@ -57,8 +60,8 @@ function AdWordList() {
 
           {/* 데이터를 배열로 받아와서 map을 통해 렌더링 */}
           {wordDataList.length > 0 ? (
-            wordDataList.map((wordData, index) => (
-              <div key={index} className="wordlistContent" onClick={() => handleWordClick(wordData.id)}>
+            wordDataList.map((wordData) => (
+              <div key={wordData.id} className="wordlistContent" onClick={() => handleWordClick(wordData.id)}>
                 <div className="lists">{wordData.word}</div>
                 <div className="lists">{wordData.year}</div>
                 <div className="lists">{wordData.text1}</div>
