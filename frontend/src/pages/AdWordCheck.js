@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
-import MainBtn from "../components/MainBtn";
-import BoxComponent from "../components/BoxComponent";
-import TextComponent from "../components/TextComponent";
-import backBtn from "../assets/images/backBtn.png";
-import "./Word.css";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import MainBtn from '../components/MainBtn';
+import BoxComponent from '../components/BoxComponent';
+import TextComponent from '../components/TextComponent';
+import backBtn from '../assets/images/backBtn.png';
+import './Word.css';
+import InputBox from '../components/InputBox';
 
 function AdWordCheck() {
   const [wordData, setWordData] = useState({});
@@ -14,10 +15,10 @@ function AdWordCheck() {
 
   // URLSearchParams로 쿼리 파라미터에서 'id'를 추출
   const queryParams = new URLSearchParams(location.search);
-  const wordId = queryParams.get("id");
+  const wordId = queryParams.get('id');
 
   useEffect(() => {
-    console.log("Word ID:", wordId); // This should log the wordId
+    console.log('Word ID:', wordId); // This should log the wordId
     if (wordId) {
       axios
         .get(`/admin/word/check/${wordId}`)
@@ -25,30 +26,30 @@ function AdWordCheck() {
           setWordData(response.data);
         })
         .catch((error) => {
-          console.error("Error fetching word data:", error);
+          console.error('Error fetching word data:', error);
         });
     }
   }, [wordId]);
 
   const handleApprove = () => {
     axios
-      .post("/admin/approve", { id: wordData.id, action: "approve" })
+      .post('/admin/approve', { id: wordData.id, action: 'approve' })
       .then(() => {
-        navigate("/admin/word/list");
+        navigate('/admin/word/list');
       })
       .catch((error) => {
-        console.error("Error approving word:", error);
+        console.error('Error approving word:', error);
       });
   };
 
   const handleReject = () => {
     axios
-      .post("/admin/approve", { id: wordData.id, action: "reject" })
+      .post('/admin/approve', { id: wordData.id, action: 'reject' })
       .then(() => {
-        navigate("/admin/word/list");
+        navigate('/admin/word/list');
       })
       .catch((error) => {
-        console.error("Error rejecting word:", error);
+        console.error('Error rejecting word:', error);
       });
   };
 
@@ -59,13 +60,7 @@ function AdWordCheck() {
   return (
     <div className="wordPage">
       <div className="backBtn-content">
-        <img
-          className="backBtn"
-          src={backBtn}
-          width={19.35}
-          height={38.35}
-          onClick={handleBackClick}
-        />
+        <img className="backBtn" src={backBtn} width={19.35} height={38.35} onClick={handleBackClick} />
       </div>
 
       <TextComponent text="단어 정보 확인" fontSize="28px" shadowSize="2.2px" />
@@ -73,73 +68,38 @@ function AdWordCheck() {
       <BoxComponent width="356px" height="454px">
         <div className="wordCheckMain">
           <div className="wordCheckMaintitle">
-            <TextComponent
-              text="단어 : "
-              colorClass="textYellow"
-              fontSize="24px"
-              shadowSize="2.1px"
-            />
-            <TextComponent
-              text="유행 년도 : "
-              colorClass="textYellow"
-              fontSize="20px"
-              shadowSize="2px"
-            />
+            <TextComponent text="단어 : " colorClass="textYellow" fontSize="24px" shadowSize="2.1px" />
+            <TextComponent text="유행 년도 : " colorClass="textYellow" fontSize="20px" shadowSize="2px" />
           </div>
 
           <div className="wordCheckMainContent">
-            <TextComponent
-              text={wordData.word}
-              fontSize="24px"
-              shadowSize="2.1px"
-            />
-            <TextComponent
-              text={wordData.year}
-              fontSize="20px"
-              shadowSize="2px"
-            />
+            <TextComponent text={wordData.word} fontSize="24px" shadowSize="2.1px" />
+            <TextComponent text={wordData.year} fontSize="20px" shadowSize="2px" />
           </div>
         </div>
 
         <div className="textWithLine">
-          <TextComponent
-            text="첫번째대화 :"
-            colorClass="textYellow"
-            fontSize="20px"
-            shadowSize="2px"
-          />
+          <TextComponent text="첫번째대화 :" colorClass="textYellow" fontSize="20px" shadowSize="2px" />
           <div className="chats">{wordData.text1}</div>
         </div>
 
         <div className="textWithLine">
-          <TextComponent
-            text="두번째대화 :"
-            colorClass="textYellow"
-            fontSize="20px"
-            shadowSize="2px"
-          />
+          <TextComponent text="두번째대화 :" colorClass="textYellow" fontSize="20px" shadowSize="2px" />
           <div className="chats">{wordData.text2}</div>
         </div>
 
         <div className="textWithLine">
-          <TextComponent
-            text="뜻 :"
-            colorClass="textYellow"
-            fontSize="20px"
-            shadowSize="2px"
-          />
+          <TextComponent text="뜻 :" colorClass="textYellow" fontSize="20px" shadowSize="2px" />
           <div className="chats">{wordData.meaning}</div>
         </div>
+        <InputBox
+          text="단어의 정답을 입력해주세요."
+          value={wordData.about_word}
+          onChange={(e) => setWordData.about_word(e.target.value)}
+        />
       </BoxComponent>
 
-      <MainBtn
-        text="등록하기"
-        width="161px"
-        height="57px"
-        fontSize="20px"
-        onClick={handleApprove}
-        shadowSize={2}
-      />
+      <MainBtn text="등록하기" width="161px" height="57px" fontSize="20px" onClick={handleApprove} shadowSize={2} />
       <MainBtn
         text="반려하기"
         width="161px"

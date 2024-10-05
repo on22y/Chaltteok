@@ -23,6 +23,10 @@
   align-items: flex-start;
 }
 
+.wordPage .inputBoxContainer {
+  margin-top: 15px;
+}
+
 .wordPage .mainBtnContainer {
   margin-top: 20px;
 }
