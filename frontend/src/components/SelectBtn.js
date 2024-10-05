@@ -4,7 +4,7 @@ import Select from 'react-select';
 import { RxTriangleDown } from 'react-icons/rx';
 
 function SelectBtn({ onYearChange }) {
-  const yearOptions = Array.from({ length: 41 }, (_, i) => ({
+  const yearOptions = Array.from({ length: 45 }, (_, i) => ({
     value: 1980 + i,
     label: `${1980 + i}`,
   }));

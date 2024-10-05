@@ -18,16 +18,9 @@ function Signup() {
 
   const navigate = useNavigate();
 
-  // nickname 값은 영어만 입력 가능
   const handleNicknameChange = (e) => {
     const value = e.target.value;
-    const regex = /^[a-zA-Z0-9]*$/;
-
-    if (regex.test(value)) {
-      setNickname(value);
-    } else {
-      alert('닉네임은 영문자와 숫자만 입력 가능합니다.');
-    }
+    setNickname(value);
   };
 
   // 이미지가 로드되면 로딩을 멈춤
