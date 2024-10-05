@@ -68,7 +68,7 @@ const Voice = () => {
   // 서버로 신조어 변환 요청
   const replaceSlangWithNormalWords = async (transcript) => {
     try {
-      const response = await fetch("http://localhost:3000/replace-slang", {
+      const response = await fetch("/replace-slang", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
