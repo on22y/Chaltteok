@@ -4,11 +4,33 @@
   background-color: #1e1e1e;
   box-sizing: border-box;
   flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
+  justify-content: space-evenly;
+  align-items: center;
   text-align: center;
+  margin: 0 0;
+  padding: 20px;
+}
+
+.voicetext {
+  color: #ffffff;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.voiceLineImg {
+  width: 1123px;
+  margin: 20px 0;
+}
+
+.voicetalkPage .MainVoiceBtn {
+  margin-top: 20px; /* 라인 이미지와 버튼 사이 여백 */
 }
 
 .voicetalkPage .underlineVoiceBtnContainer {
-  margin-top: 30px;
+  margin-top: 10px; /* 메인 버튼과 하단 버튼 사이 여백 */
+}
+
+.voicetalkPage .underlineVoiceBtnContainer p {
+  color: #fff;
+  margin: 10px 0 0 0; /* "또는" 텍스트의 여백 조정 */
 }
