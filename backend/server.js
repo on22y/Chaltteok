@@ -12,6 +12,7 @@ const sessionStoreOptions = {
   user: db_config.user,
   password: db_config.password,
   database: db_config.database,
+  charset: "utf8mb4", // 여기서 utf8mb4 설정
 };
 
 const sessionStore = new MySQLStore(sessionStoreOptions);

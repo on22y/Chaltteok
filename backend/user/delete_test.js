@@ -11,6 +11,7 @@ const pool = mysql.createPool({
   password: db_config.password,
   database: db_config.database,
   port: db_config.port,
+  charset: "utf8mb4", // 여기서 utf8mb4 설정
   debug: false,
 });
 

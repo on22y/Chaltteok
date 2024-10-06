@@ -12,6 +12,7 @@ const pool = mysql.createPool({
   database: db_config.database,
   port: db_config.port,
   debug: false,
+  charset: "utf8mb4", // 여기서 utf8mb4 설정
 });
 //비로그인
 router.post("/", (req, res) => {
