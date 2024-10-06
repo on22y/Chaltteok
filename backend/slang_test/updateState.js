@@ -196,13 +196,17 @@ router.post("/logged/loading/updateState", (req, res) => {
         }
       } else if (year >= 2000 && similarity < 80) {
         age_change += 1.0;
+      } else {
+        age_change += 0;
       }
     });
 
     // 나이에 따른 상태(state) 설정
     let state = "";
-    if (age_change < 19) {
+    if (age_change < 17) {
       state = "잼민이";
+    } else if (age_change >= 17 && age_change < 19) {
+      state = "K-고딩";
     } else if (age_change >= 19 && age_change < 22) {
       state = "샌애기";
     } else if (age_change >= 22 && age_change < 25) {
