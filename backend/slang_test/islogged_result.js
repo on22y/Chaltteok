@@ -40,6 +40,10 @@ router.post("/getResult", (req, res) => {
             message1 = "잼민이 등장!";
             message2 = "오늘도 신나게 놀 준비 완료~ ㅎㅎㅎ";
             break;
+          case "K-고딩":
+            message1 = "당장 주변 고등학교로 뛰어가서";
+            message2 = "즐거운 대화를 나누세요!";
+            break;
           case "샌애기":
             message1 = "축하해요, 새내기!";
             message2 = "새로운 시작을 응원할게요!";

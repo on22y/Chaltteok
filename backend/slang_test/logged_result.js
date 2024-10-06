@@ -44,6 +44,10 @@ router.post("/getResult", (req, res) => {
               message1 = "축하해요, 새내기!";
               message2 = "새로운 시작을 응원할게요!";
               break;
+            case "K-고딩":
+              message1 = "당장 주변 고등학교로 뛰어가서";
+              message2 = "즐거운 대화를 나누세요!";
+              break;
             case "화석":
               message1 = "복학생 환영!";
               message2 = "다시 돌아온 너의 열정을 응원해요!";
