@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import './AnswerComponent.css';
-import TextComponent from './TextComponent';
-import BoxComponent from './BoxComponent';
+import React, { useState, useEffect } from "react";
+import "./AnswerComponent.css";
+import TextComponent from "./TextComponent";
+import BoxComponent from "./BoxComponent";
 
 function AnswerComponent({ word, about_word, answer }) {
   return (
