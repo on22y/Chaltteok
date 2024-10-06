@@ -20,8 +20,22 @@ function LoggedType() {
     navigate("/Logged/answer");
   };
 
-  const handleLoggedTestClick = () => {
-    navigate("/Logged/test");
+  const handleLoggedTestClick = async () => {
+    try {
+      // Make a POST request to delete the logged user's answers
+      const response = await axios.post("/Logged/deleteAnswers");
+
+      if (response.status === 200) {
+        console.log(response.data.message); // Successfully deleted message
+
+        // Redirect or refresh the page after successful deletion
+        navigate("/Logged/test");
+      } else {
+        console.error("Failed to delete answers. Server returned:", response);
+      }
+    } catch (error) {
+      console.error("Error deleting answers:", error);
+    }
   };
 
   const handleWordClick = () => {
