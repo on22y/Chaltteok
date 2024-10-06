@@ -5,6 +5,7 @@ import type2 from '../assets/images/type2.png';
 import type3 from '../assets/images/type3.png';
 import type4 from '../assets/images/type4.png';
 import type5 from '../assets/images/type5.png';
+import type6 from '../assets/images/type6.jpg';
 import { LoadingContext } from '../components/LoadingContext';
 
 function TypeComponent({ state, detail }) {
@@ -17,7 +18,7 @@ function TypeComponent({ state, detail }) {
       imgSrc = type1;
       break;
     case 'K-고딩':
-      imgSrc = none;
+      imgSrc = type6;
       break;
     case '샌애기':
       imgSrc = type2;
