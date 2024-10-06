@@ -20,6 +20,7 @@
   height: 100vh;
   box-sizing: border-box;
   align-items: flex-start;
+  padding: 20px;
 }
 
 .answerComponent .textContainer {
