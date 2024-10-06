@@ -1,0 +1,14 @@
+.voicetalkPage {
+  display: flex;
+  height: 100vh;
+  background-color: #1e1e1e;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  text-align: center;
+}
+
+.voicetalkPage .underlineVoiceBtnContainer {
+  margin-top: 30px;
+}
