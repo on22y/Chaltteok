@@ -10,16 +10,16 @@ import InputBox from "../components/InputBox";
 
 function AdWordCheck() {
   const [wordData, setWordData] = useState({});
-  const [aboutWord, setAboutWord] = useState(""); // 사용자가 입력한 단어
+  const [aboutWord, setAboutWord] = useState(""); // First input state
+  const [directionInput, setDirectionInput] = useState(""); // New input state for "R or L"
   const navigate = useNavigate();
   const location = useLocation();
 
-  // URLSearchParams로 쿼리 파라미터에서 'id'를 추출
+  // URLSearchParams for extracting 'id' from the query
   const queryParams = new URLSearchParams(location.search);
   const wordId = queryParams.get("id");
 
   useEffect(() => {
-    console.log("Word ID:", wordId); // This should log the wordId
     if (wordId) {
       axios
         .get(`/admin/word/check/${wordId}`)
@@ -38,7 +38,8 @@ function AdWordCheck() {
         id: wordData.id,
         action: "approve",
         about_word: aboutWord,
-      }) // aboutWord 값을 서버로 전송
+        directionInput: directionInput,
+      })
       .then(() => {
         navigate("/admin/word/list");
       })
@@ -138,11 +139,20 @@ function AdWordCheck() {
           <div className="chats">{wordData.meaning}</div>
         </div>
 
-        {/* InputBox 컴포넌트를 사용해 사용자 입력을 처리 */}
+        {/* First input box for word entry */}
         <InputBox
-          text="단어의 정답을 입력해주세요."
-          value={aboutWord} // 상태값 바인딩
-          onChange={(e) => setAboutWord(e.target.value)} // 입력값 변경 처리
+          text="단어 입력"
+          value={aboutWord}
+          onChange={(e) => setAboutWord(e.target.value)}
+          style={{ width: "50%" }} // Half-width input box
+        />
+
+        {/* New input box for R or L entry */}
+        <InputBox
+          text="R or L 입력"
+          value={directionInput}
+          onChange={(e) => setDirectionInput(e.target.value)}
+          style={{ width: "50%" }} // Same half-width style for alignment
         />
       </BoxComponent>
 

@@ -51,7 +51,7 @@ router.get("/word/check/:id", (req, res) => {
 
 // 승인 또는 반려 요청을 처리하는 라우트
 router.post("/approve", (req, res) => {
-  const { id, action, about_word } = req.body; // about_word 받기
+  const { id, action, about_word, directionInput } = req.body; // about_word 받기
   if (!id || !action) {
     return res.status(400).json({
       success: false,
@@ -70,100 +70,103 @@ router.post("/approve", (req, res) => {
     if (action === "approve") {
       // 승인 처리: 상태를 업데이트하고 meaning 업데이트
       const query =
-        "UPDATE user_make_data SET status = ?, word_meaning = ? WHERE id = ?";
-      conn.query(query, ["accept", about_word, id], (err, results) => {
-        if (err) {
-          conn.release();
-          console.error("Error updating word status:", err.message);
-          return res
-            .status(500)
-            .json({ success: false, message: "Failed to approve word" });
-        }
-
-        if (results.affectedRows === 0) {
-          conn.release();
-          return res
-            .status(404)
-            .json({ success: false, message: "Word not found" });
-        }
-
-        // 데이터 삽입을 위해 user_make_data의 데이터 가져오기
-        const selectQuery = "SELECT * FROM user_make_data WHERE id = ?";
-        conn.query(selectQuery, [id], (err, selectResults) => {
+        "UPDATE user_make_data SET status = ?, word_meaning = ?, directionInput = ? WHERE id = ?";
+      conn.query(
+        query,
+        ["accept", about_word, directionInput, id],
+        (err, results) => {
           if (err) {
             conn.release();
-            console.error("Error fetching word data:", err.message);
+            console.error("Error updating word status:", err.message);
             return res
               .status(500)
-              .json({ success: false, message: "Failed to fetch word data" });
+              .json({ success: false, message: "Failed to approve word" });
           }
 
-          const wordData = selectResults[0];
-          if (!wordData) {
+          if (results.affectedRows === 0) {
             conn.release();
-            return res.status(404).json({
-              success: false,
-              message: "Word data not found for insertion",
-            });
+            return res
+              .status(404)
+              .json({ success: false, message: "Word not found" });
           }
 
-          // question 테이블에 데이터 삽입
-          const insertQuery = `
-            INSERT INTO question (slang_word, year, text1, text2, answer, meaning)
-            VALUES (?, ?, ?, ?, ?, ?)
-          `;
-          const insertValues = [
-            wordData.word, // slang_word
-            wordData.year, // year
-            wordData.text1, // text1
-            wordData.text2, // text2
-            wordData.meaning, // answer
-            about_word, // meaning (word_meaning으로 사용)
-          ];
-
-          conn.query(insertQuery, insertValues, (err, insertResults) => {
+          // 데이터 삽입을 위해 user_make_data의 데이터 가져오기
+          const selectQuery = "SELECT * FROM user_make_data WHERE id = ?";
+          conn.query(selectQuery, [id], (err, selectResults) => {
             if (err) {
               conn.release();
-              console.error(
-                "Error inserting into question table:",
-                err.message
-              );
-              return res.status(500).json({
+              console.error("Error fetching word data:", err.message);
+              return res
+                .status(500)
+                .json({ success: false, message: "Failed to fetch word data" });
+            }
+
+            const wordData = selectResults[0];
+            if (!wordData) {
+              conn.release();
+              return res.status(404).json({
                 success: false,
-                message: "Failed to insert data into question table",
+                message: "Word data not found for insertion",
               });
             }
 
-            // 삽입 후 user_make_data 테이블에서 데이터 삭제
-            const deleteQuery = "DELETE FROM user_make_data WHERE id = ?";
-            conn.query(deleteQuery, [id], (err, deleteResults) => {
-              conn.release();
+            // question 테이블에 데이터 삽입
+            const insertQuery = `
+            INSERT INTO question (slang_word, year, text1, text2, answer, meaning, value)
+            VALUES (?, ?, ?, ?, ?, ?,?)
+          `;
+            const insertValues = [
+              wordData.word, // slang_word
+              wordData.year, // year
+              wordData.text1, // text1
+              wordData.text2, // text2
+              wordData.meaning, // answer
+              about_word, // meaning (word_meaning으로 사용)
+              directionInput,
+            ];
+
+            conn.query(insertQuery, insertValues, (err, insertResults) => {
               if (err) {
-                console.error("Error deleting word:", err.message);
+                conn.release();
+                console.error(
+                  "Error inserting into question table:",
+                  err.message
+                );
                 return res.status(500).json({
                   success: false,
-                  message: "Failed to delete word after insertion",
+                  message: "Failed to insert data into question table",
                 });
               }
 
-              if (deleteResults.affectedRows === 0) {
-                return res
-                  .status(404)
-                  .json({
+              // 삽입 후 user_make_data 테이블에서 데이터 삭제
+              const deleteQuery = "DELETE FROM user_make_data WHERE id = ?";
+              conn.query(deleteQuery, [id], (err, deleteResults) => {
+                conn.release();
+                if (err) {
+                  console.error("Error deleting word:", err.message);
+                  return res.status(500).json({
+                    success: false,
+                    message: "Failed to delete word after insertion",
+                  });
+                }
+
+                if (deleteResults.affectedRows === 0) {
+                  return res.status(404).json({
                     success: false,
                     message: "Word not found for deletion",
                   });
-              }
+                }
 
-              res.json({
-                success: true,
-                message:
-                  "Word successfully approved, inserted, and deleted from user_make_data.",
+                res.json({
+                  success: true,
+                  message:
+                    "Word successfully approved, inserted, and deleted from user_make_data.",
+                });
               });
             });
           });
-        });
-      });
+        }
+      );
     } else if (action === "reject") {
       // 반려 처리: 데이터를 삭제
       const deleteQuery = "DELETE FROM user_make_data WHERE id = ?";
