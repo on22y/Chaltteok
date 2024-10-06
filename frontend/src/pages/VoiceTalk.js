@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './VoiceTalk.css';
 import axios from 'axios';
 import MainVoiceBtn from '../components/MainVoiceBtn';
 import UnderlineVoiceBtn from '../components/UnderlineVoiceBtn';
+import voiceLineImg from '../assets/images/voiceLineImg.png';
 
 function VoiceTalk() {
   const navigate = useNavigate();
