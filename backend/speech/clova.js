@@ -40,5 +40,5 @@ router.post("/recognize", upload.single("audio"), async (req, res) => {
     res.status(500).send("Speech recognition failed");
   }
 });
-app.use("/speech-to-text", router);
+
 module.exports = router;

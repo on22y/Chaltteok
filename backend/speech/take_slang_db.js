@@ -66,6 +66,4 @@ router.post("/replace-slang", async (req, res) => {
     res.status(500).json({ error: "변환 실패" });
   }
 });
-
-app.use("/speech-to-text", router);
 module.exports = router;
