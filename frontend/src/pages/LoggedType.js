@@ -1,54 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import './LoggedType.css';
-import TextComponent from '../components/TextComponent';
-import TypeComponent from '../components/TypeComponent';
-import UnderlineBtn from '../components/UnderlineBtn';
-import MainBtn from '../components/MainBtn';
-import lineImg from '../assets/images/lineImg.png';
-import textDecoImg from '../assets/images/textDecoImg.png';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./LoggedType.css";
+import TextComponent from "../components/TextComponent";
+import TypeComponent from "../components/TypeComponent";
+import UnderlineBtn from "../components/UnderlineBtn";
+import MainBtn from "../components/MainBtn";
+import lineImg from "../assets/images/lineImg.png";
+import textDecoImg from "../assets/images/textDecoImg.png";
 
 function LoggedType() {
-  const [state, setState] = useState('');
-  const [showTextDeco, setShowTextDeco] = useState(false); // 텍스트와 이미지 표시 여부
-
+  const [state, setState] = useState("");
+  const [message1, setMessage1] = useState("");
+  const [message2, setMessage2] = useState("");
+  const [showTextDeco, setShowTextDeco] = useState(false);
   const navigate = useNavigate();
 
   const handleLoggedAnswerClick = () => {
-    navigate('/Logged/answer');
+    navigate("/Logged/answer");
   };
 
   const handleLoggedTestClick = () => {
-    navigate('/Logged/test');
+    navigate("/Logged/test");
   };
 
   const handleWordClick = () => {
-    navigate('/word');
+    navigate("/word");
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post('/Logged/type/getResult');
-        const newState = response.data.state; // 서버에서 새로운 진단 결과 받아옴
-        setState(newState);
+        const response = await axios.post("/Logged/type/getResult");
+        const { state, message1, message2 } = response.data; // 백엔드에서 state와 message를 받아옴
+        setState(state);
+        setMessage1(message1);
+        setMessage2(message2);
 
         // 로컬 스토리지에서 이전 진단 결과 불러오기
-        const previousState = localStorage.getItem('currentState');
+        const previousState = localStorage.getItem("currentState");
 
         // 비교: 가장 최근의 결과와 바로 직전 결과가 동일한지 확인
-        if (previousState && previousState === newState) {
-          setShowTextDeco(true); // 동일할 경우 텍스트 및 이미지 표시
+        if (previousState && previousState === state) {
+          setShowTextDeco(true);
         } else {
-          setShowTextDeco(false); // 다를 경우 비표시
+          setShowTextDeco(false);
         }
 
-        // 현재 상태를 로컬 스토리지에 저장, 다음 번 진단에서 비교하기 위해 이전 상태로 사용됨
-        localStorage.setItem('previousState', previousState); // 기존 currentState를 previousState로 이동
-        localStorage.setItem('currentState', newState); // 새로운 state를 currentState로 저장
+        // 현재 상태를 로컬 스토리지에 저장
+        localStorage.setItem("previousState", previousState); // 기존 currentState를 previousState로 이동
+        localStorage.setItem("currentState", state); // 새로운 state를 currentState로 저장
       } catch (error) {
-        console.error('Error fetching the type value:', error);
+        console.error("Error fetching the state and message:", error);
       }
     };
 
@@ -57,15 +60,29 @@ function LoggedType() {
 
   return (
     <div className="LoggedTypePage">
-      <UnderlineBtn subText="인터넷 생활 오답노트가 필요하다면," text="해설지 확인" onClick={handleLoggedAnswerClick} />
+      <UnderlineBtn
+        subText="인터넷 생활 오답노트가 필요하다면,"
+        text="해설지 확인"
+        onClick={handleLoggedAnswerClick}
+      />
 
       <div className="LoggedTypePage-content">
         <div className="stateWithTextDeco">
-          {showTextDeco && ( // 이전과 동일한 경우에만 표시
+          {showTextDeco && (
             <div className="LoggedTypePage-textDeco">
-              <TextComponent text="여전히" colorClass="textRed" fontSize="28px" shadowSize="2.2px" />
+              <TextComponent
+                text="여전히"
+                colorClass="textRed"
+                fontSize="28px"
+                shadowSize="2.2px"
+              />
               <div className="typeComponent-content">
-                <img className="textDecoImg" src={textDecoImg} width={100} height={45} />
+                <img
+                  className="textDecoImg"
+                  src={textDecoImg}
+                  width={100}
+                  height={45}
+                />
               </div>
             </div>
           )}
@@ -74,15 +91,19 @@ function LoggedType() {
             state={state}
             detail={
               <>
-                당장 주변 고등학교로 뛰어가서
-                <br />
-                즐거운 대화를 나누세요.
+                {message1}
+                <br></br>
+                {message2}
               </>
             }
           />
         </div>
 
-        <MainBtn text="진단 다시하기" subText="여전히 내 나이 인정 못한다면?" onClick={handleLoggedTestClick} />
+        <MainBtn
+          text="진단 다시하기"
+          subText="여전히 내 나이 인정 못한다면?"
+          onClick={handleLoggedTestClick}
+        />
         <img className="lineImg" src={lineImg} width={318} />
         <MainBtn
           text="신조어 제보"
