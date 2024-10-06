@@ -17,12 +17,12 @@
 .answerComponent {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  justify-content: center;
   height: 100vh;
   box-sizing: border-box;
   align-items: flex-start;
-  width: 90%;
+  width: 100%;
+  max-width: 356px;
 }
 
 .answerComponent .textContainer {
@@ -37,14 +37,17 @@
   display: flex;
   justify-content: space-between;
   margin: 0;
-  padding: 20px; /* BoxContainer에 padding 추가 */
+  padding-left: 19px;
+  padding-right: 20px;
 }
 
-.answerComponent .boxContainer {
+.answerComponent .boxContainer_copy {
   position: relative;
   z-index: 1;
   border: 3px solid #2f2f2f;
-  padding: 20px;
+  /* padding: 20px; */
+  width: 90%;
+  margin: 0 auto;
 }
 
 .numListWithArrows {
@@ -71,6 +74,6 @@ svg {
 }
 
 .falseImg {
-  width: 108px;
+  width: 80px;
   height: 110px;
 }
