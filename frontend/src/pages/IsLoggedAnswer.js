@@ -136,7 +136,7 @@ function IsLoggedAnswer() {
 
             <div className="answerComponent">
               <TextComponent text="해설" fontSize="32px" shadowSize="2.5px" colorClass="textPink" />
-              <BoxComponent width="318px" height="177px">
+              <BoxComponent width="300px" height="177px">
                 {isLoadingAnswers ? (
                   <TextComponent text="Loading answer..." fontSize="24px" shadowSize="2.1px" colorClass="textRed" />
                 ) : (
