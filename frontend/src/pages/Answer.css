@@ -41,7 +41,7 @@
   padding-right: 20px;
 }
 
-.answerComponent .boxContainer {
+.answerComponent .boxContainer_copy {
   position: relative;
   z-index: 1;
   border: 3px solid #2f2f2f;

@@ -7,6 +7,7 @@ import TextComponent from '../components/TextComponent';
 import TestComponent from '../components/TestComponent';
 import MainBtn from '../components/MainBtn';
 import BoxComponent from '../components/BoxComponent';
+import BoxComponent_copy from '../components/BoxComponent_copy';
 import trueImg from '../assets/images/trueImg.png';
 import falseImg from '../assets/images/falseImg.png';
 import AnswerComponent from '../components/AnswerComponent';
@@ -136,13 +137,13 @@ function IsLoggedAnswer() {
 
             <div className="answerComponent">
               <TextComponent text="해설" fontSize="32px" shadowSize="2.5px" colorClass="textPink" />
-              <BoxComponent width="300px" height="177px">
+              <BoxComponent_copy height="177px">
                 {isLoadingAnswers ? (
                   <TextComponent text="Loading answer..." fontSize="24px" shadowSize="2.1px" colorClass="textRed" />
                 ) : (
                   <AnswerComponent word={word} about_word={about_word} answer={answer} />
                 )}
-              </BoxComponent>
+              </BoxComponent_copy>
             </div>
           </>
         )}
