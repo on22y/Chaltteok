@@ -19,6 +19,8 @@ import IsLoggedAnswer from './pages/IsLoggedAnswer';
 import LoggedAnswer from './pages/LoggedAnswer';
 import AdWordCheck from './pages/AdWordCheck';
 import AdWordList from './pages/AdWordList';
+import VoiceHome from './pages/VoiceHome';
+import VoiceTalk from './pages/VoiceTalk';
 
 function App() {
   // const updateScale = () => {
@@ -68,6 +70,8 @@ function App() {
             <Route path="/Logged/answer" element={<LoggedAnswer />} />
             <Route path="/admin/word/check" element={<AdWordCheck />} />
             <Route path="/admin/word/list" element={<AdWordList />} />
+            <Route path="/voice/home" element={<VoiceHome />} />
+            <Route path="/voice/talk" element={<VoiceTalk />} />
           </Routes>
         </Router>
       </LoadingProvider>
