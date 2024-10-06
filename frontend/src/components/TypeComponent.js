@@ -16,6 +16,9 @@ function TypeComponent({ state, detail }) {
     case '잼민이':
       imgSrc = type1;
       break;
+    case 'K-고딩':
+      imgSrc = none;
+      break;
     case '샌애기':
       imgSrc = type2;
       break;
