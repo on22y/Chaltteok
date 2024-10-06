@@ -6,6 +6,7 @@
   height: 100vh;
   background-color: #fccd2a;
   box-sizing: border-box;
+  margin: 0;
   padding: 20px; /* 전체 페이지 padding 추가 */
 }
 
@@ -21,7 +22,7 @@
   height: 100vh;
   box-sizing: border-box;
   align-items: flex-start;
-  width: 100%;
+  width: 90%;
 }
 
 .answerComponent .textContainer {
@@ -35,6 +36,7 @@
 .answerPage .boxContainer {
   display: flex;
   justify-content: space-between;
+  margin: 0;
   padding: 20px; /* BoxContainer에 padding 추가 */
 }
 
