@@ -111,7 +111,7 @@ function VoiceTalk() {
           .map((line, index) => (
             <p key={index}>{line}</p> // 줄바꿈된 문장 출력
           ))}
-        <p className={`nowSpeak ${isRecording ? 'speaking' : ''}`} style={{ color: '#ffffff' }}>
+        <p className={`nowSpeak ${isRecording && interimTranscript ? 'speaking' : ''}`} style={{ color: '#ffffff' }}>
           {interimTranscript}
         </p>
         <div ref={bottomRef} /> {/* 자동 스크롤을 위한 요소 */}
@@ -119,14 +119,16 @@ function VoiceTalk() {
 
       <img className="voiceLineImg" src={voiceLineImg} />
 
-      <MainVoiceBtn
-        text={buttonText}
-        width="165px"
-        height="63.17px"
-        fontSize="24px"
-        onClick={isRecording ? handleStopRecording : handleStartRecording}
-      />
-      <UnderlineVoiceBtn subText="또는," text="인터넷 나이 측정하기" onClick={handleTest} />
+      <div className="voicetalkPage-bottom">
+        <MainVoiceBtn
+          text={buttonText}
+          width="165px"
+          height="63.17px"
+          fontSize="24px"
+          onClick={isRecording ? handleStopRecording : handleStartRecording}
+        />
+        <UnderlineVoiceBtn subText="또는," text="인터넷 나이 측정하기" onClick={handleTest} />
+      </div>
     </div>
   );
 }
