@@ -32,10 +32,10 @@
   overflow: hidden; /* 4줄 이상의 텍스트는 위로 스크롤 */
   width: 95%;
   height: auto;
-  max-width: 1123px; /* 이미지와 같은 너비 */
+  max-width: 850px;
   position: relative;
   margin-bottom: 10px;
-  padding-left: 25%;
+  padding-left: 30px;
 }
 
 .voicetalkPage .textDisplay p {
@@ -71,9 +71,9 @@
 .voicetalkPage .nowSpeak.speaking::before {
   content: '●';
   color: #ffffff;
-  margin-right: 20px;
+  margin-right: 10px;
   position: absolute;
-  left: -40px;
+  left: -30px;
   top: 0;
 }
 
