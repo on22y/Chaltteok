@@ -7,11 +7,12 @@ import UnderlineVoiceBtn from '../components/UnderlineVoiceBtn';
 import voiceLineImg from '../assets/images/voiceLineImg.png';
 
 function VoiceTalk() {
-  const [transcript, setTranscript] = useState('');
+  const [transcript, setTranscript] = useState([]); // 문장 배열로 관리
   const [interimTranscript, setInterimTranscript] = useState(''); // 중간 결과 저장
   const [isRecording, setIsRecording] = useState(false);
   const [buttonText, setButtonText] = useState('시작하기'); // 버튼의 기본 텍스트
   const recognitionRef = useRef(null); // recognition 객체를 ref로 관리
+  const bottomRef = useRef(null); // 자동 스크롤을 위한 ref
 
   const navigate = useNavigate();
 
@@ -44,7 +45,11 @@ function VoiceTalk() {
 
       // 최종 결과를 신조어에서 평어로 변환하는 API 호출
       const updatedTranscript = await replaceSlangWithNormalWords(finalTranscript);
-      setTranscript((prev) => prev + updatedTranscript); // 변환된 최종 결과만 누적
+
+      // 임의로 문장의 끝에 구두점 '.' 추가
+      // const sentenceWithPeriod = updatedTranscript.trim() + '.';
+
+      setTranscript((prev) => [...prev, updatedTranscript]); // 변환된 최종 결과만 누적
       setInterimTranscript(interimTranscriptTemp); // 중간 결과는 실시간으로 표시
     };
 
@@ -95,11 +100,25 @@ function VoiceTalk() {
     navigate('/QR');
   };
 
+  // 새로운 텍스트가 추가될 때마다 자동으로 스크롤
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [transcript]);
+
   return (
     <div className="voicetalkPage">
-      <div className="voicetext">{transcript}음성</div>
-      <div style={{ color: '#A4A4A4' }}>{interimTranscript}중간음성</div> {/* 중간 결과는 회색으로 표시 */}
-      <img className="voiceLineImg" src={voiceLineImg} width={1123} />
+      <div className="textDisplay">
+        {transcript
+          .filter((line) => line.trim() !== '') // 빈 문자열을 필터링
+          .slice(-4)
+          .map((line, index) => (
+            <p key={index}>{line}</p> // 줄바꿈된 문장 출력
+          ))}
+        <div ref={bottomRef} /> {/* 자동 스크롤을 위한 요소 */}
+      </div>
+
+      <img className="voiceLineImg" src={voiceLineImg} />
+
       <MainVoiceBtn
         text={buttonText}
         width="165px"

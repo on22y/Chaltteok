@@ -26,4 +26,5 @@
 
 .mainVoiceBtn:active {
   transform: translateY(2px);
+  border-color: inherit;
 }

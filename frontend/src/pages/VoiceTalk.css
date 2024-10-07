@@ -4,33 +4,70 @@
   background-color: #1e1e1e;
   box-sizing: border-box;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   text-align: center;
   margin: 0 0;
   padding: 20px;
 }
 
-.voicetext {
+.voicetalkPage .textDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* height: 200px;  */
+  overflow: hidden; /* 4줄 이상의 텍스트는 위로 스크롤 */
+  position: relative;
+}
+
+.voicetalkPage .textDisplay p {
   font-family: 'Pretendard';
   font-weight: 700;
   font-style: normal;
-  color: #ffffff;
+  padding: 0 0;
+  margin: 5px 0;
   font-size: 28px;
-  margin-bottom: 20px;
+  color: #ffffff;
+  text-align: center;
+  transition: transform 0.5s ease-in-out;
+}
+
+.voicetalkPage .textDisplay p:nth-last-child(4) {
+  color: #727272;
+}
+
+.voicetalkPage .textDisplay p:nth-last-child(3) {
+  color: #727272;
+}
+
+.voicetalkPage .textDisplay p:nth-last-child(2) {
+  color: #a4a4a4;
+}
+
+.voicetalkPage .textDisplay p:nth-last-child(1) {
+  color: #ffffff;
+  position: relative;
+  font-size: 36px;
+}
+
+.voicetalkPage .textDisplay p:nth-last-child(1)::before {
+  content: '●';
+  color: #ffffff;
+  margin-right: 10px;
 }
 
 .voiceLineImg {
-  width: 1123px;
+  width: 100%;
+  max-width: 1123px;
   margin: 20px 0;
 }
 
 .voicetalkPage .MainVoiceBtn {
-  margin-top: 20px; /* 라인 이미지와 버튼 사이 여백 */
+  margin-top: 30px;
 }
 
 .voicetalkPage .underlineVoiceBtnContainer {
-  margin-top: 10px; /* 메인 버튼과 하단 버튼 사이 여백 */
+  margin-top: 10px;
 }
 
 .voicetalkPage .underlineVoiceBtnContainer p {
