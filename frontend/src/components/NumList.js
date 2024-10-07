@@ -9,7 +9,7 @@ function NumList({ totalQuestions = 10, onQuestionClick, selectedQuestion, score
         const questionNum = index + 1;
         const isSelected = questionNum === selectedQuestion; // 현재 선택된 문제 번호인지 확인
         const score = scores[index] || 0; // 각 문제의 점수를 가져옴, 기본값은 0
-        const color = score >= 80 ? '#357929' : '#FF4E4E'; // 점수가 80 이상이면 기본 색, 아니면 오답 색
+        const color = score === -50 ? 'gray' : score >= 75 ? '#357929' : '#FF4E4E';
 
         return (
           <div

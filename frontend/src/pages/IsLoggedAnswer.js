@@ -10,6 +10,7 @@ import BoxComponent from '../components/BoxComponent';
 import BoxComponent_copy from '../components/BoxComponent_copy';
 import trueImg from '../assets/images/trueImg.png';
 import falseImg from '../assets/images/falseImg.png';
+import middleImg from '../assets/images/middleImg.png';
 import AnswerComponent from '../components/AnswerComponent';
 import CustomLeftArrowIcon from '../components/CustomLeftArrowIcon';
 import CustomRightArrowIcon from '../components/CustomRightArrowIcon';
@@ -121,7 +122,9 @@ function IsLoggedAnswer() {
         </div>
 
         <div className="imgWrapper">
-          {scores[currentQuestionIndex] >= 80 ? (
+          {scores[currentQuestionIndex] === -50 ? (
+            <img className="middleImg" src={middleImg} alt="Middle" />
+          ) : scores[currentQuestionIndex] >= 75 ? (
             <img className="trueImg" src={trueImg} alt="True" />
           ) : (
             <img className="falseImg" src={falseImg} alt="False" />
