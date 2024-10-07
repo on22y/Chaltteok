@@ -15,7 +15,7 @@ function VoiceHome() {
     <div className="voicehomePage">
       <MainVoiceBtn text="대화 시작하기" onClick={handleStart} />
 
-      <div className="voicetext">
+      <div className="voicehometext">
         버튼을 누르시면 여러분의 대화를 <br />
         <strong>'자막'</strong> 형태로 표현합니다. <br />
         <br />

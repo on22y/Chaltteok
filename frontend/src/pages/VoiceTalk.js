@@ -50,7 +50,7 @@ function VoiceTalk() {
 
     recognition.onstart = () => {
       setIsRecording(true);
-      setButtonText('그만두기'); // 녹음 시작 시 버튼 텍스트 변경
+      setButtonText('그만하기'); // 녹음 시작 시 버튼 텍스트 변경
     };
 
     recognition.onend = () => {
@@ -97,9 +97,8 @@ function VoiceTalk() {
 
   return (
     <div className="voicetalkPage">
-      <div className="voicetext">음성 인식 내용</div>
-      <p>{transcript}</p>
-      <p style={{ color: '#A4A4A4' }}>{interimTranscript}</p> {/* 중간 결과는 회색으로 표시 */}
+      <div className="voicetext">{transcript}음성</div>
+      <div style={{ color: '#A4A4A4' }}>{interimTranscript}중간음성</div> {/* 중간 결과는 회색으로 표시 */}
       <img className="voiceLineImg" src={voiceLineImg} width={1123} />
       <MainVoiceBtn
         text={buttonText}

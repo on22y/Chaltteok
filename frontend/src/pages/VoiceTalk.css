@@ -12,6 +12,9 @@
 }
 
 .voicetext {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-style: normal;
   color: #ffffff;
   font-size: 28px;
   margin-bottom: 20px;
