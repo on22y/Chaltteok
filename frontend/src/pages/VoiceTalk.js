@@ -46,9 +46,6 @@ function VoiceTalk() {
       // 최종 결과를 신조어에서 평어로 변환하는 API 호출
       const updatedTranscript = await replaceSlangWithNormalWords(finalTranscript);
 
-      // 임의로 문장의 끝에 구두점 '.' 추가
-      // const sentenceWithPeriod = updatedTranscript.trim() + '.';
-
       setTranscript((prev) => [...prev, updatedTranscript]); // 변환된 최종 결과만 누적
       setInterimTranscript(interimTranscriptTemp); // 중간 결과는 실시간으로 표시
     };
@@ -114,6 +111,9 @@ function VoiceTalk() {
           .map((line, index) => (
             <p key={index}>{line}</p> // 줄바꿈된 문장 출력
           ))}
+        <p className={`nowSpeak ${isRecording ? 'speaking' : ''}`} style={{ color: '#ffffff' }}>
+          {interimTranscript}
+        </p>
         <div ref={bottomRef} /> {/* 자동 스크롤을 위한 요소 */}
       </div>
 

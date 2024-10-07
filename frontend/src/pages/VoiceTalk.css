@@ -6,7 +6,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
   margin: 0 0;
   padding: 20px;
 }
@@ -14,43 +13,44 @@
 .voicetalkPage .textDisplay {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* height: 200px;  */
+  align-items: flex-start;
+  text-align: left;
   overflow: hidden; /* 4줄 이상의 텍스트는 위로 스크롤 */
   position: relative;
+  padding-right: 25%;
 }
 
 .voicetalkPage .textDisplay p {
   font-family: 'Pretendard';
-  font-weight: 700;
+  font-weight: bold;
   font-style: normal;
   padding: 0 0;
   margin: 5px 0;
   font-size: 28px;
-  color: #ffffff;
+  color: #727272;
   text-align: center;
   transition: transform 0.5s ease-in-out;
 }
 
 .voicetalkPage .textDisplay p:nth-last-child(4) {
-  color: #727272;
+  color: #a4a4a4;
+  font-weight: bolder;
 }
 
 .voicetalkPage .textDisplay p:nth-last-child(3) {
-  color: #727272;
-}
-
-.voicetalkPage .textDisplay p:nth-last-child(2) {
-  color: #a4a4a4;
-}
-
-.voicetalkPage .textDisplay p:nth-last-child(1) {
   color: #ffffff;
-  position: relative;
   font-size: 36px;
+  font-weight: bolder;
 }
 
-.voicetalkPage .textDisplay p:nth-last-child(1)::before {
+.voicetalkPage .nowSpeak {
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: bolder;
+  position: relative;
+}
+
+.voicetalkPage .nowSpeak.speaking::before {
   content: '●';
   color: #ffffff;
   margin-right: 10px;
@@ -64,13 +64,18 @@
 
 .voicetalkPage .MainVoiceBtn {
   margin-top: 30px;
+  display: flex;
+  justify-content: center;
 }
 
 .voicetalkPage .underlineVoiceBtnContainer {
   margin-top: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .voicetalkPage .underlineVoiceBtnContainer p {
   color: #fff;
   margin: 10px 0 0 0; /* "또는" 텍스트의 여백 조정 */
+  text-align: center;
 }
