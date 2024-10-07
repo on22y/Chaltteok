@@ -52,7 +52,7 @@ router.post("/loading/updateState", (req, res) => {
 
         // 조건에 따른 나이 변화 계산 및 age_change 업데이트
         if (year === 2024) {
-          if (similarity >= 80) {
+          if (similarity >= 75) {
             age_change -= 1.5;
           } else if (similarity === -50) {
             // 변동 없음
@@ -60,7 +60,7 @@ router.post("/loading/updateState", (req, res) => {
             age_change += 1.5;
           }
         } else if (year === 2023) {
-          if (similarity >= 80) {
+          if (similarity >= 75) {
             age_change -= 1.0;
           } else if (similarity === -50) {
             // 변동 없음
@@ -68,7 +68,7 @@ router.post("/loading/updateState", (req, res) => {
             age_change += 2;
           }
         } else if (year >= 2020 && year <= 2022) {
-          if (similarity >= 80) {
+          if (similarity >= 75) {
             age_change -= 0.5;
           } else if (similarity === -50) {
             // 변동 없음
@@ -76,7 +76,7 @@ router.post("/loading/updateState", (req, res) => {
             age_change += 2;
           }
         } else if (year >= 2010) {
-          if (similarity >= 80) {
+          if (similarity >= 75) {
             age_change -= 0.5;
           } else if (similarity === -50) {
             // 변동 없음
@@ -86,7 +86,7 @@ router.post("/loading/updateState", (req, res) => {
         } else if (year >= 2000) {
           if (similarity === -50) {
             // 변동 없음
-          } else if (similarity < 80) {
+          } else if (similarity < 75) {
             age_change += 1.0;
           }
         }
@@ -172,30 +172,30 @@ router.post("/logged/loading/updateState", (req, res) => {
 
       // 나이 변화 계산
       if (year === 2024) {
-        if (similarity >= 80) {
+        if (similarity >= 75) {
           age_change -= 1.5;
         } else if (similarity !== -50) {
           age_change += 1.5;
         }
       } else if (year === 2023) {
-        if (similarity >= 80) {
+        if (similarity >= 75) {
           age_change -= 1.0;
         } else if (similarity !== -50) {
           age_change += 2;
         }
       } else if (year >= 2020 && year <= 2022) {
-        if (similarity >= 80) {
+        if (similarity >= 75) {
           age_change -= 0.5;
         } else if (similarity !== -50) {
           age_change += 2;
         }
       } else if (year >= 2010) {
-        if (similarity >= 80) {
+        if (similarity >= 75) {
           age_change -= 0.5;
         } else if (similarity !== -50) {
           age_change += 1.0;
         }
-      } else if (year >= 2000 && similarity < 80) {
+      } else if (year >= 2000 && similarity < 75) {
         age_change += 1.0;
       } else {
         age_change += 0;
