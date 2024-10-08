@@ -21,33 +21,9 @@ import AdWordCheck from './pages/AdWordCheck';
 import AdWordList from './pages/AdWordList';
 import VoiceHome from './pages/VoiceHome';
 import VoiceTalk from './pages/VoiceTalk';
+import VoiceQR from './pages/VoiceQR';
 
 function App() {
-  // const updateScale = () => {
-  //   const scaleWidth = window.innerWidth / 393;
-  //   const scaleHeight = window.innerHeight / 852;
-  //   const scale = Math.min(scaleWidth, scaleHeight);
-  //   document.documentElement.style.setProperty('--scale', scale);
-
-  //   const appContainer = document.querySelector('.appContainer');
-  //   if (scale < 1) {
-  //     // 작은 화면에서는 스케일을 줄여서 맞춤
-  //     appContainer.style.transform = `scale(${scale})`;
-  //   } else {
-  //     // 큰 화면에서는 고정 크기로 유지 (393x852)하고 중앙에 배치
-  //     appContainer.style.transform = 'scale(1)';
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   updateScale();
-  //   window.addEventListener('resize', updateScale);
-
-  //   return () => {
-  //     window.removeEventListener('resize', updateScale);
-  //   };
-  // }, []);
-
   return (
     <div className="appContainer">
       <LoadingProvider>
@@ -72,6 +48,7 @@ function App() {
             <Route path="/admin/word/list" element={<AdWordList />} />
             <Route path="/voice/home" element={<VoiceHome />} />
             <Route path="/voice/talk" element={<VoiceTalk />} />
+            <Route path="/QR" element={<VoiceQR />} />
           </Routes>
         </Router>
       </LoadingProvider>
