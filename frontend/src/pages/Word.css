@@ -22,10 +22,6 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding: 0 0;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 15px;
 }
 
 .wordPage .inputBoxForChat {
@@ -100,21 +96,28 @@
   margin-bottom: 5px;
 }
 
+.wordSubtitle1,
+.wordSubtitle2,
+.wordSubtitle3,
+.wordSubtitle4 {
+  margin-bottom: 3px;
+}
+
 .wordSubtitle1 {
-  width: 115px;
+  width: 101px;
   height: auto;
   margin-left: 5px;
 }
 
 .wordSubtitle2,
 .wordSubtitle3 {
-  width: 103px;
+  width: 93px;
   height: auto;
   margin-left: 10px;
 }
 
 .wordSubtitle4 {
-  width: 43px;
+  width: 36px;
   height: auto;
-  margin-left: 5px;
+  margin-left: 7px;
 }
