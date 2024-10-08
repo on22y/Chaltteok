@@ -44,6 +44,8 @@ function WordInput() {
 
         if (result.success) {
           alert('신조어 등록 성공!');
+          // 페이지를 새로고침
+          window.location.reload();
         } else {
           alert(result.message);
         }
