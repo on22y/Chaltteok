@@ -28,3 +28,17 @@
 .homePage .mainBtnContainer {
   margin-top: 30px;
 }
+
+.mainTitle,
+.mainSubtitle {
+  width: 95%;
+  height: auto;
+}
+
+.mainTitle {
+  margin-bottom: 10px;
+}
+
+.mainSubtitle {
+  margin-top: 5px;
+}

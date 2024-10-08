@@ -73,7 +73,7 @@ function Login() {
       <img className="loginTitle" src={loginTitle} alt="logintitle" />
 
       <BoxComponent height="426px">
-        <img className="loginSubitle" src={loginSubtitle} alt="loginsubtitle" />
+        <img className="loginSubtitle" src={loginSubtitle} alt="loginsubtitle" />
         {!imageLoaded && <TextComponent text="Loading image..." fontSize="18px" shadowSize="1.9px" />}
         <img className="imgComponent" src={loginpageImg} width={185} onLoad={handleImageLoad} alt="Login visual" />
         <InputBox text="닉네임을 입력해주세요." value={nickname} onChange={handleNicknameChange} />

@@ -5,6 +5,7 @@
   height: 100vh;
   background-color: #fccd2a;
   box-sizing: border-box;
+  align-items: center;
 }
 
 .backBtn-content {
@@ -20,29 +21,31 @@
 .wordPage .boxContainer {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
+  padding: 0 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 15px;
 }
 
-/* .wordPage .inputBoxContainer {
-  margin-top: 15px;
-} */
+.wordPage .inputBoxForChat {
+  margin-bottom: 5px;
+}
 
 .wordPage .mainBtnContainer {
   margin-top: 20px;
 }
-
-/* .yearSelectionRow {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 109px;
-} */
 
 .yearSelectionRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-top: 5px;
+}
+
+.wordPage .selectBtnContainer {
+  margin-right: 10px;
 }
 
 .chats {
@@ -89,4 +92,29 @@
   flex-direction: column;
   align-items: flex-start;
   margin-left: 10px;
+}
+
+.wordTitle {
+  width: 200px;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+.wordSubtitle1 {
+  width: 115px;
+  height: auto;
+  margin-left: 5px;
+}
+
+.wordSubtitle2,
+.wordSubtitle3 {
+  width: 103px;
+  height: auto;
+  margin-left: 10px;
+}
+
+.wordSubtitle4 {
+  width: 43px;
+  height: auto;
+  margin-left: 5px;
 }

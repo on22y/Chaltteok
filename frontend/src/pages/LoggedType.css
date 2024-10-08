@@ -60,3 +60,8 @@
   margin-bottom: 10px;
   flex-direction: column;
 }
+
+.textDeco {
+  width: 120px;
+  height: auto;
+}

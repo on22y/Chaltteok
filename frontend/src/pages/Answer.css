@@ -82,3 +82,12 @@ svg {
   width: 90px;
   height: 110px;
 }
+
+.answercomponentText {
+  width: 70px;
+  height: auto;
+  padding: 0 0;
+  margin-bottom: -20px;
+  margin-left: 10px;
+  z-index: 99;
+}

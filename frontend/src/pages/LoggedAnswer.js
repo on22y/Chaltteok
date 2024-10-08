@@ -14,6 +14,7 @@ import middleImg from '../assets/images/middleImg.png';
 import AnswerComponent from '../components/AnswerComponent';
 import CustomLeftArrowIcon from '../components/CustomLeftArrowIcon';
 import CustomRightArrowIcon from '../components/CustomRightArrowIcon';
+import answercomponentText from '../assets/images/answercomponentText.png';
 
 function LoggedAnswer() {
   const navigate = useNavigate();
@@ -137,7 +138,7 @@ function LoggedAnswer() {
             />
 
             <div className="answerComponent">
-              <TextComponent text="해설" fontSize="32px" shadowSize="2.5px" colorClass="textPink" />
+              <img className="answercomponentText" src={answercomponentText} alt="answercomponentText" />
               <BoxComponent_copy height="177px">
                 {isLoadingAnswers ? (
                   <TextComponent text="Loading answer..." fontSize="24px" shadowSize="2.1px" colorClass="textRed" />
