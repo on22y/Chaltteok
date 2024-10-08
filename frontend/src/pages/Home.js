@@ -8,6 +8,8 @@ import TextComponent from '../components/TextComponent';
 import mainImg from '../assets/images/mainImg.png';
 import UnderlineBtn from '../components/UnderlineBtn';
 import { LoadingContext } from '../components/LoadingContext';
+import mainTitle from '../assets/images/mainTitle.png';
+import mainSubtitle from '../assets/images/mainSubtitle.png';
 
 function Home() {
   const { startLoading, stopLoading } = useContext(LoadingContext);
@@ -71,23 +73,10 @@ function Home() {
       <UnderlineBtn subText="테스트 경험이 있다면!" text="로그인" onClick={handleLogin} />
       <div className="homePage-content">
         <BoxComponent height="482px">
-          <TextComponent text="인터넷나이" fontSize="64px" shadowSize="3.7px" />
-          <TextComponent text="테스트" colorClass="textLightgreen" fontSize="42px" shadowSize="3.2px" />
+          <img className="mainTitle" src={mainTitle} alt="Main Title" />
           {!imageLoaded && <TextComponent text="Loading image..." fontSize="18px" shadowSize="1.9px" />}
           <img className="imgComponent" src={mainImg} width={198} onLoad={handleImageLoad} alt="Login visual" />
-          <TextComponent
-            text={
-              <>
-                당신이 살고 있을
-                <br />
-                인터넷 세상의 나이를 찾아서..
-              </>
-            }
-            colorClass="textYellow"
-            fontSize="24px"
-            shadowSize="2.1px"
-            style={{ marginTop: '0px' }}
-          />
+          <img className="mainSubtitle" src={mainSubtitle} alt="Main Subtitle" />
         </BoxComponent>
         <MainBtn text="진단하기" subText={`지금까지 ${count}명이 참여했어요`} onClick={handleTestClick} />
       </div>

@@ -9,6 +9,8 @@ import InputBox from '../components/InputBox';
 import signuppageImg from '../assets/images/signuppageImg.png';
 import backBtn from '../assets/images/backBtn.png';
 import { LoadingContext } from '../components/LoadingContext';
+import signupTitle from '../assets/images/signupTitle.png';
+import signupSubtitle from '../assets/images/signupSubtitle.png';
 
 function Signup() {
   const [newnickname, setNickname] = useState('');
@@ -75,21 +77,10 @@ function Signup() {
         <img className="backBtn" src={backBtn} width={19.35} height={38.35} onClick={handleBackClick} />
       </div>
 
-      <TextComponent text="회원가입" fontSize="28px" shadowSize="2.2px" />
+      <img className="signupTitle" src={signupTitle} alt="signuptitle" />
 
       <BoxComponent height="467px">
-        <TextComponent
-          text={
-            <>
-              여러분의 결과 저장 이외에
-              <br />
-              아무곳에도 활용되지 않습니다.
-            </>
-          }
-          colorClass="textYellow"
-          fontSize="24px"
-          shadowSize="2.1px"
-        />
+        <img className="signupSubtitle" src={signupSubtitle} alt="signupsubtitle" />
 
         {!imageLoaded && <TextComponent text="Loading image..." fontSize="18px" shadowSize="1.9px" />}
         <img className="imgComponent" src={signuppageImg} width={198} onLoad={handleImageLoad} />

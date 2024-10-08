@@ -4,6 +4,7 @@
   justify-content: center;
   height: 100vh;
   background-color: #fccd2a;
+  align-items: center;
 }
 
 .backBtn-content {
@@ -22,33 +23,20 @@
 }
 
 .signupPage .inputBoxContainer {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .signupPage .mainBtnContainer {
   margin-top: 20px;
 }
 
-/* .signupPage .imgComponent {
-  padding: 0 0;
-  margin-top: 20px;
-} */
+.signupTitle {
+  width: 150px;
+  height: auto;
+  margin-bottom: 5px;
+}
 
-/* @media (max-width: 768px) {
-  // 화면이 작을 때 (모바일) 적용되는 스타일
-  .signupPage {
-    padding: 15px;
-  }
-
-  .signupPage .boxContainer {
-    padding: 20px;
-  }
-
-  .signupPage input {
-    font-size: 14px;
-  }
-
-  .signupPage .signuppageImg {
-    width: 120px;
-  }
-} */
+.signupSubtitle {
+  width: 325px;
+  height: auto;
+}

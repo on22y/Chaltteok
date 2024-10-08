@@ -4,6 +4,7 @@
   justify-content: center;
   height: 100vh;
   background-color: #fccd2a;
+  align-items: center;
 }
 
 .backBtn-content {
@@ -29,12 +30,18 @@
   margin-top: 20px;
 }
 
-/* .loginPage .imgComponent {
-  padding: 0 0;
-  margin-top: 20px;
-} */
-
 .backBtn {
   width: 19.35px;
   height: 38.35px;
+}
+
+.loginTitle {
+  width: 130px;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+.loginSubitle {
+  width: 325px;
+  height: auto;
 }

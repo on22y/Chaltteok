@@ -9,6 +9,8 @@ import InputBox from '../components/InputBox';
 import loginpageImg from '../assets/images/loginpageImg.png';
 import backBtn from '../assets/images/backBtn.png';
 import { LoadingContext } from '../components/LoadingContext';
+import loginTitle from '../assets/images/loginTitle.png';
+import loginSubtitle from '../assets/images/loginSubtitle.png';
 
 function Login() {
   const [nickname, setNickname] = useState('');
@@ -68,10 +70,10 @@ function Login() {
         <img className="backBtn" src={backBtn} width={19.35} height={38.35} onClick={handleBackClick} />
       </div>
 
-      <TextComponent text="로그인" fontSize="28px" shadowSize="2.2px" />
+      <img className="loginTitle" src={loginTitle} alt="logintitle" />
 
       <BoxComponent height="426px">
-        <TextComponent text="신조어 공부는 많이 하셨어요?" colorClass="textYellow" fontSize="24px" shadowSize="2.1px" />
+        <img className="loginSubitle" src={loginSubtitle} alt="loginsubtitle" />
         {!imageLoaded && <TextComponent text="Loading image..." fontSize="18px" shadowSize="1.9px" />}
         <img className="imgComponent" src={loginpageImg} width={185} onLoad={handleImageLoad} alt="Login visual" />
         <InputBox text="닉네임을 입력해주세요." value={nickname} onChange={handleNicknameChange} />

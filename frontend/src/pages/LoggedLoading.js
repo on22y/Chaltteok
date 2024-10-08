@@ -5,6 +5,7 @@ import loadingImg from '../assets/images/loadingImg.png';
 import TextComponent from '../components/TextComponent';
 import axios from 'axios';
 import { LoadingContext } from '../components/LoadingContext';
+import loadingText from '../assets/images/loadingText.png';
 
 function LoggedLoading() {
   const { startLoading, stopLoading } = useContext(LoadingContext);
@@ -63,19 +64,7 @@ function LoggedLoading() {
     <div className="loadingPage">
       {!imageLoaded && <TextComponent text="Loading image..." fontSize="18px" shadowSize="1.9px" />}
       <img className="imgComponent" src={loadingImg} width={198} onLoad={handleImageLoad} alt="Login visual" />
-      <TextComponent
-        text={
-          <>
-            인터넷 나이
-            <br />
-            계산중
-            <br />
-            .........
-          </>
-        }
-        fontSize="42px"
-        shadowSize="3.2px"
-      />
+      <img className="loadingText" src={loadingText} alt="loading" />
     </div>
   );
 }
