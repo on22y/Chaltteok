@@ -11,6 +11,7 @@ import backBtn from '../assets/images/backBtn.png';
 import { LoadingContext } from '../components/LoadingContext';
 import loginTitle from '../assets/images/loginTitle.png';
 import loginSubtitle from '../assets/images/loginSubtitle.png';
+import loginBtn from '../assets/images/loginBtn.png';
 
 function Login() {
   const [nickname, setNickname] = useState('');
@@ -84,7 +85,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </BoxComponent>
-      <MainBtn text="로그인" subText="비밀번호 까먹었어요 .." onClick={handleSubmit} />
+      <MainBtn imgSrc={loginBtn} imgAlt="로그인" subText="비밀번호 까먹었어요 .." onClick={handleSubmit} />
     </div>
   );
 }

@@ -15,6 +15,7 @@ import AnswerComponent from '../components/AnswerComponent';
 import CustomLeftArrowIcon from '../components/CustomLeftArrowIcon';
 import CustomRightArrowIcon from '../components/CustomRightArrowIcon';
 import answercomponentText from '../assets/images/answercomponentText.png';
+import retestBtn from '../assets/images/retestBtn.png';
 
 function LoggedAnswer() {
   const navigate = useNavigate();
@@ -151,7 +152,9 @@ function LoggedAnswer() {
         )}
       </BoxComponent>
       <MainBtn
-        text="진단 다시하기"
+        imgSrc={retestBtn}
+        imgAlt="진단 다시하기"
+        imgWidth="80%"
         subText="홈으로 돌아가기"
         onClick={handleLoggedTestClick}
         onSubTextClick={handleGoMypageClick}

@@ -15,6 +15,7 @@ import AnswerComponent from '../components/AnswerComponent';
 import CustomLeftArrowIcon from '../components/CustomLeftArrowIcon';
 import CustomRightArrowIcon from '../components/CustomRightArrowIcon';
 import answercomponentText from '../assets/images/answercomponentText.png';
+import signupBtn from '../assets/images/signupBtn.png';
 
 function IsLoggedAnswer() {
   const navigate = useNavigate();
@@ -153,7 +154,8 @@ function IsLoggedAnswer() {
         )}
       </BoxComponent>
       <MainBtn
-        text="회원가입"
+        imgSrc={signupBtn}
+        imgAlt="회원가입"
         subText="홈으로 돌아가기"
         onClick={handleSignupClick}
         onSubTextClick={handleGoHomeClick}

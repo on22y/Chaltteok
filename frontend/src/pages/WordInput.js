@@ -14,6 +14,7 @@ import wordSubtitle1 from '../assets/images/wordSubtitle1.png';
 import wordSubtitle2 from '../assets/images/wordSubtitle2.png';
 import wordSubtitle3 from '../assets/images/wordSubtitle3.png';
 import wordSubtitle4 from '../assets/images/wordSubtitle4.png';
+import wordinputBtn from '../assets/images/wordinputBtn.png';
 
 function WordInput() {
   const [word, setWord] = useState('');
@@ -99,7 +100,13 @@ function WordInput() {
         <img className="wordSubtitle4" src={wordSubtitle4} alt="wordSubtitle" />
         <InputBox text="대화의 정답을 입력해주세요." value={answer} onChange={(e) => setAnswer(e.target.value)} />
       </BoxComponent>
-      <MainBtn text="신조어 제보" subText="라떼는 단어도 언젠가는 신조어!" onClick={handleSubmit} />
+      <MainBtn
+        imgSrc={wordinputBtn}
+        imgAlt="신조어 제보"
+        imgWidth="80%"
+        subText="라떼는 단어도 언젠가는 신조어!"
+        onClick={handleSubmit}
+      />
     </div>
   );
 }

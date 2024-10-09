@@ -1,7 +1,20 @@
 import React from 'react';
 import './MainBtn.css';
 
-function MainBtn({ text, subText, onClick, onSubTextClick, width, height, fontSize, backgroundColor, shadowSize }) {
+function MainBtn({
+  text,
+  imgSrc,
+  imgAlt,
+  imgWidth,
+  subText,
+  onClick,
+  onSubTextClick,
+  width,
+  height,
+  fontSize,
+  backgroundColor,
+  shadowSize,
+}) {
   const buttonStyle = {
     width: width ? `${width}` : '204px',
     height: height ? `${height}` : '72px',
@@ -15,10 +28,15 @@ function MainBtn({ text, subText, onClick, onSubTextClick, width, height, fontSi
       : '',
   };
 
+  const imgStyle = {
+    width: imgWidth || '55%',
+    height: 'auto',
+  };
+
   return (
     <div className="mainBtnContainer">
       <button type="submit" className="mainBtn" onClick={onClick} style={buttonStyle}>
-        <span style={textStyle}>{text}</span>
+        {imgSrc ? <img src={imgSrc} alt={imgAlt} style={imgStyle} /> : <span style={textStyle}>{text}</span>}
       </button>
       <div className="mainBtnsubText" onClick={onSubTextClick} style={{ cursor: 'pointer' }}>
         {subText}

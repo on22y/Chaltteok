@@ -33,6 +33,11 @@
   cursor: pointer;
   text-align: center;
   letter-spacing: 1.5px;
+
+  /* 이미지 및 텍스트 중앙 정렬을 위한 추가 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .mainBtn span {

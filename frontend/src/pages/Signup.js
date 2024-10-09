@@ -11,6 +11,7 @@ import backBtn from '../assets/images/backBtn.png';
 import { LoadingContext } from '../components/LoadingContext';
 import signupTitle from '../assets/images/signupTitle.png';
 import signupSubtitle from '../assets/images/signupSubtitle.png';
+import signupBtn from '../assets/images/signupBtn.png';
 
 function Signup() {
   const [newnickname, setNickname] = useState('');
@@ -93,7 +94,7 @@ function Signup() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </BoxComponent>
-      <MainBtn text="회원가입" subText="동의한사람만눌러주세요." onClick={handleSubmit} />
+      <MainBtn imgSrc={signupBtn} imgAlt="회원가입" subText="동의한사람만눌러주세요." onClick={handleSubmit} />
     </div>
   );
 }

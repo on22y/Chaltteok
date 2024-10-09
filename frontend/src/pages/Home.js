@@ -10,6 +10,7 @@ import UnderlineBtn from '../components/UnderlineBtn';
 import { LoadingContext } from '../components/LoadingContext';
 import mainTitle from '../assets/images/mainTitle.png';
 import mainSubtitle from '../assets/images/mainSubtitle.png';
+import testBtn from '../assets/images/testBtn.png';
 
 function Home() {
   const { startLoading, stopLoading } = useContext(LoadingContext);
@@ -78,7 +79,12 @@ function Home() {
           <img className="imgComponent" src={mainImg} width={198} onLoad={handleImageLoad} alt="Login visual" />
           <img className="mainSubtitle" src={mainSubtitle} alt="Main Subtitle" />
         </BoxComponent>
-        <MainBtn text="진단하기" subText={`지금까지 ${count}명이 참여했어요`} onClick={handleTestClick} />
+        <MainBtn
+          imgSrc={testBtn}
+          imgAlt="진단하기"
+          subText={`지금까지 ${count}명이 참여했어요`}
+          onClick={handleTestClick}
+        />
       </div>
     </div>
   );

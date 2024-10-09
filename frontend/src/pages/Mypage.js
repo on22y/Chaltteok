@@ -5,6 +5,8 @@ import './Mypage.css';
 import TypeComponent from '../components/TypeComponent';
 import MainBtn from '../components/MainBtn';
 import lineImg from '../assets/images/lineImg.png';
+import retestBtn from '../assets/images/retestBtn.png';
+import wordinputBtn from '../assets/images/wordinputBtn.png';
 
 function Mypage() {
   const [state, setState] = useState('');
@@ -68,10 +70,18 @@ function Mypage() {
         }
       />
 
-      <MainBtn text="진단 다시하기" subText="여전히 내 나이 인정 못한다면?" onClick={handleLoggedTestClick} />
+      <MainBtn
+        imgSrc={retestBtn}
+        imgAlt="진단 다시하기"
+        imgWidth="80%"
+        subText="여전히 내 나이 인정 못한다면?"
+        onClick={handleLoggedTestClick}
+      />
       <img className="lineImg" src={lineImg} width={318} />
       <MainBtn
-        text="신조어 제보"
+        imgSrc={wordinputBtn}
+        imgAlt="신조어 제보"
+        imgWidth="80%"
         subText="요즘은 이런단어 쓴단다 ~"
         width="130px"
         height="48px"
