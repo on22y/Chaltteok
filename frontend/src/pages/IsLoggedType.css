@@ -43,3 +43,9 @@
   padding: 0;
   margin: 0;
 }
+
+.isLoggedTypePage .typeComponent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

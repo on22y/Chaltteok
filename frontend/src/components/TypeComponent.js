@@ -12,6 +12,13 @@ import statetype3 from '../assets/images/statetype3.png';
 import statetype4 from '../assets/images/statetype4.png';
 import statetype5 from '../assets/images/statetype5.png';
 import statetype6 from '../assets/images/statetype6.png';
+import message_default from '../assets/images/message_default.png';
+import message1 from '../assets/images/message1.png';
+import message2 from '../assets/images/message2.png';
+import message3 from '../assets/images/message3.png';
+import message4 from '../assets/images/message4.png';
+import message5 from '../assets/images/message5.png';
+import message6 from '../assets/images/message6.png';
 import { LoadingContext } from '../components/LoadingContext';
 
 function TypeComponent({ state, detail }) {
@@ -62,6 +69,30 @@ function TypeComponent({ state, detail }) {
       break;
   }
 
+  let detailImgSrc;
+  switch (state) {
+    case '잼민이':
+      detailImgSrc = message1;
+      break;
+    case 'K-고딩':
+      detailImgSrc = message2;
+      break;
+    case '샌애기':
+      detailImgSrc = message3;
+      break;
+    case '화석':
+      detailImgSrc = message4;
+      break;
+    case '삼촌':
+      detailImgSrc = message5;
+      break;
+    case '아재':
+      detailImgSrc = message6;
+      break;
+    default:
+      detailImgSrc = message_default;
+  }
+
   // 이미지가 로드되면 로딩을 멈춤
   const handleImageLoad = () => {
     setImageLoaded(true);
@@ -75,7 +106,7 @@ function TypeComponent({ state, detail }) {
       {!imageLoaded && <TextComponent text="Loading image..." fontSize="18px" shadowSize="1.9px" />}
       <img className="imgComponent" src={imgSrc} width={198} alt={state} onLoad={handleImageLoad} />
 
-      <TextComponent colorClass="textLightgreen" text={detail} fontSize="24px" shadowSize="2.1px" />
+      <img className="detailImgComponent" src={detailImgSrc} width={365} alt={detail} onLoad={handleImageLoad} />
     </div>
   );
 }
