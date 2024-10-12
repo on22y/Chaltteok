@@ -35,3 +35,8 @@ body {
   /* z-index: 0;*/
   caret-color: transparent; /* 커서 깜빡임 제거 */
 }
+
+input,
+textarea {
+  caret-color: auto; /* input과 textarea에서 커서를 자동으로 활성화 */
+}
