@@ -82,14 +82,14 @@ function LoggedType() {
       <div className="LoggedTypePage-content">
         <div className="stateWithTextDeco">
           {showTextDeco && (
-            <div className="LoggedTypePage-textDeco">
-              <img
-                className={
-                  state === '잼민이' || state === 'K-고딩' || state === '샌애기' ? 'textDecoImg' : 'textDecoImg-if'
-                }
-                src={textDeco}
-              />
-            </div>
+            // <div className="LoggedTypePage-textDeco">
+            <img
+              className={
+                state === '잼민이' || state === 'K-고딩' || state === '샌애기' ? 'textDecoImg' : 'textDecoImg-if'
+              }
+              src={textDeco}
+            />
+            // </div>
           )}
 
           <TypeComponent
