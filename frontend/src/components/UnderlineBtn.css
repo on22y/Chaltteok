@@ -33,7 +33,7 @@
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 2px;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
 }
 
 .underlineBtn:active {

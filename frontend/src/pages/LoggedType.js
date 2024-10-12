@@ -8,6 +8,7 @@ import UnderlineBtn from '../components/UnderlineBtn';
 import MainBtn from '../components/MainBtn';
 import lineImg from '../assets/images/lineImg.png';
 import textDecoImg from '../assets/images/textDecoImg.png';
+import textDeco from '../assets/images/textDeco.png';
 import retestBtn from '../assets/images/retestBtn.png';
 import wordinputBtn from '../assets/images/wordinputBtn.png';
 
@@ -82,10 +83,12 @@ function LoggedType() {
         <div className="stateWithTextDeco">
           {showTextDeco && (
             <div className="LoggedTypePage-textDeco">
-              <TextComponent text="여전히" colorClass="textRed" fontSize="28px" shadowSize="2.2px" />
-              <div className="typeComponent-content">
-                <img className="textDecoImg" src={textDecoImg} width={100} height={45} />
-              </div>
+              <img
+                className={
+                  state === '잼민이' || state === 'K-고딩' || state === '샌애기' ? 'textDecoImg' : 'textDecoImg-if'
+                }
+                src={textDeco}
+              />
             </div>
           )}
 

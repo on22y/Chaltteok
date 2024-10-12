@@ -101,12 +101,12 @@ function TypeComponent({ state, detail }) {
 
   return (
     <div className="typeComponent">
-      <img className="stateImgComponent" src={stateImgSrc} width={365} alt={state} onLoad={handleImageLoad} />
+      <img className="stateImgComponent" src={stateImgSrc} width={318} alt={state} onLoad={handleImageLoad} />
 
       {!imageLoaded && <TextComponent text="Loading image..." fontSize="18px" shadowSize="1.9px" />}
       <img className="imgComponent" src={imgSrc} width={198} alt={state} onLoad={handleImageLoad} />
 
-      <img className="detailImgComponent" src={detailImgSrc} width={365} alt={detail} onLoad={handleImageLoad} />
+      <img className="detailImgComponent" src={detailImgSrc} width={356} alt={detail} onLoad={handleImageLoad} />
     </div>
   );
 }

@@ -6,6 +6,8 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  overflow: hidden;
+  padding: 20px;
 }
 
 .LoggedTypePage-content {
@@ -22,8 +24,8 @@
 }
 
 .LoggedTypePage .mainBtnContainer {
-  margin-top: 35px;
-  margin-bottom: 8px;
+  margin-top: 30px;
+  margin-bottom: 5px;
 }
 
 .LoggedTypePage .mainBtnContainer:last-child {
@@ -44,9 +46,21 @@
 }
 
 .textDecoImg {
-  margin-top: -10px;
-  width: 100px;
-  height: 45px;
+  /* margin-top: -30px; */
+  width: 90px;
+  height: auto;
+  margin-bottom: -27px;
+  margin-right: 23px;
+  z-index: 99;
+}
+
+.textDecoImg-if {
+  /* margin-top: -30px; */
+  width: 90px;
+  height: auto;
+  margin-bottom: -27px;
+  margin-right: -8px;
+  z-index: 99;
 }
 
 .LoggedTypePage-textDeco .textRed {

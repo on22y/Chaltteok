@@ -27,3 +27,11 @@ body {
 :root {
   --scale: 1;
 } */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* z-index: 0;*/
+  caret-color: transparent; /* 커서 깜빡임 제거 */
+}

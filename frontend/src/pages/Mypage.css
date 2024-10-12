@@ -13,14 +13,9 @@
   margin-bottom: 10px;
 }
 
-/* .mypage .typeImg {
-  margin-top: 10px;
-  margin-bottom: 10px;
-} */
-
 .mypage .mainBtnContainer {
-  margin-top: 35px;
-  margin-bottom: 8px;
+  margin-top: 30px;
+  margin-bottom: 5px;
 }
 
 .mypage .mainBtnContainer:last-child {
@@ -36,4 +31,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.mypage .imgComponent {
+  margin-top: 10px;
 }

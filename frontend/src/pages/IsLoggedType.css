@@ -16,14 +16,9 @@
   margin-bottom: 10px;
 }
 
-/* .isLoggedTypePage .typeImg {
-  margin-top: 10px;
-  margin-bottom: 10px;
-} */
-
 .isLoggedTypePage .mainBtnContainer {
-  margin-top: 35px;
-  margin-bottom: 8px;
+  margin-top: 30px;
+  margin-bottom: 5px;
 }
 
 .isLoggedTypePage .mainBtnContainer:last-child {
@@ -48,4 +43,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.isLoggedTypePage .imgComponent {
+  margin-top: 10px;
 }
