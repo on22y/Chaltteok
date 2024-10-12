@@ -112,9 +112,9 @@ router.post("/approve", (req, res) => {
 
             // question 테이블에 데이터 삽입
             const insertQuery = `
-            INSERT INTO question (slang_word, year, text1, text2, answer, meaning, value)
-            VALUES (?, ?, ?, ?, ?, ?,?)
-          `;
+              INSERT INTO question (slang_word, year, text1, text2, answer, meaning, value)
+              VALUES (?, ?, ?, ?, ?, ?, ?)
+            `;
             const insertValues = [
               wordData.word, // slang_word
               wordData.year, // year
@@ -138,31 +138,66 @@ router.post("/approve", (req, res) => {
                 });
               }
 
-              // 삽입 후 user_make_data 테이블에서 데이터 삭제
-              const deleteQuery = "DELETE FROM user_make_data WHERE id = ?";
-              conn.query(deleteQuery, [id], (err, deleteResults) => {
-                conn.release();
-                if (err) {
-                  console.error("Error deleting word:", err.message);
-                  return res.status(500).json({
-                    success: false,
-                    message: "Failed to delete word after insertion",
+              // slang_mapping 테이블에 데이터 삽입
+              const slangInsertQuery = `
+                INSERT INTO slang_mapping (slang, normal_word)
+                VALUES (?, ?)
+              `;
+              const slangInsertValues = [
+                wordData.word, // slang
+                about_word, // normal_word
+              ];
+
+              console.log("Inserting into slang_mapping:", slangInsertValues); // Debugging line
+
+              conn.query(
+                slangInsertQuery,
+                slangInsertValues,
+                (err, slangInsertResults) => {
+                  if (err) {
+                    conn.release();
+                    console.error(
+                      "Error inserting into slang_mapping table:",
+                      err.message
+                    );
+                    return res.status(500).json({
+                      success: false,
+                      message: "Failed to insert data into slang_mapping table",
+                    });
+                  }
+
+                  console.log(
+                    "Insert into slang_mapping successful:",
+                    slangInsertResults
+                  ); // Debugging line
+
+                  // 삽입 후 user_make_data 테이블에서 데이터 삭제
+                  const deleteQuery = "DELETE FROM user_make_data WHERE id = ?";
+                  conn.query(deleteQuery, [id], (err, deleteResults) => {
+                    conn.release();
+                    if (err) {
+                      console.error("Error deleting word:", err.message);
+                      return res.status(500).json({
+                        success: false,
+                        message: "Failed to delete word after insertion",
+                      });
+                    }
+
+                    if (deleteResults.affectedRows === 0) {
+                      return res.status(404).json({
+                        success: false,
+                        message: "Word not found for deletion",
+                      });
+                    }
+
+                    res.json({
+                      success: true,
+                      message:
+                        "Word successfully approved, inserted into question and slang_mapping, and deleted from user_make_data.",
+                    });
                   });
                 }
-
-                if (deleteResults.affectedRows === 0) {
-                  return res.status(404).json({
-                    success: false,
-                    message: "Word not found for deletion",
-                  });
-                }
-
-                res.json({
-                  success: true,
-                  message:
-                    "Word successfully approved, inserted, and deleted from user_make_data.",
-                });
-              });
+              );
             });
           });
         }
