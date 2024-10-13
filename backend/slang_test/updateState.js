@@ -101,10 +101,8 @@ router.post("/loading/updateState", (req, res) => {
         state = "샌애기";
       } else if (age_change >= 22 && age_change < 25) {
         state = "화석";
-      } else if (age_change >= 25 && age_change < 34) {
-        state = "삼촌";
       } else {
-        state = "아재";
+        state = "삼촌";
       }
       // users 테이블에서 nickname에 해당하는 사용자의 나이를 업데이트
       pool.query(
@@ -212,12 +210,9 @@ router.post("/logged/loading/updateState", (req, res) => {
       state = "샌애기";
     } else if (age_change >= 22 && age_change < 25) {
       state = "화석";
-    } else if (age_change >= 25 && age_change < 34) {
-      state = "삼촌";
     } else {
-      state = "아재";
+      state = "삼촌";
     }
-
     // users 테이블에서 nickname에 해당하는 사용자의 나이와 상태를 업데이트
     pool.query(
       "UPDATE users SET age = ?, state = ? WHERE nickname = ?",
